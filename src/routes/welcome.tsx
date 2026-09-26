@@ -1,8 +1,7 @@
-import {
-	AddCircleIcon,
-	MinusCircleIcon,
-} from "@solar-icons/react/line-duotone";
-import { AltArrowLeftIcon, CheckCircleIcon } from "@solar-icons/react/outline";
+import { AddIcon } from "@solar-icons/react/linear/add";
+import { CheckIcon } from "@solar-icons/react/linear/check";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
+import { AltArrowLeftIcon } from "@solar-icons/react/outline";
 import {
 	useMutation,
 	useQueryClient,
@@ -235,7 +234,7 @@ function NumberStepper({
 				className="size-12 shrink-0 rounded-full"
 				onClick={() => bump(-step)}
 			>
-				<MinusCircleIcon secondaryOpacity={0} size={24} />
+				<MinusIcon size={20} />
 			</Button>
 			<div className="flex items-baseline gap-1.5">
 				<Input
@@ -262,7 +261,7 @@ function NumberStepper({
 				className="size-12 shrink-0 rounded-full"
 				onClick={() => bump(step)}
 			>
-				<AddCircleIcon secondaryOpacity={0} size={24} />
+				<AddIcon size={20} />
 			</Button>
 		</div>
 	);
@@ -664,7 +663,7 @@ function DoneStep({ onFinish }: { onFinish: () => void }) {
 	return (
 		<>
 			<div className="mb-8 space-y-3">
-				<CheckCircleIcon className="size-10 text-primary" />
+				<CheckIcon className="size-10 text-primary" />
 				<h1 className="font-display text-2xl text-balance">Todo listo</h1>
 				<p className="text-sm text-muted-foreground text-pretty">
 					{rows.length > 0

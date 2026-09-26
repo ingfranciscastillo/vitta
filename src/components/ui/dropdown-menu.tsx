@@ -1,5 +1,5 @@
+import { CheckIcon } from "@solar-icons/react/linear/check";
 import { AltArrowRightIcon } from "@solar-icons/react/outline/alt-arrow-right";
-import { CheckCircleIcon } from "@solar-icons/react/outline/check-circle";
 import { RecordCircleIcon } from "@solar-icons/react/outline/record-circle";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import type * as React from "react";
@@ -100,7 +100,7 @@ function DropdownMenuCheckboxItem({
 		>
 			<span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
 				<DropdownMenuPrimitive.ItemIndicator>
-					<CheckCircleIcon className="size-4" />
+					<CheckIcon className="size-4" />
 				</DropdownMenuPrimitive.ItemIndicator>
 			</span>
 			{children}

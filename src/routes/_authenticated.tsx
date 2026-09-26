@@ -1,4 +1,4 @@
-import { AddCircleIcon } from "@solar-icons/react/line-duotone";
+import { AddIcon } from "@solar-icons/react/linear/add";
 import {
   MoonIcon,
   ScaleIcon,
@@ -165,11 +165,7 @@ function AuthenticatedLayout() {
                   className="size-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-sm active:scale-[0.92] motion-reduce:active:scale-100 transition-transform duration-100 ease-out"
                   aria-label="Registrar"
                 >
-                  <AddCircleIcon
-                    secondaryOpacity={0}
-                    size={50}
-                    className="size-5"
-                  />
+                  <AddIcon size={20} className="size-5" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent

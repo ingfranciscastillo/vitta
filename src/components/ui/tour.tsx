@@ -12,11 +12,8 @@ import {
 	shift,
 	useFloating,
 } from "@floating-ui/react-dom";
-import {
-	AltArrowLeftIcon,
-	AltArrowRightIcon,
-	CloseCircleIcon,
-} from "@solar-icons/react/outline";
+import { CloseIcon } from "@solar-icons/react/linear/close";
+import { AltArrowLeftIcon, AltArrowRightIcon } from "@solar-icons/react/outline";
 import {
 	Direction as DirectionPrimitive,
 	Slot as SlotPrimitive,
@@ -1521,7 +1518,7 @@ function TourClose(props: TourCloseProps) {
 			onClick={onClick}
 			{...closeButtonProps}
 		>
-			<CloseCircleIcon className="size-4" />
+			<CloseIcon className="size-4" />
 		</ClosePrimitive>
 	);
 }

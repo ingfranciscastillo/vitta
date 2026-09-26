@@ -1,11 +1,9 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
-import {
-	AltArrowDownIcon,
-	CheckCircleIcon,
-	CloseCircleIcon,
-} from "@solar-icons/react/outline";
+import { CheckIcon } from "@solar-icons/react/linear/check";
+import { CloseIcon } from "@solar-icons/react/linear/close";
+import { AltArrowDownIcon } from "@solar-icons/react/outline";
 import * as React from "react";
 import { Button } from "#/components/ui/button.tsx";
 import {
@@ -50,7 +48,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
 			className={cn(className)}
 			{...props}
 		>
-			<CloseCircleIcon className="pointer-events-none" />
+			<CloseIcon className="pointer-events-none" />
 		</ComboboxPrimitive.Clear>
 	);
 }
@@ -163,7 +161,7 @@ function ComboboxItem({
 					<span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center" />
 				}
 			>
-				<CheckCircleIcon className="pointer-events-none size-4 pointer-coarse:size-5" />
+				<CheckIcon className="pointer-events-none size-4 pointer-coarse:size-5" />
 			</ComboboxPrimitive.ItemIndicator>
 		</ComboboxPrimitive.Item>
 	);
@@ -268,7 +266,7 @@ function ComboboxChip({
 					className="-ml-1 opacity-50 hover:opacity-100"
 					data-slot="combobox-chip-remove"
 				>
-					<CloseCircleIcon className="pointer-events-none" />
+					<CloseIcon className="pointer-events-none" />
 				</ComboboxPrimitive.ChipRemove>
 			)}
 		</ComboboxPrimitive.Chip>

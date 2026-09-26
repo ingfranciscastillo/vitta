@@ -1,7 +1,5 @@
-import {
-  AddCircleIcon,
-  MinusCircleIcon,
-} from "@solar-icons/react/line-duotone";
+import { AddIcon } from "@solar-icons/react/linear/add";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
 import { NotebookIcon } from "@solar-icons/react/outline";
 import { useState } from "react";
 import { Button } from "#/components/ui/button";
@@ -99,11 +97,7 @@ export function QuickLogDialog({
               onClick={() => step(-0.1)}
               aria-label="Restar 0.1"
             >
-              <MinusCircleIcon
-                size={30}
-                secondaryOpacity={0}
-                className="w-11 h-11"
-              />
+              <MinusIcon size={20} className="size-5" />
             </Button>
             <div className="flex items-baseline">
               <Input
@@ -130,11 +124,7 @@ export function QuickLogDialog({
               onClick={() => step(0.1)}
               aria-label="Sumar 0.1"
             >
-              <AddCircleIcon
-                size={30}
-                secondaryOpacity={0}
-                className="w-7 h-7"
-              />
+              <AddIcon size={20} className="size-5" />
             </Button>
           </div>
 

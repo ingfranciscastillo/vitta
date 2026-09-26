@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from "@solar-icons/react/line-duotone/check-circle";
+import { CheckIcon } from "@solar-icons/react/linear/check";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import type * as React from "react";
 
@@ -21,7 +21,7 @@ function Checkbox({
 				data-slot="checkbox-indicator"
 				className="grid place-content-center text-current transition-none"
 			>
-				<CheckCircleIcon secondaryOpacity={0} className="size-4" />
+				<CheckIcon className="size-3.5" />
 			</CheckboxPrimitive.Indicator>
 		</CheckboxPrimitive.Root>
 	);

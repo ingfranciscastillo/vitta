@@ -1,7 +1,5 @@
-import {
-	AddCircleIcon,
-	MinusCircleIcon,
-} from "@solar-icons/react/line-duotone";
+import { AddIcon } from "@solar-icons/react/linear/add";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
 import { WaterdropIcon } from "@solar-icons/react/outline";
 import {
 	useMutation,
@@ -108,11 +106,7 @@ export function WaterCounter() {
 					className="group size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center active:scale-[0.92] motion-reduce:active:scale-100 transition-transform duration-100 ease-out disabled:opacity-40 shrink-0 ring-2 ring-primary/5 pointer-fine-hover:ring-primary/15"
 					aria-label="Quitar un vaso de agua"
 				>
-					<MinusCircleIcon
-						secondaryOpacity={0}
-						size={30}
-						className="w-7 h-7 transition-transform"
-					/>
+					<MinusIcon size={20} className="size-5 transition-transform" />
 				</button>
 				<button
 					type="button"
@@ -121,11 +115,7 @@ export function WaterCounter() {
 					className="group relative size-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-sm active:scale-[0.92] motion-reduce:active:scale-100 transition-transform duration-100 ease-out shrink-0 ring-2 ring-primary/15 pointer-fine-hover:ring-primary/25"
 					aria-label="Añadir un vaso de agua"
 				>
-					<AddCircleIcon
-						secondaryOpacity={0}
-						size={30}
-						className="w-7 h-7 transition-transform"
-					/>
+					<AddIcon size={20} className="size-5 transition-transform" />
 				</button>
 			</div>
 			<div className="mt-3">

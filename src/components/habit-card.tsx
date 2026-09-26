@@ -1,4 +1,4 @@
-import { AddCircleIcon } from "@solar-icons/react/line-duotone";
+import { AddIcon } from "@solar-icons/react/linear/add";
 import { type ComponentType, useState } from "react";
 import { ProgressBar } from "#/components/progress-bar";
 import { QuickAddDialog } from "#/components/quick-add-dialog";
@@ -58,7 +58,7 @@ export function HabitCard({
 					className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center active:scale-[0.92] motion-reduce:active:scale-100 transition-transform duration-100 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 					aria-label={`Añadir ${label}`}
 				>
-					<AddCircleIcon secondaryOpacity={0} size={30} className="w-4 h-4" />
+					<AddIcon size={16} className="size-4" />
 				</button>
 			</div>
 			<QuickAddDialog

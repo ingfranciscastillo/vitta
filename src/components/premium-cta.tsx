@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from "@solar-icons/react/outline";
+import { CheckIcon } from "@solar-icons/react/linear/check";
 import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/ui/button";
 
@@ -20,7 +20,7 @@ export function PremiumCTA() {
 				<ul className="grid grid-cols-2 gap-2 max-w-sm mx-auto my-6 text-left text-sm">
 					{BENEFITS.map((b) => (
 						<li key={b} className="flex items-center gap-2">
-							<CheckCircleIcon className="w-4 h-4" /> {b}
+							<CheckIcon className="w-4 h-4" /> {b}
 						</li>
 					))}
 				</ul>

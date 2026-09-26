@@ -1,7 +1,5 @@
-import {
-  AddCircleIcon,
-  MinusCircleIcon,
-} from "@solar-icons/react/line-duotone";
+import { AddIcon } from "@solar-icons/react/linear/add";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
 import {
   BellIcon,
   CalendarIcon,
@@ -138,7 +136,7 @@ function DashboardPage() {
 
   const delta = stats.changeVsLast;
   const DeltaIcon =
-    delta < 0 ? GraphDownIcon : delta > 0 ? GraphUpIcon : MinusCircleIcon;
+    delta < 0 ? GraphDownIcon : delta > 0 ? GraphUpIcon : MinusIcon;
 
   const logHabitMut = useMutation({
     mutationFn: (vars: { type: "steps" | "sleep"; step: number }) =>
@@ -287,11 +285,7 @@ function DashboardPage() {
                 className="group size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center active:scale-[0.92] motion-reduce:active:scale-100 transition-transform duration-100 ease-out pointer-fine-hover:bg-primary/20 ring-1 ring-primary/5 pointer-fine-hover:ring-primary/15"
                 aria-label={`Añadir ${h.label}`}
               >
-                <AddCircleIcon
-                  size={30}
-                  secondaryOpacity={0}
-                  className="w-5 h-5 transition-transform"
-                />
+                <AddIcon size={20} className="size-5 transition-transform" />
               </button>
             </div>
           );

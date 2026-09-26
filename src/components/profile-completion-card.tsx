@@ -1,4 +1,5 @@
-import { CheckCircleIcon, CloseCircleIcon } from "@solar-icons/react/outline";
+import { CheckIcon } from "@solar-icons/react/linear/check";
+import { CloseIcon } from "@solar-icons/react/linear/close";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Progress } from "#/components/ui/progress";
@@ -64,7 +65,7 @@ export function ProfileCompletionCard({ gaps }: ProfileCompletionCardProps) {
 					aria-label="Ocultar"
 					className="-mr-2 -mt-2 flex size-11 items-center justify-center rounded-full text-muted-foreground pointer-fine-hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 				>
-					<CloseCircleIcon className="size-5" />
+					<CloseIcon className="size-5" />
 				</button>
 			</div>
 			<Progress
@@ -80,7 +81,7 @@ export function ProfileCompletionCard({ gaps }: ProfileCompletionCardProps) {
 							item.done && "text-muted-foreground line-through",
 						)}
 					>
-						<CheckCircleIcon
+						<CheckIcon
 							className={cn(
 								"size-4 shrink-0",
 								item.done ? "text-primary" : "text-muted-foreground/40",

@@ -1,5 +1,5 @@
+import { CheckIcon } from "@solar-icons/react/linear/check";
 import {
-	CheckCircleIcon,
 	FireIcon,
 	GraphDownIcon,
 	HashtagIcon,
@@ -54,7 +54,7 @@ export function AchievementsList({ achievements }: AchievementsListProps) {
 							}`}
 						>
 							{a.unlocked ? (
-								<CheckCircleIcon className="w-5 h-5" />
+								<CheckIcon className="w-5 h-5" />
 							) : (
 								<Icon className="w-5 h-5" />
 							)}

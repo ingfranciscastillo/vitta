@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from "@solar-icons/react/line-duotone";
+import { CheckIcon } from "@solar-icons/react/linear/check";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -73,10 +73,7 @@ export function PaywallContent({ isPro = false }: PaywallContentProps = {}) {
 			<ul className="text-left space-y-2.5 mb-6">
 				{BENEFITS.map((b) => (
 					<li key={b} className="flex items-center gap-2.5 text-sm">
-						<CheckCircleIcon
-							secondaryOpacity={0}
-							className="size-8 text-primary shrink-0 mt-0.5"
-						/>
+						<CheckIcon className="size-4 text-primary shrink-0" />
 						<span>{b}</span>
 					</li>
 				))}

@@ -1,4 +1,4 @@
-import { MinusCircleIcon } from "@solar-icons/react/outline";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
 import { OTPInput, OTPInputContext } from "input-otp";
 import * as React from "react";
 
@@ -67,7 +67,7 @@ function InputOTPSlot({
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
 	return (
 		<div data-slot="input-otp-separator" role="separator" {...props}>
-			<MinusCircleIcon />
+			<MinusIcon />
 		</div>
 	);
 }

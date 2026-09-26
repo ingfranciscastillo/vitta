@@ -1,7 +1,5 @@
-import {
-	AddCircleIcon,
-	MinusCircleIcon,
-} from "@solar-icons/react/line-duotone";
+import { AddIcon } from "@solar-icons/react/linear/add";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
 import { useState } from "react";
 import { Button } from "#/components/ui/button";
 import {
@@ -88,11 +86,7 @@ export function HabitLogDialog({
 							className="rounded-full size-12 shrink-0"
 							onClick={() => stepVal(-step)}
 						>
-							<MinusCircleIcon
-								size={30}
-								secondaryOpacity={0}
-								className="w-5 h-5"
-							/>
+							<MinusIcon size={20} className="size-5" />
 						</Button>
 						<div className="flex items-baseline">
 							<Input
@@ -121,11 +115,7 @@ export function HabitLogDialog({
 							className="rounded-full h-12 w-12 shrink-0"
 							onClick={() => stepVal(step)}
 						>
-							<AddCircleIcon
-								size={30}
-								className="w-5 h-5"
-								secondaryOpacity={0}
-							/>
+							<AddIcon size={20} className="size-5" />
 						</Button>
 					</div>
 				</div>
