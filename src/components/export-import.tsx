@@ -1,6 +1,9 @@
+import { CrownMinimalisticIcon } from "@solar-icons/react/outline";
 import { ExportIcon } from "@solar-icons/react/outline/export";
 import { ImportIcon } from "@solar-icons/react/outline/import";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { PaywallDialog } from "#/components/paywall-dialog";
 import { Button } from "#/components/ui/button";
 import type { WeightEntry } from "#/lib/weight-utils";
 
@@ -9,6 +12,8 @@ type ImportableEntry = Pick<WeightEntry, "date" | "time" | "weight" | "note">;
 type ExportImportProps = {
 	entries: WeightEntry[];
 	onImport: (entries: ImportableEntry[]) => void;
+	// Exportar es Premium; importar está disponible para todos.
+	canExport: boolean;
 };
 
 function download(name: string, content: string, type: string): void {
@@ -21,8 +26,16 @@ function download(name: string, content: string, type: string): void {
 	URL.revokeObjectURL(url);
 }
 
-export function ExportImport({ entries, onImport }: ExportImportProps) {
+export function ExportImport({
+	entries,
+	onImport,
+	canExport,
+}: ExportImportProps) {
 	const fileRef = useRef<HTMLInputElement>(null);
+	const [paywallOpen, setPaywallOpen] = useState(false);
+	const ExportGlyph = canExport ? ExportIcon : CrownMinimalisticIcon;
+	const guard = (fn: () => void) => () =>
+		canExport ? fn() : setPaywallOpen(true);
 
 	const exportCSV = (): void => {
 		const rows: (string | number)[][] = [["date", "time", "weight_kg", "note"]];
@@ -58,10 +71,10 @@ export function ExportImport({ entries, onImport }: ExportImportProps) {
 				if (Array.isArray(parsed)) {
 					onImport(parsed as ImportableEntry[]);
 				} else {
-					alert("Archivo inválido");
+					toast.error("Archivo inválido");
 				}
 			} catch {
-				alert("Archivo inválido");
+				toast.error("Archivo inválido");
 			}
 		};
 		reader.readAsText(file);
@@ -72,17 +85,17 @@ export function ExportImport({ entries, onImport }: ExportImportProps) {
 		<div className="grid grid-cols-3 gap-2">
 			<Button
 				variant="outline"
-				onClick={exportCSV}
+				onClick={guard(exportCSV)}
 				className="font-display w-full text-xs"
 			>
-				<ExportIcon className="w-4 h-4 mr-1.5" /> CSV
+				<ExportGlyph className="w-4 h-4 mr-1.5" /> CSV
 			</Button>
 			<Button
 				variant="outline"
-				onClick={exportJSON}
+				onClick={guard(exportJSON)}
 				className="font-display w-full text-xs"
 			>
-				<ExportIcon className="w-4 h-4 mr-1.5" /> JSON
+				<ExportGlyph className="w-4 h-4 mr-1.5" /> JSON
 			</Button>
 			<Button
 				variant="outline"
@@ -98,6 +111,7 @@ export function ExportImport({ entries, onImport }: ExportImportProps) {
 				className="hidden"
 				onChange={handleFile}
 			/>
+			<PaywallDialog open={paywallOpen} onOpenChange={setPaywallOpen} />
 		</div>
 	);
 }

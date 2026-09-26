@@ -3,7 +3,6 @@ import {
   CalendarIcon,
   ChartSquareIcon,
   CrownMinimalisticIcon,
-  DownloadIcon,
   DumbbellIcon,
   HealthIcon,
   HistoryIcon,
@@ -11,10 +10,8 @@ import {
   MedalRibbonIcon,
   PlateIcon,
   RulerIcon,
-  SettingsMinimalisticIcon,
   StopwatchIcon,
   TargetIcon,
-  UserIcon,
 } from "@solar-icons/react/outline";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
@@ -37,9 +34,6 @@ type LinkItem = {
     | "/calendar"
     | "/statistics"
     | "/achievements"
-    | "/profile"
-    | "/settings"
-    | "/export"
     | "/pricing";
   label: string;
   icon: typeof TargetIcon;
@@ -82,13 +76,6 @@ const SECTIONS: Section[] = [
     title: "Cuenta",
     items: [
       { to: "/achievements", label: "Logros", icon: MedalRibbonIcon },
-      { to: "/profile", label: "Perfil", icon: UserIcon },
-      {
-        to: "/settings",
-        label: "Configuración",
-        icon: SettingsMinimalisticIcon,
-      },
-      { to: "/export", label: "Exportar", icon: DownloadIcon },
       {
         to: "/pricing",
         label: "Premium",

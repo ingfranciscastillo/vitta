@@ -27,6 +27,12 @@ import {
 	measurementSeries,
 } from "#/lib/health-utils";
 import { currentUserQuery } from "#/lib/profile";
+import {
+	lengthFromDisplay,
+	lengthToDisplay,
+	lengthUnitLabel,
+	lengthUnitOf,
+} from "#/lib/units";
 import { formatDate, sortByDateDesc, todayStr } from "#/lib/weight-utils";
 
 export const Route = createFileRoute("/_authenticated/measurements")({
@@ -54,9 +60,19 @@ function MeasurementsPage() {
 	const valInputRef = useRef<HTMLInputElement | null>(null);
 
 	const meta = MEASUREMENT_TYPES.find((m) => m.id === sel)!;
+	// Las longitudes se guardan en cm y se muestran en la unidad del usuario.
+	const isLength = meta.unit === "cm";
+	const heightUnit = lengthUnitOf(me.weightUnit);
+	const unitLabel = isLength ? lengthUnitLabel(heightUnit) : meta.unit;
+	const toShown = (v: number) =>
+		isLength ? lengthToDisplay(v, heightUnit) : v;
 	const series = useMemo(
-		() => measurementSeries(bodyMeasurements, sel),
-		[bodyMeasurements, sel],
+		() =>
+			measurementSeries(bodyMeasurements, sel).map((p) => ({
+				...p,
+				value: isLength ? lengthToDisplay(p.value, heightUnit) : p.value,
+			})),
+		[bodyMeasurements, sel, isLength, heightUnit],
 	);
 	const latest = latestMeasurement(bodyMeasurements, sel);
 	const history = useMemo(
@@ -114,7 +130,11 @@ function MeasurementsPage() {
 	const save = () => {
 		const v = parseFloat(val);
 		if (Number.isNaN(v) || v <= 0) return;
-		createMut.mutate({ type: sel, value: v, date });
+		createMut.mutate({
+			type: sel,
+			value: isLength ? lengthFromDisplay(v, heightUnit) : v,
+			date,
+		});
 	};
 
 	return (
@@ -144,9 +164,9 @@ function MeasurementsPage() {
 				</div>
 				<div className="flex items-baseline gap-2 mt-1">
 					<span className="font-display text-4xl leading-none tabular-nums">
-						{latest ? latest.value.toFixed(1) : "—"}
+						{latest ? toShown(latest.value).toFixed(1) : "—"}
 					</span>
-					<span className="font-display text-lg opacity-70">{meta.unit}</span>
+					<span className="font-display text-lg opacity-70">{unitLabel}</span>
 				</div>
 				{latest && (
 					<div className="text-xs opacity-70 mt-2">
@@ -160,7 +180,7 @@ function MeasurementsPage() {
 				<div className="grid grid-cols-2 gap-3">
 					<div className="space-y-1.5">
 						<Label className="text-[10px] uppercase text-muted-foreground">
-							Valor ({meta.unit})
+							Valor ({unitLabel})
 						</Label>
 						<Input
 							ref={valInputRef}
@@ -199,7 +219,7 @@ function MeasurementsPage() {
 					<div className="font-display text-sm mb-2">Evolución</div>
 					<TrendChart
 						data={series}
-						unit={meta.unit}
+						unit={unitLabel}
 						name={meta.label}
 						height={200}
 					/>
@@ -229,7 +249,7 @@ function MeasurementsPage() {
 									{formatDate(m.date)}
 								</span>
 								<span className="font-medium">
-									{m.value.toFixed(1)} {meta.unit}
+									{toShown(m.value).toFixed(1)} {unitLabel}
 								</span>
 								<button
 									type="button"

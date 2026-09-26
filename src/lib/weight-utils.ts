@@ -421,7 +421,9 @@ export const computeAchievements = (
 	// Respeta la dirección del objetivo (bajar o subir de peso).
 	const goalReached =
 		goalResult != null && goalResult.status !== "in-progress";
-	void unit;
+	// Hitos de pérdida en la unidad del usuario (1 y 5 kg, o 1 y 10 lb).
+	const lostDisplay = toDisplay(stats.totalLost, unit);
+	const bigLoss = unit === "lb" ? 10 : 5;
 	return [
 		{
 			id: "first",
@@ -453,17 +455,17 @@ export const computeAchievements = (
 		},
 		{
 			id: "firstKg",
-			label: "Primer kilo perdido",
+			label: unit === "lb" ? "Primera libra perdida" : "Primer kilo perdido",
 			icon: "TrendingDown",
-			unlocked: stats.totalLost >= 1,
-			progress: Math.min(1, stats.totalLost),
+			unlocked: lostDisplay >= 1,
+			progress: Math.min(1, lostDisplay),
 		},
 		{
 			id: "fiveKg",
-			label: "5 kg perdidos",
+			label: unit === "lb" ? "10 lb perdidas" : "5 kg perdidos",
 			icon: "TrendingDown",
-			unlocked: stats.totalLost >= 5,
-			progress: Math.min(1, stats.totalLost / 5),
+			unlocked: lostDisplay >= bigLoss,
+			progress: Math.min(1, lostDisplay / bigLoss),
 		},
 		{
 			id: "goal",

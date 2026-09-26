@@ -26,6 +26,7 @@ import { currentGoalQuery } from "#/lib/goals";
 import { upsertGoal } from "#/lib/goals.functions";
 import { currentUserQuery } from "#/lib/profile";
 import { updateProfile } from "#/lib/profile.functions";
+import { type Pace, paceLabel } from "#/lib/units";
 import { weightEntriesQuery } from "#/lib/weight";
 import {
   computeStats,
@@ -44,7 +45,7 @@ export const Route = createFileRoute("/_authenticated/goals")({
   component: GoalsPage,
 });
 
-type Pace = "slow" | "moderate" | "fast";
+const PACES: ReadonlyArray<Pace> = ["slow", "moderate", "fast"];
 
 function GoalsPage() {
   const { goal, unit } = useSuspenseQuery(currentGoalQuery()).data!;
@@ -326,15 +327,11 @@ function GoalsPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="slow" className="h-11">
-                    Lento (0.25 kg/sem)
-                  </SelectItem>
-                  <SelectItem value="moderate" className="h-11">
-                    Moderado (0.5 kg/sem)
-                  </SelectItem>
-                  <SelectItem value="fast" className="h-11">
-                    Rápido (0.75 kg/sem)
-                  </SelectItem>
+                  {PACES.map((p) => (
+                    <SelectItem key={p} value={p} className="h-11">
+                      {paceLabel(p, unit)}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
