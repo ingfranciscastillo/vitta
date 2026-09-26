@@ -221,7 +221,7 @@ function DashboardPage() {
             </div>
             <GoalCard
               goal={goal}
-              current={stats.current ?? 0}
+              current={stats.current}
               unit={unit}
               onEdit={() => {
                 window.location.href = "/goals";

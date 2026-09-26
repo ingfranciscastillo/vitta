@@ -12,7 +12,7 @@ import {
 
 type GoalCardProps = {
   goal: Goal | null | undefined;
-  current: number;
+  current: number | null;
   unit: WeightUnit;
   onEdit: () => void;
 };
@@ -21,6 +21,30 @@ export function GoalCard({ goal, current, unit, onEdit }: GoalCardProps) {
   if (!goal) return null;
   const target = goal.target_weight;
   if (target == null) return null;
+  if (current == null) {
+    return (
+      <div className="rounded-2xl bg-card border border-border p-5">
+        <div className="flex items-center justify-between mb-3">
+          <span className="font-display text-sm">Objetivo</span>
+          <button
+            type="button"
+            onClick={onEdit}
+            className="text-muted-foreground hover:text-foreground"
+            aria-label="Editar objetivo"
+          >
+            <PenIcon className="w-4 h-4" />
+          </button>
+        </div>
+        <div className="text-[10px] uppercase text-muted-foreground">Meta</div>
+        <div className="font-display text-xl text-primary">
+          {formatWeightValue(target, unit)} {unit}
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          Registra tu peso para empezar a medir tu progreso.
+        </p>
+      </div>
+    );
+  }
   const start = goal.start_weight ?? current;
   const { pct, status, remaining } = computeGoalProgress(
     start,

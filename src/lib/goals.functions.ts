@@ -7,6 +7,8 @@ import { getSession } from "#/lib/auth.functions";
 import { listWeightEntries } from "#/lib/weight.functions";
 import {
 	computeStats,
+	GOAL_WEIGHT_MAX_KG,
+	GOAL_WEIGHT_MIN_KG,
 	type Goal,
 	todayStr,
 	type WeightUnit,
@@ -46,7 +48,10 @@ export const getCurrentGoal = createServerFn({ method: "GET" }).handler(
 );
 
 const goalSchema = z.object({
-	targetWeight: z.number().positive(),
+	targetWeight: z
+		.number()
+		.min(GOAL_WEIGHT_MIN_KG, { error: "Peso objetivo demasiado bajo" })
+		.max(GOAL_WEIGHT_MAX_KG, { error: "Peso objetivo demasiado alto" }),
 	targetDate: z.string().nullable().optional(),
 	pace: z.enum(["slow", "moderate", "fast"]).default("moderate"),
 });

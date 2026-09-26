@@ -62,6 +62,8 @@ function CalendarPage() {
 		onSuccess: () => {
 			toast.success("Registro añadido");
 			void qc.invalidateQueries({ queryKey: ["weight-entries"] });
+			void qc.invalidateQueries({ queryKey: ["weight-stats"] });
+			void qc.invalidateQueries({ queryKey: ["current-goal"] });
 		},
 		onError: () => toast.error("No se pudo añadir el registro"),
 	});
@@ -72,6 +74,7 @@ function CalendarPage() {
 		onSuccess: () => {
 			toast.success("Registro actualizado");
 			void qc.invalidateQueries({ queryKey: ["weight-entries"] });
+			void qc.invalidateQueries({ queryKey: ["weight-stats"] });
 		},
 		onError: () => toast.error("No se pudo actualizar el registro"),
 	});
@@ -81,6 +84,7 @@ function CalendarPage() {
 		onSuccess: () => {
 			toast.success("Registro eliminado");
 			void qc.invalidateQueries({ queryKey: ["weight-entries"] });
+			void qc.invalidateQueries({ queryKey: ["weight-stats"] });
 		},
 		onError: () => toast.error("No se pudo eliminar el registro"),
 	});

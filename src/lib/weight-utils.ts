@@ -20,6 +20,11 @@ export type Goal = {
 	start_date?: string | null;
 };
 
+// Rango válido para el peso objetivo (en kg). El máximo también protege
+// la columna numeric(6,2) de la tabla goal.
+export const GOAL_WEIGHT_MIN_KG = 20;
+export const GOAL_WEIGHT_MAX_KG = 400;
+
 export const kgToLb = (kg: number): number => kg * LB_PER_KG;
 export const lbToKg = (lb: number): number => lb / LB_PER_KG;
 export const toDisplay = (kg: number, unit: WeightUnit): number =>
@@ -401,7 +406,7 @@ export const computeAchievements = (
 	const asc = sortByDateAsc(entries);
 	const stats = computeStats(entries);
 	const streaks = computeStreaks(entries);
-	const goalProgress =
+	const goalResult =
 		goal &&
 		goal.start_weight != null &&
 		goal.target_weight != null &&
@@ -410,8 +415,12 @@ export const computeAchievements = (
 					goal.start_weight,
 					stats.current,
 					goal.target_weight,
-				).pct / 100
-			: 0;
+				)
+			: null;
+	const goalProgress = goalResult ? goalResult.pct / 100 : 0;
+	// Respeta la dirección del objetivo (bajar o subir de peso).
+	const goalReached =
+		goalResult != null && goalResult.status !== "in-progress";
 	void unit;
 	return [
 		{
@@ -460,11 +469,7 @@ export const computeAchievements = (
 			id: "goal",
 			label: "Meta alcanzada",
 			icon: "Target",
-			unlocked:
-				!!goal &&
-				stats.current != null &&
-				goal.target_weight != null &&
-				stats.current <= goal.target_weight,
+			unlocked: goalReached,
 			progress: goalProgress,
 		},
 	];

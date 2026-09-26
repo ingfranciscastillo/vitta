@@ -104,6 +104,8 @@ function AuthenticatedLayout() {
       setQuickOpen(false);
       await qc.invalidateQueries({ queryKey: ["weight-entries"] });
       await qc.invalidateQueries({ queryKey: ["weight-stats"] });
+      // El primer peso completa start_weight del objetivo en el servidor.
+      await qc.invalidateQueries({ queryKey: ["current-goal"] });
     },
     onError: () => {
       toast.error("No se pudo registrar el peso");

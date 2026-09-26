@@ -27,7 +27,13 @@ import { upsertGoal } from "#/lib/goals.functions";
 import { currentUserQuery } from "#/lib/profile";
 import { updateProfile } from "#/lib/profile.functions";
 import { weightEntriesQuery } from "#/lib/weight";
-import { computeStats, fromDisplay, toDisplay } from "#/lib/weight-utils";
+import {
+  computeStats,
+  fromDisplay,
+  GOAL_WEIGHT_MAX_KG,
+  GOAL_WEIGHT_MIN_KG,
+  toDisplay,
+} from "#/lib/weight-utils";
 
 export const Route = createFileRoute("/_authenticated/goals")({
   loader: ({ context }) => {
@@ -138,7 +144,12 @@ function GoalsPage() {
 
   const saveWeight = () => {
     const kg = fromDisplay(parseFloat(target), unit);
-    if (Number.isNaN(kg) || kg <= 0) return;
+    if (Number.isNaN(kg) || kg < GOAL_WEIGHT_MIN_KG || kg > GOAL_WEIGHT_MAX_KG) {
+      const min = Math.ceil(toDisplay(GOAL_WEIGHT_MIN_KG, unit));
+      const max = Math.floor(toDisplay(GOAL_WEIGHT_MAX_KG, unit));
+      toast.error(`El peso objetivo debe estar entre ${min} y ${max} ${unit}`);
+      return;
+    }
     saveWeightMut.mutate({
       targetWeight: kg,
       targetDate: date || null,
@@ -286,7 +297,7 @@ function GoalsPage() {
         {goal && !editing ? (
           <GoalCard
             goal={goal}
-            current={stats.current ?? 0}
+            current={stats.current}
             unit={unit}
             onEdit={() => setEditing(true)}
           />
