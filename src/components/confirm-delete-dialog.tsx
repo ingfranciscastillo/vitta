@@ -25,7 +25,7 @@ export function ConfirmDeleteDialog({
 	onOpenChange,
 	onConfirm,
 	title,
-	description = "Esta accion no se puede deshacer.",
+	description = "Esta acción no se puede deshacer.",
 	confirmLabel = "Eliminar",
 	isPending = false,
 }: ConfirmDeleteDialogProps) {

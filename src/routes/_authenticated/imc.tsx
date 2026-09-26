@@ -73,8 +73,8 @@ function IMCPage() {
 				<EmptyState
 					icon={<RulerIcon className="size-6" />}
 					title="Registra tu peso para calcular el IMC"
-					description="Anade tu primer peso para empezar a visualizar tu IMC."
-					action={{ label: "Anadir peso", onClick: openQuickLog }}
+					description="Añade tu primer peso para empezar a visualizar tu IMC."
+					action={{ label: "Añadir peso", onClick: openQuickLog }}
 				/>
 			) : (
 				<>

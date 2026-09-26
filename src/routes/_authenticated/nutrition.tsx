@@ -395,10 +395,10 @@ function NutritionPage() {
 				<div className="font-display text-sm mb-2">Comidas de hoy</div>
 				{todayMeals.length === 0 ? (
 					<EmptyState
-						title="Aun no has registrado comidas hoy"
-						description="Anade tu primera comida para empezar a llevar el conteo."
+						title="Aún no has registrado comidas hoy"
+						description="Añade tu primera comida para empezar a llevar el conteo."
 						action={{
-							label: "Anadir comida",
+							label: "Añadir comida",
 							onClick: () => nameInputRef.current?.focus(),
 						}}
 					/>
@@ -440,7 +440,7 @@ function NutritionPage() {
 					setDeletingMeal(null);
 				}}
 				title="Eliminar comida"
-				description={`Se eliminara "${deletingMeal?.name ?? ""}". Esta accion no se puede deshacer.`}
+				description={`Se eliminará "${deletingMeal?.name ?? ""}". Esta acción no se puede deshacer.`}
 				isPending={deleteMut.isPending}
 			/>
 

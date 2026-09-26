@@ -29,7 +29,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         name: "description",
         content:
-          "Registra tu peso, hábitos, ayuno, mediciones y nutrición en un solo lugar. Visualiza tendencias y alcanza tus objetivos con Vitta.",
+          "Registra tu peso en 5 segundos y sigue agua, pasos, sueño y medidas en un solo lugar. Gratis para empezar; Premium es un pago único, sin suscripción.",
       },
       {
         name: "theme-color",
@@ -51,7 +51,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         property: "og:description",
         content:
-          "Registra tu peso, hábitos y ayuno. Visualiza tendencias y alcanza tus objetivos con Vitta.",
+          "Registra tu peso en 5 segundos y mira tu progreso cada día. Gratis para empezar.",
       },
       { property: "og:locale", content: "es_ES" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -62,7 +62,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         name: "twitter:description",
         content:
-          "Registra tu peso, hábitos y ayuno. Visualiza tendencias y alcanza tus objetivos con Vitta.",
+          "Registra tu peso en 5 segundos y mira tu progreso cada día. Gratis para empezar.",
       },
     ],
     links: [

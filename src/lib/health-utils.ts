@@ -639,7 +639,7 @@ export const metricExplanations = {
 	trend:
 		"La tendencia resume hacia dónde va tu peso a lo largo del tiempo y es más fiable que comparar solo dos registros.",
 	calorieGoal:
-		"Tu objetivo calórico es una guía orientativa. Ajustálo según tu actividad y cómo te sientes; no es una prescripción médica.",
+		"Tu objetivo calórico es una guía orientativa. Ajústalo según tu actividad y cómo te sientes; no es una prescripción médica.",
 	fasting:
 		"El ayuno intermitente consiste en alternar periodos sin comer con ventanas de alimentación. La duración ideal varía por persona; consulta a un profesional si tienes dudas.",
 };

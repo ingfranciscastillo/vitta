@@ -6,10 +6,10 @@
 
 # Vitta
 
-**Sigue tu evolución, día a día**
+**Registra tu peso en 5 segundos. Mira tu progreso cada día.**
 
 <p align="center">
-La forma más simple de seguir tu progreso físico completo: peso, hábitos y medidas, todo en un solo lugar.
+Peso, agua, pasos, sueño y medidas en un solo lugar. Gratis para empezar; Premium es un pago único, sin suscripción.
 </p>
 
 [English](./README.en.md) · Español
@@ -18,11 +18,11 @@ La forma más simple de seguir tu progreso físico completo: peso, hábitos y me
 
 ## Características
 
-- **Registro ultra rápido** — abre, pesa, guarda. En menos de 5 segundos, sin fricción.
-- **Hábitos diarios** — agua, pasos, sueño y ayuno, todo en un tap.
-- **Nutrición y actividad física** — registra comidas y ejercicio junto a tu peso.
-- **Medidas corporales e IMC** — sigue tu composición completa, no solo la balanza.
-- **Objetivos diarios** — metas personalizadas para cada hábito, no solo el peso.
-- **Logros y rachas** — desbloquea hitos y mantente motivado con tu constancia.
-- **Gráficos y estadísticas** — tendencia, media móvil y análisis de tu evolución.
-- **Historial y resumen semanal** — revisa tu semana y tu calendario completo.
+- **Registro en segundos** — escribe tu peso y guarda. ¿Mismo peso que ayer? Repítelo con un toque.
+- **Hábitos diarios** — agua, pasos y sueño con un toque, cada uno con su propia meta.
+- **Objetivo con fecha estimada** — elige tu peso meta y tu ritmo; Vitta calcula cuándo llegarás.
+- **Tu tendencia, no solo el dato de hoy** — gráfico de 30 días, IMC e historial.
+- **Rachas y logros** — cada día que registras suma a tu racha.
+- **Unidades métricas o imperiales** — kg y cm, o lb e in, en toda la app.
+
+**Premium** (pago único de $12.99, sin suscripción): historial completo, medidas corporales, nutrición y macros, ayuno intermitente, actividad física, resumen semanal, gráficos con media móvil y línea de meta, y exportación CSV/JSON.

@@ -1,11 +1,8 @@
 import {
-  BicyclingIcon,
   BoltIcon,
   GraphNewIcon,
-  HistoryIcon,
   MedalRibbonIcon,
   RulerIcon,
-  StarIcon,
   TargetIcon,
   WalkingIcon,
 } from "@solar-icons/react/outline";
@@ -22,48 +19,33 @@ type Feature = {
 const features: Feature[] = [
   {
     icon: BoltIcon,
-    title: "Registro ultra rápido",
-    desc: "Abre, pesa, guarda. En menos de 5 segundos, sin fricción.",
+    title: "Registro en segundos",
+    desc: "Escribe tu peso y guarda. ¿Mismo peso que ayer? Repítelo con un toque.",
   },
   {
     icon: WalkingIcon,
     title: "Hábitos diarios",
-    desc: "Agua, pasos, sueño y ayuno, todo en un tap.",
-  },
-  {
-    icon: BicyclingIcon,
-    title: "Nutrición y actividad física",
-    desc: "Registra comidas y ejercicio junto a tu peso.",
-  },
-  {
-    icon: RulerIcon,
-    title: "Medidas corporales e IMC",
-    desc: "Sigue tu composición completa, no solo la balanza.",
+    desc: "Agua, pasos y sueño con un toque, cada uno con su propia meta.",
   },
   {
     icon: TargetIcon,
-    title: "Objetivos diarios",
-    desc: "Metas personalizadas para cada hábito, no solo el peso.",
-  },
-  {
-    icon: MedalRibbonIcon,
-    title: "Logros y rachas",
-    desc: "Desbloquea hitos y mantente motivado con tu constancia.",
+    title: "Objetivo con fecha estimada",
+    desc: "Elige tu peso meta y tu ritmo. Vitta calcula cuándo llegarás.",
   },
   {
     icon: GraphNewIcon,
-    title: "Gráficos y estadísticas",
-    desc: "Tendencia, media móvil y análisis de tu evolución.",
+    title: "Tu tendencia, no solo el dato de hoy",
+    desc: "El gráfico de 30 días muestra hacia dónde vas. Con Premium, media móvil y línea de meta.",
   },
   {
-    icon: HistoryIcon,
-    title: "Historial y resumen semanal",
-    desc: "Revisa tu semana y tu calendario completo.",
+    icon: MedalRibbonIcon,
+    title: "Rachas y logros",
+    desc: "Cada día que registras suma a tu racha. Desbloquea hitos por el camino.",
   },
   {
-    icon: StarIcon,
-    title: "Y mucho más",
-    desc: "Seguimos sumando funciones nuevas para ayudarte a alcanzar tus metas.",
+    icon: RulerIcon,
+    title: "Medidas, nutrición y ayuno",
+    desc: "Con Premium: cintura y cadera, comidas y macros, ayuno y actividad, junto a tu peso.",
   },
 ];
 
@@ -75,10 +57,10 @@ export function Features() {
     >
       <div className="text-center mb-10">
         <h2 className="font-display text-3xl text-balance">
-          Todo lo que necesitas
+          Lo que puedes hacer con Vitta
         </h2>
         <p className="text-muted-foreground mt-2">
-          Simple de usar, potente en análisis.
+          Lo básico es gratis. Lo avanzado, un solo pago.
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

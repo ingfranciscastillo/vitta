@@ -220,9 +220,9 @@ function ActivityPage() {
 					<EmptyState
 						icon={<DumbbellIcon className="size-6" />}
 						title="Sin actividades registradas"
-						description="Registra tu primera actividad para ver tu progreso aqui."
+						description="Registra tu primera actividad para ver tu progreso aquí."
 						action={{
-							label: "Anadir actividad",
+							label: "Añadir actividad",
 							onClick: () => typeInputRef.current?.focus(),
 						}}
 					/>
@@ -265,7 +265,7 @@ function ActivityPage() {
 					setDeletingActivity(null);
 				}}
 				title="Eliminar actividad"
-				description={`Se eliminara "${deletingActivity?.type ?? ""}". Esta accion no se puede deshacer.`}
+				description={`Se eliminará "${deletingActivity?.type ?? ""}". Esta acción no se puede deshacer.`}
 				isPending={deleteMut.isPending}
 			/>
 		</div>

@@ -75,7 +75,7 @@ function PricingSuccessPage() {
 		return (
 			<div className="min-h-[60vh] flex flex-col items-center justify-center gap-3 text-center">
 				<p className="text-muted-foreground text-sm max-w-xs text-pretty">
-					No pudimos confirmar tu pago todavía. Si ya pagaste, podés revisarlo
+					No pudimos confirmar tu pago todavía. Si ya pagaste, puedes revisarlo
 					en unos minutos desde tu perfil.
 				</p>
 				<Button onClick={() => navigate({ to: "/profile" })}>

@@ -66,7 +66,7 @@ export const Route = createFileRoute("/welcome")({
 			context.queryClient.ensureQueryData(weightEntriesQuery()),
 			context.queryClient.ensureQueryData(currentGoalQuery()),
 		]),
-	head: () => ({ meta: [{ title: "Bienvenido · Vitta" }] }),
+	head: () => ({ meta: [{ title: "Configura tu cuenta · Vitta" }] }),
 	component: WelcomePage,
 });
 

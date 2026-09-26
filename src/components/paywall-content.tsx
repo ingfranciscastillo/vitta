@@ -7,14 +7,14 @@ import { authClient } from "#/lib/auth-client";
 import { Bars } from "./bars";
 
 const BENEFITS = [
-	"Historial ilimitado de registros",
-	"Estadísticas avanzadas y análisis",
-	"Tendencias y promedios móviles",
-	"IMC y otras métricas de salud",
-	"Exportación en CSV, JSON y PDF",
-	"Mayor personalización",
-	"Recordatorios diarios",
-	"Todas las funciones futuras, gratis",
+	"Historial completo, sin límite de 30 registros",
+	"Medidas corporales: cintura, cadera, pecho y más",
+	"Nutrición: comidas, calorías y macros",
+	"Ayuno intermitente con temporizador",
+	"Actividad física y resumen semanal",
+	"Gráficos con media móvil y línea de meta",
+	"Exporta tus datos en CSV y JSON",
+	"Todas las funciones futuras incluidas",
 ];
 
 type PaywallContentProps = {
@@ -89,7 +89,7 @@ export function PaywallContent({ isPro = false }: PaywallContentProps = {}) {
 						<Bars className="w-4 h-4 mr-2" /> Procesando...
 					</>
 				) : isPro ? (
-					"Ir al Dashboard"
+					"Ir a mi inicio"
 				) : (
 					"Desbloquear Premium · $12.99"
 				)}

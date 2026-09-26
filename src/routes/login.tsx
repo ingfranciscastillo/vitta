@@ -24,7 +24,6 @@ import { authClient } from "#/lib/auth-client";
 import { mapAuthError } from "#/lib/auth-errors";
 import { safeReturnTo } from "#/lib/auth-return-to";
 import { loginSchema } from "#/lib/schemas/auth";
-import { testimonials } from "#/lib/testimonials";
 
 type LoginSearch = { redirect?: string };
 
@@ -110,9 +109,8 @@ function LoginPage() {
 	return (
 		<AuthLayout
 			brandName={"Vitta"}
-			title="Bienvenido"
+			title="Hola de nuevo"
 			subtitle="Inicia sesión en tu cuenta"
-			testimonials={testimonials}
 			footer={
 				<>
 					¿No tienes cuenta?{" "}

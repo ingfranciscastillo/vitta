@@ -1,19 +1,35 @@
-import { StarIcon } from "@solar-icons/react/bold";
+import {
+  BoltIcon,
+  CrownMinimalisticIcon,
+  GraphNewIcon,
+} from "@solar-icons/react/outline";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
 
-type Testimonial = {
-  quote: string;
-  author: string;
-  role?: string;
-  avatarUrl?: string;
-};
+// Beneficios reales del producto; sustituyen a testimonios que no existen.
+const HIGHLIGHTS = [
+  {
+    icon: BoltIcon,
+    title: "Registra tu peso en 5 segundos",
+    description: "Escribe tu peso y guarda. O repite el último con un toque.",
+  },
+  {
+    icon: GraphNewIcon,
+    title: "Mira hacia dónde vas",
+    description:
+      "Tu gráfico de 30 días muestra la tendencia, no solo el dato de hoy.",
+  },
+  {
+    icon: CrownMinimalisticIcon,
+    title: "Gratis para empezar",
+    description:
+      "Peso, agua, pasos, sueño y objetivos sin pagar. Premium es un pago único de $12.99.",
+  },
+] as const;
 
 type AuthLayoutProps = {
   brandName: string;
   title: string;
   subtitle?: string;
-  testimonials?: Testimonial[];
   footer?: ReactNode;
   children: ReactNode;
 };
@@ -22,24 +38,9 @@ export function AuthLayout({
   brandName,
   title,
   subtitle,
-  testimonials = [],
   footer,
   children,
 }: AuthLayoutProps) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (testimonials.length < 2) return;
-
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % testimonials.length);
-    }, 6000);
-
-    return () => clearInterval(id);
-  }, [testimonials.length]);
-
-  const current = testimonials[index];
-
   return (
     <div className="min-h-dvh grid lg:grid-cols-2 bg-background">
       {/* Columna izquierda */}
@@ -48,40 +49,25 @@ export function AuthLayout({
           {brandName}
         </span>
 
-        {current ? (
-          <div className="flex flex-1 w-full items-center justify-center">
-            <div className="w-full max-w-md text-center">
-              <div
-                className="flex justify-center gap-0.5 mb-4 text-primary"
-                aria-hidden="true"
-              >
-                {["1", "2", "3", "4", "5"].map((star) => (
-                  <StarIcon key={star} />
-                ))}
-              </div>
-
-              <p className="text-xl font-medium text-foreground text-pretty leading-relaxed">
-                "{current.quote}"
-              </p>
-
-              <div className="flex items-center justify-center gap-3 mt-6">
-                <div className="text-left">
-                  <p className="text-sm font-medium text-foreground">
-                    {current.author}
-                  </p>
-
-                  {current.role && (
-                    <p className="text-xs text-muted-foreground">
-                      {current.role}
-                    </p>
-                  )}
+        <div className="flex flex-1 w-full items-center justify-center">
+          <ul className="w-full max-w-sm space-y-8">
+            {HIGHLIGHTS.map((h) => (
+              <li key={h.title} className="flex gap-4">
+                <div className="size-10 shrink-0 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                  <h.icon className="size-5" />
                 </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="flex-1" />
-        )}
+                <div>
+                  <p className="font-medium text-foreground text-balance">
+                    {h.title}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1 text-pretty">
+                    {h.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <p className="text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} {brandName}. Todos los derechos

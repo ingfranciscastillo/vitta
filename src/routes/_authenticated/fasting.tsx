@@ -371,7 +371,7 @@ function FastingPage() {
 				{completed.length === 0 ? (
 					<EmptyState
 						icon={<StopwatchIcon className="size-6" />}
-						title="Aun no has completado ayunos"
+						title="Aún no has completado ayunos"
 						description="Inicia tu primer ayuno para empezar a registrar tu historial."
 						action={{
 							label: "Iniciar ayuno",

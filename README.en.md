@@ -6,10 +6,10 @@
 
 # Vitta
 
-**Track your progress, day by day**
+**Log your weight in 5 seconds. See your progress every day.**
 
 <p align="center">
-The simplest way to track your full physical progress: weight, habits, and measurements, all in one place.
+Weight, water, steps, sleep, and measurements in one place. Free to start; Premium is a one-time payment, no subscription.
 </p>
 
 English · [Español](./README.md)
@@ -18,14 +18,14 @@ English · [Español](./README.md)
 
 ## Features
 
-- **Lightning-fast logging** — open, weigh, save. Under 5 seconds, zero friction.
-- **Daily habits** — water, steps, sleep, and fasting in a single tap.
-- **Nutrition and activity** — log meals and workouts alongside your weight.
-- **Body measurements and BMI** — track your full composition, not just the scale.
-- **Daily goals** — personalized targets for every habit, not just weight.
-- **Achievements and streaks** — unlock milestones and stay motivated through consistency.
-- **Charts and stats** — trend, moving average, and detailed progress analysis.
-- **History and weekly recap** — review your week and your full calendar.
+- **Log in seconds** — type your weight and save. Same as yesterday? Repeat it with one tap.
+- **Daily habits** — water, steps, and sleep with one tap, each with its own target.
+- **Goal with an ETA** — pick a target weight and pace; Vitta estimates when you'll get there.
+- **Your trend, not just today's number** — 30-day chart, BMI, and history.
+- **Streaks and achievements** — every day you log adds to your streak.
+- **Metric or imperial units** — kg and cm, or lb and in, across the whole app.
+
+**Premium** (one-time $12.99, no subscription): full history, body measurements, nutrition and macros, intermittent fasting, activity, weekly summary, charts with moving average and goal line, and CSV/JSON export.
 
 ## Screenshot
 

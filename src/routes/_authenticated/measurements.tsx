@@ -232,9 +232,9 @@ function MeasurementsPage() {
 					<EmptyState
 						icon={<RulerIcon className="size-6" />}
 						title={`Sin registros de ${meta.label.toLowerCase()}`}
-						description="Registra tu primera medida para ver tu evolucion aqui."
+						description="Registra tu primera medida para ver tu evolución aquí."
 						action={{
-							label: "Anadir medida",
+							label: "Añadir medida",
 							onClick: () => valInputRef.current?.focus(),
 						}}
 					/>
@@ -272,7 +272,7 @@ function MeasurementsPage() {
 					setDeletingMeasurement(null);
 				}}
 				title="Eliminar registro"
-				description={`Se eliminara el registro de ${meta.label.toLowerCase()}. Esta accion no se puede deshacer.`}
+				description={`Se eliminará el registro de ${meta.label.toLowerCase()}. Esta acción no se puede deshacer.`}
 				isPending={deleteMut.isPending}
 			/>
 		</div>

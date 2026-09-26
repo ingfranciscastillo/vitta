@@ -158,10 +158,10 @@ export function HistoryTable({
 									<EmptyState
 										icon={<ScaleIcon className="size-6" />}
 										title="Sin registros"
-										description="Anade tu primer peso para empezar tu historial."
+										description="Añade tu primer peso para empezar tu historial."
 										action={
 											onCreateFirst
-												? { label: "Anadir peso", onClick: onCreateFirst }
+												? { label: "Añadir peso", onClick: onCreateFirst }
 												: undefined
 										}
 									/>

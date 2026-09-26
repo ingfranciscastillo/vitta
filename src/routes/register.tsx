@@ -15,7 +15,6 @@ import { getSession } from "#/lib/auth.functions";
 import { authClient } from "#/lib/auth-client";
 import { mapAuthError } from "#/lib/auth-errors";
 import { registerSchema } from "#/lib/schemas/auth";
-import { testimonials } from "#/lib/testimonials";
 
 export const Route = createFileRoute("/register")({
 	beforeLoad: async () => {
@@ -65,8 +64,7 @@ function RegisterPage() {
 		<AuthLayout
 			brandName="Vitta"
 			title="Crear cuenta"
-			subtitle="Regístrate para empezar"
-			testimonials={testimonials}
+			subtitle="Gratis para empezar. No necesitas tarjeta."
 			footer={
 				<>
 					¿Ya tienes cuenta?{" "}

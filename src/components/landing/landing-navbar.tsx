@@ -16,7 +16,7 @@ export function LandingNavbar() {
         <div className="flex items-center gap-2">
           {signedIn ? (
             <Button asChild className="h-9">
-              <Link to={"/dashboard" as string}>Dashboard</Link>
+              <Link to={"/dashboard" as string}>Mi inicio</Link>
             </Button>
           ) : (
             <>

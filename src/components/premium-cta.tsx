@@ -3,10 +3,10 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/ui/button";
 
 const BENEFITS = [
-	"Historial ilimitado",
-	"Estadísticas y tendencias",
-	"Exportación CSV/JSON/PDF",
-	"Recordatorios y futuras funciones",
+	"Historial completo",
+	"Medidas y nutrición",
+	"Ayuno y actividad",
+	"Exporta en CSV y JSON",
 ];
 
 export function PremiumCTA() {
@@ -15,7 +15,8 @@ export function PremiumCTA() {
 			<div className="rounded-3xl bg-primary text-primary-foreground p-8 text-center">
 				<h2 className="font-display text-3xl text-balance">Desbloquea todo por $12.99</h2>
 				<p className="opacity-80 text-sm mt-3 max-w-md mx-auto text-pretty">
-					Un solo pago, tuyo para siempre. Sin suscripciones.
+					Un solo pago, tuyo para siempre. Sin suscripciones. Empieza gratis y
+					mejora cuando quieras.
 				</p>
 				<ul className="grid grid-cols-2 gap-2 max-w-sm mx-auto my-6 text-left text-sm">
 					{BENEFITS.map((b) => (
@@ -30,7 +31,7 @@ export function PremiumCTA() {
 					size="lg"
 					className="h-12 px-6 font-display"
 				>
-					<Link to={"/pricing" as string}>Comprar Premium</Link>
+					<Link to={"/register" as string}>Empezar gratis</Link>
 				</Button>
 			</div>
 		</section>

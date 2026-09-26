@@ -207,7 +207,7 @@ function CalendarPage() {
 				onOpenChange={setConfirmDelete}
 				onConfirm={handleDelete}
 				title="Eliminar registro"
-				description="Se eliminara este registro de peso. Esta accion no se puede deshacer."
+				description="Se eliminará este registro de peso. Esta acción no se puede deshacer."
 				isPending={deleteMut.isPending}
 			/>
 		</div>
