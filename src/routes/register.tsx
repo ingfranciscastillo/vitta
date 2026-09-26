@@ -33,17 +33,9 @@ function RegisterPage() {
 			name: "",
 			email: "",
 			password: "",
-			confirmPassword: "",
 		},
 		validators: {
-			onChange: registerSchema
-				.extend({
-					confirmPassword: registerSchema.shape.password,
-				})
-				.refine((data) => data.password === data.confirmPassword, {
-					message: "Las contraseñas no coinciden",
-					path: ["confirmPassword"],
-				}),
+			onChange: registerSchema,
 		},
 		onSubmit: async ({ value }) => {
 			setSubmitError(null);
@@ -57,12 +49,16 @@ function RegisterPage() {
 				return;
 			}
 			toast.success("Cuenta creada. Revisa tu email para verificarla.");
-			window.location.assign("/");
+			window.location.assign("/welcome");
 		},
 	});
 
 	const handleGoogle = (): void => {
-		void authClient.signIn.social({ provider: "google" });
+		void authClient.signIn.social({
+			provider: "google",
+			callbackURL: "/dashboard",
+			newUserCallbackURL: "/welcome",
+		});
 	};
 
 	return (
@@ -188,29 +184,6 @@ function RegisterPage() {
 									id="password"
 									startIcon={<LockIcon className="size-4" aria-hidden="true" />}
 									showStrengthMeter
-									autoComplete="new-password"
-									placeholder="••••••••"
-									value={field.state.value}
-									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
-									aria-invalid={isInvalid}
-								/>
-								{isInvalid && <FieldError errors={field.state.meta.errors} />}
-							</Field>
-						);
-					}}
-				</form.Field>
-
-				<form.Field name="confirmPassword">
-					{(field) => {
-						const isInvalid =
-							field.state.meta.isTouched && !field.state.meta.isValid;
-						return (
-							<Field data-invalid={isInvalid}>
-								<Label htmlFor="confirm">Confirmar contraseña</Label>
-								<PasswordInput
-									id="confirm"
-									startIcon={<LockIcon className="size-4" aria-hidden="true" />}
 									autoComplete="new-password"
 									placeholder="••••••••"
 									value={field.state.value}

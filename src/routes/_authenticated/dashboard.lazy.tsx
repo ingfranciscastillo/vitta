@@ -26,6 +26,7 @@ import { useMemo } from "react";
 import { ActivityChart } from "#/components/activity-chart";
 import { GoalCard } from "#/components/goal-card";
 import { InsightsList } from "#/components/insights-list";
+import { ProfileCompletionCard } from "#/components/profile-completion-card";
 import { ProgressBar } from "#/components/progress-bar";
 import { StatCard } from "#/components/stat-card";
 import { StreakCard } from "#/components/streak-card";
@@ -45,6 +46,7 @@ import {
   reminders,
 } from "#/lib/health-utils";
 import { mealsQuery } from "#/lib/meals";
+import { profileGaps } from "#/lib/onboarding";
 import { currentUserQuery } from "#/lib/profile";
 import { weightStatsQuery } from "#/lib/statistics";
 import {
@@ -148,8 +150,15 @@ function DashboardPage() {
     },
   });
 
+  const gaps = profileGaps({
+    height: me?.height,
+    entryCount: entries.length,
+    hasGoal: !!goal,
+  });
+
   return (
     <div className="space-y-4">
+      <ProfileCompletionCard gaps={gaps} />
       <div className="rounded-3xl bg-primary text-primary-foreground p-6">
         <div className="text-[11px] uppercase opacity-70">Peso actual</div>
         <div className="flex items-baseline gap-2 mt-1">

@@ -100,7 +100,11 @@ function LoginPage() {
 	});
 
 	const handleGoogle = (): void => {
-		void authClient.signIn.social({ provider: "google" });
+		void authClient.signIn.social({
+			provider: "google",
+			callbackURL: "/dashboard",
+			newUserCallbackURL: "/welcome",
+		});
 	};
 
 	return (
