@@ -1,12 +1,16 @@
 <div align="center">
 
-![Vitta](./public/logo.png)
+<p align="center">
+  <img src="./public/logo.png" alt="Vitta" width="160" />
+</p>
 
 # Vitta
 
 **Track your progress, day by day**
 
+<p align="center">
 The simplest way to track your full physical progress: weight, habits, and measurements, all in one place.
+</p>
 
 English · [Español](./README.md)
 
