@@ -4,6 +4,8 @@ import { z } from "zod";
 import { db } from "#/db";
 import { goal, user, weightEntry } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { MAX_IMPORT_ROWS } from "#/lib/weight-import";
+import { GOAL_WEIGHT_MAX_KG, GOAL_WEIGHT_MIN_KG } from "#/lib/weight-utils";
 
 export const getCurrentUser = createServerFn({ method: "GET" }).handler(
 	async () => {
@@ -82,27 +84,58 @@ export const deleteAllMyData = createServerFn({ method: "POST" }).handler(
 );
 
 const importEntrySchema = z.object({
-	date: z.string().min(1),
-	weight: z.number().positive(),
-	time: z.string().nullable().optional(),
-	note: z.string().nullable().optional(),
+	date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+	// En kg, dentro del rango que admite la columna numeric(6,2).
+	weight: z.number().min(GOAL_WEIGHT_MIN_KG).max(GOAL_WEIGHT_MAX_KG),
+	time: z
+		.string()
+		.regex(/^\d{2}:\d{2}(:\d{2})?$/)
+		.nullable()
+		.optional(),
+	note: z.string().max(500).nullable().optional(),
 });
 
-const importSchema = z.array(importEntrySchema);
+const importSchema = z.array(importEntrySchema).max(MAX_IMPORT_ROWS);
 
 export const importEntries = createServerFn({ method: "POST" })
 	.validator(importSchema)
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
-		await db.insert(weightEntry).values(
-			data.map((e) => ({
-				createdById: session.user.id,
-				date: e.date,
-				weight: e.weight.toString(),
-				time: e.time ?? null,
-				note: e.note ?? null,
-			})),
+
+		// Importar dos veces el mismo archivo no debe duplicar registros:
+		// se omiten los que ya existen con la misma fecha, hora y peso.
+		const existing = await db
+			.select({
+				date: weightEntry.date,
+				time: weightEntry.time,
+				weight: weightEntry.weight,
+			})
+			.from(weightEntry)
+			.where(eq(weightEntry.createdById, session.user.id));
+		const keyOf = (date: string, time: string | null, weight: number) =>
+			`${date}|${time?.slice(0, 5) ?? ""}|${weight.toFixed(1)}`;
+		const seen = new Set(
+			existing.map((e) => keyOf(e.date, e.time, Number(e.weight))),
 		);
-		return { inserted: data.length };
+
+		const fresh = data.filter((e) => {
+			const key = keyOf(e.date, e.time ?? null, e.weight);
+			if (seen.has(key)) return false;
+			seen.add(key);
+			return true;
+		});
+
+		for (let i = 0; i < fresh.length; i += 500) {
+			await db.insert(weightEntry).values(
+				fresh.slice(i, i + 500).map((e) => ({
+					createdById: session.user.id,
+					date: e.date,
+					weight: e.weight.toFixed(2),
+					time: e.time ?? null,
+					note: e.note ?? null,
+				})),
+			);
+		}
+		return { inserted: fresh.length, skipped: data.length - fresh.length };
 	});

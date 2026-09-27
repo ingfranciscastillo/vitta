@@ -47,6 +47,7 @@ import {
   lengthUnitOf,
 } from "#/lib/units";
 import { weightEntriesQuery } from "#/lib/weight";
+import type { WeightUnit } from "#/lib/weight-utils";
 
 export const Route = createFileRoute("/_authenticated/profile")({
   loader: ({ context }) => {
@@ -104,7 +105,7 @@ function ProfilePage() {
       />
       <PreferencesSection />
       <SecuritySection />
-      <DataSection isPremium={!!me.isPro} />
+      <DataSection isPremium={!!me.isPro} unit={me.weightUnit} />
       <HelpSection />
 
       <Button
@@ -244,7 +245,13 @@ function PersonalSection({ initial }: { initial: PersonalInitial }) {
   );
 }
 
-function DataSection({ isPremium }: { isPremium: boolean }) {
+function DataSection({
+  isPremium,
+  unit,
+}: {
+  isPremium: boolean;
+  unit: WeightUnit;
+}) {
   const qc = useQueryClient();
   const entries = useSuspenseQuery(weightEntriesQuery()).data!;
   const [confirmDeleteAll, setConfirmDeleteAll] = useState(false);
@@ -266,7 +273,11 @@ function DataSection({ isPremium }: { isPremium: boolean }) {
       }>,
     ) => importEntries({ data }),
     onSuccess: async (res) => {
-      toast.success(`${res.inserted} registros importados`);
+      toast.success(
+        res.skipped > 0
+          ? `${res.inserted} registros importados (${res.skipped} ya los tenías)`
+          : `${res.inserted} registros importados`,
+      );
       await refreshWeightData();
     },
     onError: () => {
@@ -290,13 +301,15 @@ function DataSection({ isPremium }: { isPremium: boolean }) {
       <div className="font-display text-sm">Datos</div>
       <div className="rounded-2xl bg-card border border-border p-4 space-y-3">
         <p className="text-xs text-muted-foreground text-pretty">
-          {entries.length} registros de peso. Exporta en CSV o JSON, o importa
-          un JSON exportado desde Vitta.
+          {entries.length} registros de peso. Exporta en CSV o JSON. Para importar,
+          sirve un CSV o JSON de Vitta, de Libra o de cualquier app con
+          columnas de fecha y peso.
         </p>
         <ExportImport
           entries={entries}
           onImport={(data) => importMutation.mutate(data)}
           canExport={isPremium}
+          defaultUnit={unit}
         />
         <Button
           type="button"

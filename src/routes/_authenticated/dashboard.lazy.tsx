@@ -31,6 +31,7 @@ import { StreakCard } from "#/components/streak-card";
 import { SuggestionsCarousel } from "#/components/suggestions-carousel";
 import { ValuePulse } from "#/components/value-pulse";
 import { WaterCounter } from "#/components/water-counter";
+import { WeightChangeCard } from "#/components/weight-change-card";
 import { WeightChart } from "#/components/weight-chart";
 import { buildActivityCounts } from "#/lib/activity";
 import { fastsQuery } from "#/lib/fasts";
@@ -48,6 +49,7 @@ import { mealsQuery } from "#/lib/meals";
 import { profileGaps } from "#/lib/onboarding";
 import { currentUserQuery } from "#/lib/profile";
 import { weightStatsQuery } from "#/lib/statistics";
+import { explainWeightChange } from "#/lib/weight-change";
 import {
   calcIMC,
   computeInsights,
@@ -88,6 +90,18 @@ function DashboardPage() {
   const heightCm = me?.height != null ? Number(me.height) : null;
 
   const stats = useMemo(() => computeStats(entries), [entries]);
+  // Dirección del objetivo: sin objetivo (o para mantener) no se juzga.
+  const goalDirection = useMemo(() => {
+    const target = goal?.target_weight;
+    const start = goal?.start_weight ?? stats.first;
+    if (target == null || start == null || Math.abs(target - start) < 0.5)
+      return null;
+    return target < start ? ("lose" as const) : ("gain" as const);
+  }, [goal, stats.first]);
+  const weightChange = useMemo(
+    () => explainWeightChange({ entries, unit, goalDirection }),
+    [entries, unit, goalDirection],
+  );
   const insights = useMemo(
     () => computeInsights(entries, goal, unit),
     [entries, goal, unit],
@@ -178,6 +192,8 @@ function DashboardPage() {
           </div>
         )}
       </div>
+
+      {weightChange && <WeightChangeCard explanation={weightChange} />}
 
       <div className="grid grid-cols-2 gap-3">
         <StatCard
