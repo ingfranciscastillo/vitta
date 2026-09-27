@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { ProgressBar } from "#/components/progress-bar";
+import { ValuePulse } from "#/components/value-pulse";
 import { habitLogsQuery } from "#/lib/habits";
 import { addHabitLog } from "#/lib/habits.functions";
 import { habitToday } from "#/lib/health-utils";
@@ -91,9 +92,12 @@ export function WaterCounter() {
 						<span className="font-display text-sm">Agua hoy</span>
 					</div>
 					<div className="flex items-baseline gap-2">
-						<span className="font-display text-3xl leading-none tabular-nums">
+						<ValuePulse
+							value={glasses}
+							className="font-display text-3xl leading-none tabular-nums"
+						>
 							{glasses}
-						</span>
+						</ValuePulse>
 						<span className="text-sm text-muted-foreground">
 							vasos · {Math.round(value)} / {goal} ml
 						</span>

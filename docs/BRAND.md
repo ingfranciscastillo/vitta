@@ -49,6 +49,7 @@ Una intención, una etiqueta: el registro siempre es "Empezar gratis" y el acces
 
 - Solo **Solar, estilo `linear`** (`@solar-icons/react/linear`). Nada de variantes con círculo ni `secondaryOpacity`.
 - Tamaños: 16 px en controles pequeños, 20 px en botones y navegación.
+- Trazo de 1.5 para todos, fijado con `--solar-stroke-width` en `src/styles.css`. No se cambia icono a icono.
 
 ## Movimiento
 
@@ -57,9 +58,16 @@ Una intención, una etiqueta: el registro siempre es "Empezar gratis" y el acces
 | Respuesta a un toque (hover, color, pulsar) | 100 ms | `ease-out` |
 | Cambios de estado (abrir, mover, cambiar de vista) | 200–300 ms | `ease-brand` |
 | Entrada de la portada (una sola vez) | 800 ms | curva de `.hero-rise` |
+| Abrir diálogos y overlays | 250 ms (menús: 200 ms) | `ease-brand` |
+| Cerrar diálogos y overlays | 150 ms (menús: 100 ms) | `ease-brand` |
+| Barras de progreso al cambiar | 500 ms | `ease-brand` |
+| Cifra que cambia por una acción (`ValuePulse`) | 220 ms | `ease-brand` |
 | Cargas en bucle (`Bars`, skeleton) | continuo | `ease-in-out` |
 
 - Al pulsar: `scale-[0.98]` en botones y `scale-[0.92]` en botones de icono.
+- Cerrar siempre más rápido que abrir.
+- `ValuePulse` solo en cifras que el usuario acaba de cambiar (agua, pasos, peso, racha). Nunca al cargar la página.
+- En CSS escrito a mano usa la curva literal `cubic-bezier(0.32, 0.72, 0, 1)`: `ease-brand` vive en `@theme inline` y no existe como variable en tiempo de ejecución.
 - Todo movimiento se desactiva con `prefers-reduced-motion`.
 - Nada de rebotes, brillos ni animaciones en bucle decorativas.
 

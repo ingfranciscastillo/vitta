@@ -1,4 +1,5 @@
 import { FireIcon, MedalRibbonIcon } from "@solar-icons/react/linear";
+import { ValuePulse } from "#/components/value-pulse";
 
 type StreakCardProps = {
 	current: number;
@@ -10,7 +11,12 @@ export function StreakCard({ current, best }: StreakCardProps) {
 		<div className="grid grid-cols-2 gap-3">
 			<div className="rounded-2xl bg-card border border-border p-4 text-center">
 				<FireIcon className="w-5 h-5 mx-auto text-warning" />
-				<div className="font-brand text-2xl mt-1 tabular-nums">{current}</div>
+				<ValuePulse
+					value={current}
+					className="font-brand text-2xl mt-1 tabular-nums"
+				>
+					{current}
+				</ValuePulse>
 				<div className="text-[10px] uppercase text-muted-foreground">
 					Racha actual
 				</div>

@@ -106,6 +106,8 @@
 	--chart-4: 338 38% 79%;
 	--chart-5: 343 58% 78%;
 	--radius: 1rem;
+	/* Grosor de trazo de todos los iconos Solar linear. */
+	--solar-stroke-width: 1.5;
 	--font-heading: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
 		"Segoe UI", sans-serif;
 	--font-body: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
@@ -410,4 +412,26 @@
 
 .guide-body a:hover {
 	text-decoration: underline;
+}
+
+/* Pulso breve cuando una cifra cambia por una acción (ValuePulse). */
+@keyframes value-pulse {
+	from {
+		opacity: 0.4;
+		transform: scale(0.94);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.value-pulse {
+	animation: value-pulse 220ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.value-pulse {
+		animation: none;
+	}
 }

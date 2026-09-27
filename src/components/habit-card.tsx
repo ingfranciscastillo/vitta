@@ -2,6 +2,7 @@ import { AddIcon } from "@solar-icons/react/linear/add";
 import { type ComponentType, useState } from "react";
 import { ProgressBar } from "#/components/progress-bar";
 import { QuickAddDialog } from "#/components/quick-add-dialog";
+import { ValuePulse } from "#/components/value-pulse";
 
 type HabitCardProps = {
 	label: string;
@@ -38,9 +39,9 @@ export function HabitCard({
 					onClick={() => setOpen(true)}
 					className="text-right"
 				>
-					<span className="font-display text-lg">
+					<ValuePulse value={value} className="font-display text-lg">
 						{Math.round(value).toLocaleString()}
-					</span>
+					</ValuePulse>
 					<span className="text-xs text-muted-foreground">
 						{" "}
 						/ {goal.toLocaleString()} {unit}

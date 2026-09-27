@@ -29,6 +29,7 @@ import { ProgressBar } from "#/components/progress-bar";
 import { StatCard } from "#/components/stat-card";
 import { StreakCard } from "#/components/streak-card";
 import { SuggestionsCarousel } from "#/components/suggestions-carousel";
+import { ValuePulse } from "#/components/value-pulse";
 import { WaterCounter } from "#/components/water-counter";
 import { WeightChart } from "#/components/weight-chart";
 import { buildActivityCounts } from "#/lib/activity";
@@ -160,11 +161,14 @@ function DashboardPage() {
       <div className="rounded-3xl bg-primary text-primary-foreground p-6">
         <div className="text-[11px] uppercase opacity-70">Peso actual</div>
         <div className="flex items-baseline gap-2 mt-1">
-          <span className="font-display text-5xl leading-none tabular-nums">
+          <ValuePulse
+            value={stats.current}
+            className="font-display text-5xl leading-none tabular-nums"
+          >
             {stats.current != null
               ? formatWeightValue(stats.current, unit)
               : "—"}
-          </span>
+          </ValuePulse>
           <span className="font-display text-lg opacity-70">{unit}</span>
         </div>
         {entries.length > 1 && (
