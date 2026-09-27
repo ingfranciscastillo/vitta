@@ -66,7 +66,6 @@ export function WeightEntryForm({
 						setVal(e.target.value.replace(/[^0-9.,]/g, "").replace(",", "."))
 					}
 					placeholder="0.0"
-					className="h-11"
 					autoFocus
 				/>
 			</div>
@@ -85,7 +84,6 @@ export function WeightEntryForm({
 						type="time"
 						value={time}
 						onChange={(e) => setTime(e.target.value)}
-						className="h-11"
 					/>
 				</div>
 			</div>
@@ -95,7 +93,6 @@ export function WeightEntryForm({
 					value={note}
 					onChange={(e) => setNote(e.target.value)}
 					placeholder="..."
-					className="h-11"
 				/>
 			</div>
 			<div className="flex gap-2 pt-1">

@@ -283,7 +283,7 @@ function FastingPage() {
 							id="fast-manual-start-time"
 							value={mStartTime}
 							onValueChange={setMStartTime}
-							className="h-11 w-[110px]"
+							className="w-[110px]"
 						>
 							<TimePickerInputGroup>
 								<TimePickerInput segment="hour" />
@@ -310,7 +310,7 @@ function FastingPage() {
 							id="fast-manual-end-time"
 							value={mEndTime}
 							onValueChange={setMEndTime}
-							className="h-11 w-[110px]"
+							className="w-[110px]"
 						>
 							<TimePickerInputGroup>
 								<TimePickerInput segment="hour" />

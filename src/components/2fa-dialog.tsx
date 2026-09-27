@@ -546,7 +546,7 @@ function BackupInput({
           value={value}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
-          className="pl-10 h-11 font-mono tracking-widest uppercase"
+          className="pl-10 font-mono tracking-widest uppercase"
           maxLength={12}
         />
       </div>

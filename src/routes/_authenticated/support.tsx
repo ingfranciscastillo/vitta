@@ -98,7 +98,6 @@ function SupportPage() {
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
 										placeholder="Describe brevemente el problema"
-										className="h-11"
 										aria-invalid={isInvalid}
 									/>
 									{isInvalid && <FieldError errors={field.state.meta.errors} />}

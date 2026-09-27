@@ -323,7 +323,7 @@ function GoalsPage() {
             <div className="space-y-1.5">
               <Label>Ritmo deseado</Label>
               <Select value={pace} onValueChange={(v) => setPace(v as Pace)}>
-                <SelectTrigger className="h-11! w-full">
+                <SelectTrigger className="w-full">
                   <SelectValue>{paceLabel(pace, unit)}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>

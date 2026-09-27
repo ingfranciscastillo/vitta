@@ -606,7 +606,7 @@ function SetupStep({
 								id="2fa-secret"
 								value={secret}
 								readOnly
-								className="h-11 font-mono text-xs"
+								className="font-mono text-xs"
 							/>
 							<Button size="cta"
 								type="button"

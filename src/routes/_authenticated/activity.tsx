@@ -158,7 +158,6 @@ function ActivityPage() {
 					value={type}
 					onChange={(e) => setType(e.target.value)}
 					placeholder="Tipo (correr, pesas, yoga...)"
-					className="h-11"
 				/>
 				<div className="grid grid-cols-2 gap-3">
 					<div className="space-y-1.5">
@@ -170,7 +169,6 @@ function ActivityPage() {
 							inputMode="numeric"
 							value={duration}
 							onChange={(e) => setDuration(e.target.value)}
-							className="h-11"
 						/>
 					</div>
 					<div className="space-y-1.5">
@@ -192,7 +190,7 @@ function ActivityPage() {
 						value={intensity}
 						onValueChange={(v) => setIntensity(v as ActivityIntensity)}
 					>
-						<SelectTrigger className="h-11! w-full">
+						<SelectTrigger className="w-full">
 							<SelectValue>
 								{INTENSITY.find((i) => i.id === intensity)?.label}
 							</SelectValue>

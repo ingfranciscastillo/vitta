@@ -188,7 +188,6 @@ function MeasurementsPage() {
 							inputMode="decimal"
 							value={val}
 							onChange={(e) => setVal(e.target.value)}
-							className="h-11"
 							placeholder="0"
 						/>
 					</div>

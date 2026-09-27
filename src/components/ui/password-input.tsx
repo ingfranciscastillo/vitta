@@ -61,7 +61,7 @@ function PasswordInput({
 						setFocused(false);
 						onBlur?.(e);
 					}}
-					className={cn(size === "md" ? "h-12" : "h-11")}
+					className="h-full"
 				/>
 				<InputGroupAddon align="inline-end">
 					<InputGroupButton

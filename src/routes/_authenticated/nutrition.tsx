@@ -286,7 +286,6 @@ function NutritionPage() {
 							type="number"
 							value={goalCal}
 							onChange={(e) => setGoalCal(e.target.value)}
-							className="h-11"
 						/>
 						<Button size="cta" onClick={saveGoal} >
 							Guardar
@@ -306,7 +305,6 @@ function NutritionPage() {
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 					placeholder="Nombre del alimento"
-					className="h-11"
 				/>
 				<div className="grid grid-cols-2 gap-3">
 					<div className="space-y-1.5">
@@ -318,7 +316,6 @@ function NutritionPage() {
 							inputMode="decimal"
 							value={cal}
 							onChange={(e) => setCal(e.target.value)}
-							className="h-11"
 						/>
 					</div>
 					<div className="space-y-1.5">
@@ -329,7 +326,7 @@ function NutritionPage() {
 							value={mealType}
 							onValueChange={(v) => setMealType(v as MealTypeId)}
 						>
-							<SelectTrigger className="h-11! w-full">
+							<SelectTrigger className="w-full">
 								<SelectValue>
 									{MEAL_TYPES.find((m) => m.id === mealType)?.label}
 								</SelectValue>
@@ -354,7 +351,6 @@ function NutritionPage() {
 							inputMode="decimal"
 							value={protein}
 							onChange={(e) => setProtein(e.target.value)}
-							className="h-11"
 						/>
 					</div>
 					<div className="space-y-1.5">
@@ -366,7 +362,6 @@ function NutritionPage() {
 							inputMode="decimal"
 							value={carbs}
 							onChange={(e) => setCarbs(e.target.value)}
-							className="h-11"
 						/>
 					</div>
 					<div className="space-y-1.5">
@@ -378,7 +373,6 @@ function NutritionPage() {
 							inputMode="decimal"
 							value={fat}
 							onChange={(e) => setFat(e.target.value)}
-							className="h-11"
 						/>
 					</div>
 				</div>

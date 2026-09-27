@@ -184,14 +184,14 @@ function PersonalSection({ initial }: { initial: PersonalInitial }) {
             id="profile-name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="h-11"
+           
           />
         </Field>
         <div className="grid grid-cols-2 gap-3">
           <Field>
             <Label>Sexo</Label>
             <Select value={sex || undefined} onValueChange={(v) => setSex(v as Sex)}>
-              <SelectTrigger className="h-11!">
+              <SelectTrigger>
                 <SelectValue placeholder="Seleccionar">
                   {sex ? SEX_LABELS[sex] : undefined}
                 </SelectValue>
@@ -215,7 +215,7 @@ function PersonalSection({ initial }: { initial: PersonalInitial }) {
               id="profile-height"
               type="number"
               inputMode="decimal"
-              className="h-11"
+              
               value={height}
               onChange={(e) => setHeight(e.target.value)}
             />

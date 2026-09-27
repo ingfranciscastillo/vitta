@@ -155,7 +155,7 @@ export function QuickLogDialog({
                   type="time"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="h-11 w-full min-w-0 appearance-none [-webkit-appearance:none] text-base tabular-nums"
+                  className="w-full min-w-0 appearance-none [-webkit-appearance:none] text-base tabular-nums"
                 />
               </Field>
             </FieldGroup>
@@ -166,7 +166,7 @@ export function QuickLogDialog({
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="Nota (opcional)"
-              className="h-11"
+             
             />
           ) : (
             <button

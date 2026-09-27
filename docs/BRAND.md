@@ -45,6 +45,12 @@ Todo sale de los tokens de `src/styles.css`; nunca colores sueltos.
 
 Una intención, una etiqueta: el registro siempre es "Empezar gratis" y el acceso siempre es "Iniciar sesión".
 
+## Campos de formulario
+
+- Todos miden **44 px**, la misma altura que los botones `cta`. Viene de los componentes base (`Input`, `InputGroup`, `PasswordInput`, `SelectTrigger`, `DatePicker`, `TimePicker`).
+- No se pone `h-*` a mano en un campo. Únicas excepciones: los números grandes de los diálogos de registro y el stepper compacto de Objetivos.
+- Etiqueta siempre visible encima del campo; el placeholder solo da un ejemplo.
+
 ## Iconos
 
 - Solo **Solar, estilo `linear`** (`@solar-icons/react/linear`). Nada de variantes con círculo ni `secondaryOpacity`.

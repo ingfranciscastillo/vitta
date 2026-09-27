@@ -183,7 +183,7 @@ function LoginPage() {
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
-										className="pl-10 h-12"
+										className="pl-10"
 										aria-invalid={isInvalid}
 									/>
 								</div>

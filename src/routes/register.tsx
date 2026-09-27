@@ -141,7 +141,6 @@ function RegisterPage() {
 									value={field.state.value}
 									onBlur={field.handleBlur}
 									onChange={(e) => field.handleChange(e.target.value)}
-									className="h-12"
 									aria-invalid={isInvalid}
 								/>
 								{isInvalid && <FieldError errors={field.state.meta.errors} />}
@@ -170,7 +169,7 @@ function RegisterPage() {
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
-										className="pl-10 h-12"
+										className="pl-10"
 										aria-invalid={isInvalid}
 									/>
 								</div>
