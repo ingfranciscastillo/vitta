@@ -39,6 +39,8 @@ import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedStatisticsRouteImport } from './routes/_authenticated/statistics'
 import { Route as AuthenticatedSupportRouteImport } from './routes/_authenticated/support'
 import { Route as AuthenticatedWeeklySummaryRouteImport } from './routes/_authenticated/weekly-summary'
+import { Route as GuiasIndexRouteImport } from './routes/guias/index'
+import { Route as GuiasSlugRouteImport } from './routes/guias/$slug'
 import { Route as AuthenticatedPricingIndexRouteImport } from './routes/_authenticated/pricing/index'
 import { Route as AuthenticatedPricingSuccessRouteImport } from './routes/_authenticated/pricing/success'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -197,6 +199,16 @@ const AuthenticatedWeeklySummaryRoute =
     path: '/weekly-summary',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const GuiasIndexRoute = GuiasIndexRouteImport.update({
+  id: '/guias/',
+  path: '/guias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuiasSlugRoute = GuiasSlugRouteImport.update({
+  id: '/guias/$slug',
+  path: '/guias/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedPricingIndexRoute =
   AuthenticatedPricingIndexRouteImport.update({
     id: '/pricing/',
@@ -245,6 +257,8 @@ export interface FileRoutesByFullPath {
   '/statistics': typeof AuthenticatedStatisticsRoute
   '/support': typeof AuthenticatedSupportRoute
   '/weekly-summary': typeof AuthenticatedWeeklySummaryRoute
+  '/guias/$slug': typeof GuiasSlugRoute
+  '/guias/': typeof GuiasIndexRoute
   '/pricing/success': typeof AuthenticatedPricingSuccessRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/pricing/': typeof AuthenticatedPricingIndexRoute
@@ -279,6 +293,8 @@ export interface FileRoutesByTo {
   '/statistics': typeof AuthenticatedStatisticsRoute
   '/support': typeof AuthenticatedSupportRoute
   '/weekly-summary': typeof AuthenticatedWeeklySummaryRoute
+  '/guias/$slug': typeof GuiasSlugRoute
+  '/guias': typeof GuiasIndexRoute
   '/pricing/success': typeof AuthenticatedPricingSuccessRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/pricing': typeof AuthenticatedPricingIndexRoute
@@ -315,6 +331,8 @@ export interface FileRoutesById {
   '/_authenticated/statistics': typeof AuthenticatedStatisticsRoute
   '/_authenticated/support': typeof AuthenticatedSupportRoute
   '/_authenticated/weekly-summary': typeof AuthenticatedWeeklySummaryRoute
+  '/guias/$slug': typeof GuiasSlugRoute
+  '/guias/': typeof GuiasIndexRoute
   '/_authenticated/pricing/success': typeof AuthenticatedPricingSuccessRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/_authenticated/pricing/': typeof AuthenticatedPricingIndexRoute
@@ -351,6 +369,8 @@ export interface FileRouteTypes {
     | '/statistics'
     | '/support'
     | '/weekly-summary'
+    | '/guias/$slug'
+    | '/guias/'
     | '/pricing/success'
     | '/api/auth/$'
     | '/pricing/'
@@ -385,6 +405,8 @@ export interface FileRouteTypes {
     | '/statistics'
     | '/support'
     | '/weekly-summary'
+    | '/guias/$slug'
+    | '/guias'
     | '/pricing/success'
     | '/api/auth/$'
     | '/pricing'
@@ -420,6 +442,8 @@ export interface FileRouteTypes {
     | '/_authenticated/statistics'
     | '/_authenticated/support'
     | '/_authenticated/weekly-summary'
+    | '/guias/$slug'
+    | '/guias/'
     | '/_authenticated/pricing/success'
     | '/api/auth/$'
     | '/_authenticated/pricing/'
@@ -436,6 +460,8 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   WelcomeRoute: typeof WelcomeRoute
+  GuiasSlugRoute: typeof GuiasSlugRoute
+  GuiasIndexRoute: typeof GuiasIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -651,6 +677,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWeeklySummaryRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/guias/': {
+      id: '/guias/'
+      path: '/guias'
+      fullPath: '/guias/'
+      preLoaderRoute: typeof GuiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guias/$slug': {
+      id: '/guias/$slug'
+      path: '/guias/$slug'
+      fullPath: '/guias/$slug'
+      preLoaderRoute: typeof GuiasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/pricing/': {
       id: '/_authenticated/pricing/'
       path: '/pricing'
@@ -740,6 +780,8 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   WelcomeRoute: WelcomeRoute,
+  GuiasSlugRoute: GuiasSlugRoute,
+  GuiasIndexRoute: GuiasIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

@@ -16,6 +16,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://vitta.app/guias</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vitta.app/guias/por-que-tu-peso-cambia-cada-dia</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://vitta.app/privacy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

@@ -51,6 +51,12 @@ export function LandingFooter() {
             Calculadora de IMC
           </Link>
           <Link
+            to="/guias"
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Guías
+          </Link>
+          <Link
             to="/privacy"
             className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
           >

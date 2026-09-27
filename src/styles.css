@@ -175,6 +175,10 @@
 		@apply border-border outline-ring/50;
 	}
 
+	html {
+		@apply scroll-smooth;
+	}
+
 	body {
 		@apply bg-background text-foreground font-body antialiased;
 	}
@@ -335,4 +339,72 @@
 	.hero-rise {
 		animation: none;
 	}
+}
+
+/* Cuerpo de las guías: tipografía de lectura con los tokens de la marca. */
+.guide-body {
+	font-size: 1.0625rem;
+	line-height: 1.75;
+}
+
+.guide-body > * + * {
+	margin-top: 1.25em;
+}
+
+.guide-body h2 {
+	margin-top: 2.25em;
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+	text-wrap: balance;
+}
+
+.guide-body h3 {
+	margin-top: 1.75em;
+	font-family: var(--font-display);
+	font-size: 1.125rem;
+	font-weight: 700;
+}
+
+.guide-body p,
+.guide-body li {
+	color: hsl(var(--muted-foreground));
+	text-wrap: pretty;
+}
+
+.guide-body strong {
+	color: hsl(var(--foreground));
+	font-weight: 700;
+}
+
+.guide-body ul,
+.guide-body ol {
+	padding-left: 1.25em;
+}
+
+.guide-body ul {
+	list-style: disc;
+}
+
+.guide-body ol {
+	list-style: decimal;
+}
+
+.guide-body li + li {
+	margin-top: 0.5em;
+}
+
+.guide-body li::marker {
+	color: hsl(var(--primary));
+}
+
+.guide-body a {
+	color: hsl(var(--primary));
+	text-underline-offset: 4px;
+}
+
+.guide-body a:hover {
+	text-decoration: underline;
 }
