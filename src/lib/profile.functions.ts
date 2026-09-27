@@ -2,7 +2,16 @@ import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "#/db";
-import { goal, user, weightEntry } from "#/db/schema";
+import {
+	activity,
+	bodyMeasurement,
+	fast,
+	goal,
+	habitLog,
+	meal,
+	user,
+	weightEntry,
+} from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
 import { MAX_IMPORT_ROWS } from "#/lib/weight-import";
 import { GOAL_WEIGHT_MAX_KG, GOAL_WEIGHT_MIN_KG } from "#/lib/weight-utils";
@@ -73,11 +82,18 @@ export const deleteAllMyData = createServerFn({ method: "POST" }).handler(
 	async () => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		// Borra todos los datos de salud del usuario; la cuenta se mantiene.
+		const uid = session.user.id;
 		await db.transaction(async (tx) => {
+			await tx.delete(weightEntry).where(eq(weightEntry.createdById, uid));
+			await tx.delete(goal).where(eq(goal.createdById, uid));
+			await tx.delete(habitLog).where(eq(habitLog.createdById, uid));
+			await tx.delete(meal).where(eq(meal.createdById, uid));
+			await tx.delete(activity).where(eq(activity.createdById, uid));
+			await tx.delete(fast).where(eq(fast.createdById, uid));
 			await tx
-				.delete(weightEntry)
-				.where(eq(weightEntry.createdById, session.user.id));
-			await tx.delete(goal).where(eq(goal.createdById, session.user.id));
+				.delete(bodyMeasurement)
+				.where(eq(bodyMeasurement.createdById, uid));
 		});
 		return { ok: true };
 	},

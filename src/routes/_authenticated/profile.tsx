@@ -289,7 +289,8 @@ function DataSection({
     mutationFn: () => deleteAllMyData(),
     onSuccess: async () => {
       toast.success("Datos eliminados");
-      await refreshWeightData();
+      // Afecta a todas las pantallas de datos, no solo al peso.
+      await qc.invalidateQueries();
     },
     onError: () => {
       toast.error("No se pudieron eliminar los datos");
@@ -328,7 +329,7 @@ function DataSection({
           onOpenChange={setConfirmDeleteAll}
           onConfirm={() => deleteAllMutation.mutate()}
           title="Eliminar todos mis datos"
-          description="Se eliminarán todos tus registros de peso y tu objetivo. Esta acción no se puede deshacer."
+          description="Se eliminarán tus registros de peso, objetivo, hábitos, comidas, actividad, ayunos y medidas. Tu cuenta se mantiene. Esta acción no se puede deshacer."
         />
       </div>
     </section>

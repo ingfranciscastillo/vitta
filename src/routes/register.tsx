@@ -219,6 +219,19 @@ function RegisterPage() {
 					)}
 				</form.Subscribe>
 			</form>
+
+			<p className="mt-4 text-xs text-muted-foreground text-pretty">
+				Al crear tu cuenta, con email o con Google, aceptas los{" "}
+				<Link to="/terminos" className="text-primary underline-offset-4 hover:underline">
+					Términos
+				</Link>{" "}
+				y la{" "}
+				<Link to="/privacy" className="text-primary underline-offset-4 hover:underline">
+					Política de Privacidad
+				</Link>
+				, y das tu consentimiento para que guardemos los datos de salud que
+				registres con el único fin de mostrártelos.
+			</p>
 		</AuthLayout>
 	);
 }

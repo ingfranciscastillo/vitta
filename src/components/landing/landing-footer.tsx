@@ -1,5 +1,6 @@
-import { SiGithub, SiInstagram } from "@icons-pack/react-simple-icons";
+import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Link } from "@tanstack/react-router";
+import { LEGAL } from "#/lib/legal";
 
 export function LandingFooter() {
   return (
@@ -13,17 +14,7 @@ export function LandingFooter() {
 
           <div className="flex items-center gap-4">
             <a
-              href="#"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Instagram"
-              className="text-muted-foreground pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
-            >
-              <SiInstagram className="w-4.5 h-4.5" />
-            </a>
-
-            <a
-              href="#"
+              href="https://github.com/ingfranciscastillo/peso_log"
               target="_blank"
               rel="noreferrer noopener"
               aria-label="GitHub"
@@ -35,7 +26,7 @@ export function LandingFooter() {
         </div>
 
         <nav
-          aria-label="Herramientas y legal"
+          aria-label="Enlaces del sitio"
           className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground sm:justify-start"
         >
           <Link
@@ -57,11 +48,29 @@ export function LandingFooter() {
             Guías
           </Link>
           <Link
+            to="/terminos"
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Términos
+          </Link>
+          <Link
             to="/privacy"
             className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
           >
             Privacidad
           </Link>
+          <Link
+            to="/reembolsos"
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Reembolsos
+          </Link>
+          <a
+            href={`mailto:${LEGAL.email}`}
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Contacto
+          </a>
         </nav>
       </div>
     </footer>

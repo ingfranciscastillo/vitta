@@ -1,80 +1,264 @@
-import { ArrowLeftIcon, ShieldIcon } from "@solar-icons/react/linear";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "#/components/ui/button";
-
-const sections: Array<{ title: string; body: string }> = [
-	{
-		title: "Almacenamiento de datos",
-		body: "Tus registros de peso se guardan de forma segura en una base de datos asociada únicamente a tu cuenta de usuario. Nadie más puede acceder a ellos.",
-	},
-	{
-		title: "Privacidad de tus registros",
-		body: "Cada usuario solo puede ver, editar y eliminar sus propios registros. Tus datos de peso nunca se comparten con otros usuarios ni con terceros.",
-	},
-	{
-		title: "Datos que guardamos",
-		body: "Almacenamos el peso, la fecha y hora del registro, las notas opcionales que añadas y tus preferencias (unidades, tema y zona horaria). No recopilamos datos de ubicación ni de actividad de terceros.",
-	},
-	{
-		title: "Seguridad",
-		body: "Las contraseñas se almacenan cifradas y toda la comunicación se realiza sobre HTTPS. Aplicamos controles de acceso para que solo tú entres a tu información.",
-	},
-	{
-		title: "Tus derechos",
-		body: "Puedes exportar todos tus datos desde la página Exportar Datos y eliminarlos en cualquier momento desde tu perfil. Si deseas eliminar tu cuenta, contáctanos a través de Soporte.",
-	},
-	{
-		title: "Contacto",
-		body: "Si tienes preguntas sobre tu privacidad, abre un reporte desde la página de Soporte y te responderemos lo antes posible.",
-	},
-];
+import { LegalLayout } from "#/components/legal/legal-layout";
+import { LEGAL } from "#/lib/legal";
 
 export const Route = createFileRoute("/privacy")({
 	head: () => ({
-		meta: [{ title: "Privacidad · Vitta" }],
-		links: [{ rel: "canonical", href: "https://vitta.app/privacy" }],
+		meta: [
+			{ title: "Política de privacidad · Vitta" },
+			{
+				name: "description",
+				content:
+					"Qué datos guarda Vitta, para qué, con quién se comparten, cuánto tiempo se conservan y cómo ejercer tus derechos.",
+			},
+		],
+		links: [{ rel: "canonical", href: `${LEGAL.site}/privacy` }],
 	}),
 	component: PrivacyPage,
 });
 
 function PrivacyPage() {
 	return (
-		<div className="min-h-dvh bg-background">
-			<header className="sticky top-0 z-30 bg-background/90 backdrop-blur border-b border-border pt-[env(safe-area-inset-top)]">
-				<div className="max-w-2xl mx-auto px-4 h-14 flex items-center gap-3">
-					<Button asChild variant="ghost" size="icon" className="size-9">
-						<Link to="/">
-							<ArrowLeftIcon className="w-5 h-5" />
-						</Link>
-					</Button>
-					<span className="font-display text-base">Privacidad</span>
-				</div>
-			</header>
+		<LegalLayout
+			title="Política de privacidad"
+			summary={
+				<ul className="list-disc space-y-1 pl-5">
+					<li>
+						Guardamos lo que tú registras (peso, hábitos, medidas) para
+						mostrártelo. Nada más.
+					</li>
+					<li>No vendemos tus datos ni usamos publicidad ni rastreadores.</li>
+					<li>
+						Solo los compartimos con los proveedores imprescindibles para que la
+						app funcione.
+					</li>
+					<li>
+						Puedes pedir una copia, corregirlos o borrarlos cuando quieras.
+					</li>
+				</ul>
+			}
+		>
+			<h2>1. Quién es el responsable</h2>
+			<p>
+				El responsable de tus datos es {LEGAL.owner}, con domicilio en{" "}
+				{LEGAL.country}, titular de {LEGAL.product}. Para cualquier asunto de
+				privacidad escribe a <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>
+				.
+			</p>
 
-			<main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
-				<div className="flex items-center gap-2">
-					<ShieldIcon className="w-5 h-5 text-primary" />
-					<h1 className="font-display text-2xl text-balance">Cómo protegemos tus datos</h1>
-				</div>
-				<p className="text-muted-foreground text-sm text-pretty">
-					Tu privacidad es prioritaria. Esta página explica de forma sencilla
-					cómo se almacenan y protegen tus datos de peso.
-				</p>
-				{sections.map((s) => (
-					<section
-						key={s.title}
-						className="rounded-2xl bg-card border border-border p-5"
-					>
-						<h2 className="font-display text-base mb-1.5 text-balance">{s.title}</h2>
-						<p className="text-sm text-muted-foreground leading-relaxed text-pretty">
-							{s.body}
-						</p>
-					</section>
-				))}
-				<p className="text-xs text-muted-foreground pt-2 text-pretty">
-					Última actualización: agosto 2026
-				</p>
-			</main>
-		</div>
+			<h2>2. Qué datos guardamos</h2>
+			<h3>Tu cuenta</h3>
+			<ul>
+				<li>Nombre y email.</li>
+				<li>
+					Tu contraseña, siempre cifrada; nunca la vemos en texto plano. Si
+					entras con Google, recibimos tu nombre, email y foto de perfil.
+				</li>
+				<li>
+					Si activas la verificación en dos pasos, los datos necesarios para
+					comprobar tus códigos.
+				</li>
+			</ul>
+			<h3>Tu perfil y preferencias</h3>
+			<ul>
+				<li>Sexo, fecha de nacimiento y altura, solo si decides indicarlos.</li>
+				<li>Unidades, zona horaria y tus objetivos diarios.</li>
+			</ul>
+			<h3>Tus datos de salud</h3>
+			<p>
+				Lo que registras en la app: peso, objetivo de peso, medidas corporales,
+				agua, pasos, sueño, comidas (calorías y macros), actividad física,
+				ayunos y las notas que añadas.{" "}
+				<strong>
+					Son datos sensibles y los tratamos con especial cuidado.
+				</strong>
+			</p>
+			<h3>Soporte</h3>
+			<p>El asunto y el mensaje de las consultas que nos envíes.</p>
+			<h3>Datos técnicos</h3>
+			<ul>
+				<li>
+					La dirección IP y el tipo de navegador de tus sesiones activas, para
+					mantenerte conectado y detectar accesos sospechosos.
+				</li>
+				<li>
+					Registros temporales para limitar intentos repetidos de inicio de
+					sesión.
+				</li>
+			</ul>
+			<h3>Pagos</h3>
+			<p>
+				Si compras Premium, guardamos si tu cuenta es Premium y un identificador
+				de cliente de Dodo Payments.{" "}
+				<strong>No vemos ni guardamos los datos de tu tarjeta.</strong>
+			</p>
+			<p>
+				<strong>No recogemos</strong> tu ubicación, tus contactos ni datos de
+				otras apps, y no usamos herramientas de analítica ni de publicidad.
+			</p>
+
+			<h2>3. Para qué los usamos</h2>
+			<ul>
+				<li>
+					Prestarte el servicio: guardar tus registros y calcular tu tendencia,
+					tu IMC, fechas estimadas y explicaciones.
+				</li>
+				<li>
+					Enviarte emails necesarios: verificar tu cuenta y recuperar tu
+					contraseña. No enviamos publicidad.
+				</li>
+				<li>Atender tus consultas de soporte.</li>
+				<li>Proteger tu cuenta y el servicio frente a abusos.</li>
+				<li>Gestionar tu compra de Premium y cumplir obligaciones legales.</li>
+			</ul>
+
+			<h2>4. Base legal</h2>
+			<ul>
+				<li>
+					<strong>Contrato:</strong> tratar los datos de tu cuenta es necesario
+					para darte el servicio que pides.
+				</li>
+				<li>
+					<strong>Consentimiento explícito:</strong> tus datos de salud solo se
+					tratan porque tú decides registrarlos, y únicamente para mostrártelos.
+					Puedes retirar ese consentimiento en cualquier momento borrándolos
+					desde tu perfil.
+				</li>
+				<li>
+					<strong>Interés legítimo:</strong> la seguridad del servicio y la
+					prevención de abusos.
+				</li>
+				<li>
+					<strong>Obligación legal:</strong> los registros de compras que la ley
+					exige conservar.
+				</li>
+			</ul>
+
+			<h2>5. Con quién los compartimos</h2>
+			<p>
+				<strong>No vendemos ni alquilamos tus datos.</strong> Solo trabajamos
+				con estos proveedores, que los tratan en nuestro nombre y solo para lo
+				necesario:
+			</p>
+			<ul>
+				<li>
+					<strong>Neon</strong>: base de datos donde se guarda tu información,
+					en servidores de Estados Unidos.
+				</li>
+				<li>
+					<strong>Resend</strong>: envío de los emails de la cuenta (tu email y
+					el contenido del mensaje).
+				</li>
+				<li>
+					<strong>Dodo Payments</strong>: cobro de Premium como vendedor
+					registrado. Trata tus datos de pago según su propia política de
+					privacidad.
+				</li>
+				<li>
+					<strong>Google</strong>: solo si eliges iniciar sesión con Google.
+				</li>
+				<li>
+					<strong>Vercel</strong>: alojamiento de la aplicación, en Estados
+					Unidos. Procesa las peticiones de tu navegador, incluida tu dirección
+					IP.
+				</li>
+			</ul>
+			<p>
+				También podríamos compartir datos si una autoridad lo exige legalmente.
+			</p>
+
+			<h2>6. Transferencias internacionales</h2>
+			<p>
+				Nuestros proveedores guardan los datos en Estados Unidos. Cuando la ley
+				lo exige, nos apoyamos en las garantías contractuales que ofrecen esos
+				proveedores para proteger tus datos fuera de tu país.
+			</p>
+
+			<h2>7. Cuánto tiempo los conservamos</h2>
+			<ul>
+				<li>
+					Mientras tengas cuenta, conservamos tus datos para que puedas usarlos.
+				</li>
+				<li>
+					Cuando borras datos desde la app, se eliminan de la base de datos de
+					inmediato. Pueden permanecer en copias de seguridad de nuestro
+					proveedor durante un tiempo limitado hasta que se sobrescriben.
+				</li>
+				<li>
+					Si pides cerrar tu cuenta, eliminamos todos tus datos en un plazo
+					máximo de 30 días.
+				</li>
+				<li>
+					Los registros de compra los conserva Dodo Payments durante el tiempo
+					que exige la ley fiscal.
+				</li>
+			</ul>
+
+			<h2>8. Tus derechos</h2>
+			<p>Puedes, en cualquier momento:</p>
+			<ul>
+				<li>
+					<strong>Ver y corregir</strong> tus datos directamente en la app.
+				</li>
+				<li>
+					<strong>Obtener una copia</strong>: con Premium desde tu perfil, o
+					gratis escribiéndonos.
+				</li>
+				<li>
+					<strong>Borrar</strong> tus datos de salud desde{" "}
+					<Link to="/profile">tu perfil</Link>, o pedirnos el cierre completo de
+					tu cuenta.
+				</li>
+				<li>
+					<strong>Oponerte o limitar</strong> ciertos usos, y{" "}
+					<strong>retirar tu consentimiento</strong>.
+				</li>
+				<li>
+					<strong>Reclamar</strong> ante la autoridad de protección de datos de
+					tu país.
+				</li>
+			</ul>
+			<p>
+				Para ejercerlos, escribe a{" "}
+				<a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a> desde el email de tu
+				cuenta. Respondemos en un máximo de 30 días.
+			</p>
+
+			<h2>9. Cookies y almacenamiento local</h2>
+			<p>
+				Usamos solo lo imprescindible: una cookie de sesión para mantenerte
+				conectado, y el almacenamiento de tu navegador para recordar
+				preferencias como el tema. No usamos cookies de publicidad ni de
+				analítica, por eso no te pedimos aceptarlas.
+			</p>
+
+			<h2>10. Seguridad</h2>
+			<p>
+				Toda la comunicación va cifrada por HTTPS. Las contraseñas se guardan
+				cifradas, los accesos de Google se guardan cifrados y puedes activar la
+				verificación en dos pasos. Cada persona solo puede acceder a sus propios
+				datos. Ningún sistema es infalible: si ocurriera una brecha que te
+				afecte, te avisaremos.
+			</p>
+
+			<h2>11. Menores</h2>
+			<p>
+				{LEGAL.product} es solo para mayores de 18 años. Si sabemos que una
+				cuenta pertenece a un menor, la eliminaremos.
+			</p>
+
+			<h2>12. Cambios en esta política</h2>
+			<p>
+				Si hacemos cambios importantes, te avisaremos por email o dentro de la
+				app antes de que se apliquen. La fecha de arriba indica la última
+				actualización.
+			</p>
+
+			<h2>13. Relación con los términos</h2>
+			<p>
+				Esta política forma parte de nuestros{" "}
+				<Link to="/terminos">Términos de servicio</Link>.
+			</p>
+		</LegalLayout>
 	);
 }
