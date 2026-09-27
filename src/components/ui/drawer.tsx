@@ -3,10 +3,20 @@ import { Drawer as DrawerPrimitive } from "vaul";
 
 import { cn } from "#/lib/utils.ts";
 
+// repositionInputs viene desactivado: en iOS el teclado no reduce la ventana,
+// Safari ya desplaza la vista hasta el campo y vaul además sube el drawer la
+// altura del teclado. La doble compensación lo sacaba por arriba de la pantalla.
 function Drawer({
+	repositionInputs = false,
 	...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-	return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
+	return (
+		<DrawerPrimitive.Root
+			data-slot="drawer"
+			repositionInputs={repositionInputs}
+			{...props}
+		/>
+	);
 }
 
 function DrawerTrigger({
