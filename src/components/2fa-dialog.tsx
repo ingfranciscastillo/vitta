@@ -2,7 +2,7 @@ import {
   KeyIcon,
   LetterIcon,
   SmartphoneIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Bars } from "#/components/bars";
@@ -314,12 +314,12 @@ export function TwoFactorDialog({
         </label>
 
         <DialogFooter className="gap-2">
-          <Button
+          <Button size="cta"
             type="button"
             variant="outline"
             onClick={handleCancel}
             disabled={submitting || sendingOtp}
-            className="h-11"
+            
           >
             Cancelar
           </Button>
@@ -466,7 +466,8 @@ function OtpPanel({
           onClick={() => void onSend()}
           disabled={sending}
           aria-busy={sending}
-          className="w-full h-11 font-display"
+          size="cta"
+          className="w-full"
         >
           {sending && <Bars className="size-3 mr-1.5" />}
           {sending ? "Enviando..." : "Enviar código a mi email"}

@@ -16,7 +16,7 @@ export function Hero() {
 					<StartFreeButton />
 					<Link
 						to={"/login" as string}
-						className="inline-flex h-12 items-center rounded-full px-6 font-display text-base text-foreground ring-1 ring-border transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-fine-hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+						className="inline-flex h-12 items-center rounded-full px-6 font-display text-base text-foreground ring-1 ring-border transition-colors duration-300 ease-brand pointer-fine-hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 					>
 						Iniciar sesión
 					</Link>
@@ -32,7 +32,7 @@ export function Hero() {
 function AppPreview() {
 	return (
 		<div className="hero-rise hero-rise-delay flex justify-center md:justify-end">
-			<div className="w-[min(78vw,300px)] rounded-[2.75rem] bg-foreground/5 p-2 ring-1 ring-border md:-rotate-2 md:transition-transform md:duration-700 md:ease-[cubic-bezier(0.32,0.72,0,1)] md:hover:rotate-0">
+			<div className="w-[min(78vw,300px)] rounded-[2.75rem] bg-foreground/5 p-2 ring-1 ring-border md:-rotate-2 md:transition-transform md:duration-700 md:ease-brand md:hover:rotate-0">
 				<div className="overflow-hidden rounded-[calc(2.75rem-0.5rem)] bg-background shadow-[0_40px_80px_-32px_hsl(var(--primary)/0.45)]">
 					<img
 						src="/landing/app-light.webp"

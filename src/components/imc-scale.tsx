@@ -34,7 +34,7 @@ export function ImcScale({ imc }: { imc: number }) {
 					))}
 				</div>
 				<span
-					className="absolute -top-1.5 h-5 w-1 -translate-x-1/2 rounded-full bg-foreground ring-2 ring-card transition-[left] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+					className="absolute -top-1.5 h-5 w-1 -translate-x-1/2 rounded-full bg-foreground ring-2 ring-card transition-[left] duration-500 ease-brand motion-reduce:transition-none"
 					style={{ left: `${pct(clamp(imc))}%` }}
 				/>
 			</div>

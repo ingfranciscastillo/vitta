@@ -1,4 +1,4 @@
-import { LetterIcon, LockIcon } from "@solar-icons/react/outline";
+import { LetterIcon, LockIcon } from "@solar-icons/react/linear";
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useState } from "react";
@@ -86,10 +86,10 @@ function RegisterPage() {
 				</>
 			}
 		>
-			<Button
+			<Button size="cta"
 				type="button"
 				variant="outline"
-				className="w-full h-12 text-sm font-medium mb-6"
+				className="w-full mb-6"
 				onClick={handleGoogle}
 			>
 				<Google className="w-5 h-5 mr-2" />
@@ -208,9 +208,9 @@ function RegisterPage() {
 					selector={(state) => [state.canSubmit, state.isSubmitting] as const}
 				>
 					{([canSubmit, isSubmitting]) => (
-						<Button
+						<Button size="cta"
 							type="submit"
-							className="w-full h-12 font-medium"
+							className="w-full"
 							disabled={!canSubmit || isSubmitting}
 							aria-busy={isSubmitting}
 						>

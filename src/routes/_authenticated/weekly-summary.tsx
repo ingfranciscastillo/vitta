@@ -8,7 +8,7 @@ import {
 	StopwatchIcon,
 	WalkingIcon,
 	WaterdropIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";

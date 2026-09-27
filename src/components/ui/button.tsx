@@ -5,7 +5,7 @@ import type * as React from "react";
 import { cn } from "#/lib/utils.ts";
 
 const buttonVariants = cva(
-	"inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors duration-100 ease-out outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+	"inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,background-color,border-color,transform] duration-100 ease-out outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 	{
 		variants: {
 			variant: {
@@ -19,12 +19,17 @@ const buttonVariants = cva(
 				ghost:
 					"hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
 				link: "text-primary underline-offset-4 hover:underline",
+				// Acciones irreversibles o de salida (cerrar sesión, borrar datos).
+				"destructive-outline":
+					"border border-destructive/40 bg-transparent text-destructive hover:bg-destructive/10 focus-visible:ring-destructive/20",
 			},
 			size: {
 				default: "h-9 px-4 py-2 has-[>svg]:px-3",
 				xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
 				sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
 				lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+				// Botón de acción principal de la app: formularios, diálogos, cierres.
+				cta: "h-11 px-6 font-display active:scale-[0.98] motion-reduce:active:scale-100 has-[>svg]:px-5",
 				icon: "size-9",
 				"icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
 				"icon-sm": "size-8",

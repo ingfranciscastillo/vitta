@@ -1,4 +1,4 @@
-import { ArrowLeftIcon, LetterIcon } from "@solar-icons/react/outline";
+import { ArrowLeftIcon, LetterIcon } from "@solar-icons/react/linear";
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useState } from "react";
@@ -111,9 +111,9 @@ function ForgotPasswordPage() {
             selector={(state) => [state.canSubmit, state.isSubmitting] as const}
           >
             {([canSubmit, isSubmitting]) => (
-              <Button
+              <Button size="cta"
                 type="submit"
-                className="w-full h-12 font-medium"
+                className="w-full"
                 disabled={!canSubmit || isSubmitting}
                 aria-busy={isSubmitting}
               >

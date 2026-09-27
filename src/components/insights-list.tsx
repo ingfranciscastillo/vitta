@@ -4,7 +4,7 @@ import {
 	GraphUpIcon,
 	StarIcon,
 	TargetIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import type { ComponentType, SVGProps } from "react";
 
 type SolarIcon = ComponentType<SVGProps<SVGSVGElement>>;

@@ -1,11 +1,11 @@
-import { CheckIcon } from "@solar-icons/react/linear/check";
 import {
 	FireIcon,
 	GraphDownIcon,
 	HashtagIcon,
 	MedalRibbonIcon,
 	TargetIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
+import { CheckIcon } from "@solar-icons/react/linear/check";
 import type { ComponentType, SVGProps } from "react";
 
 type SolarIcon = ComponentType<SVGProps<SVGSVGElement>>;

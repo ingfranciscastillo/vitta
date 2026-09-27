@@ -79,10 +79,10 @@ export function PaywallContent({ isPro = false }: PaywallContentProps = {}) {
 				))}
 			</ul>
 
-			<Button
+			<Button size="cta"
 				onClick={handleCheckout}
 				disabled={loading}
-				className="w-full h-12 font-display"
+				className="w-full"
 			>
 				{loading ? (
 					<>

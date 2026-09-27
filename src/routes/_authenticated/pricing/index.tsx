@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from "@solar-icons/react/outline";
+import { ArrowLeftIcon } from "@solar-icons/react/linear";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PaywallContent } from "#/components/paywall-content";

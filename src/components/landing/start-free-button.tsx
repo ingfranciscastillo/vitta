@@ -19,7 +19,7 @@ export function StartFreeButton({
 			to="/register"
 			search={prefill ?? {}}
 			className={cn(
-				"group inline-flex h-12 items-center gap-3 rounded-full pl-6 pr-1.5 font-display text-base transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+				"group inline-flex h-12 items-center gap-3 rounded-full pl-6 pr-1.5 font-display text-base transition-[transform,background-color] duration-300 ease-brand active:scale-[0.98] motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 				variant === "primary"
 					? "bg-primary text-primary-foreground pointer-fine-hover:bg-primary/90"
 					: "bg-primary-foreground text-primary pointer-fine-hover:bg-primary-foreground/90",
@@ -30,7 +30,7 @@ export function StartFreeButton({
 			<span
 				aria-hidden="true"
 				className={cn(
-					"flex size-9 items-center justify-center rounded-full transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:scale-105 motion-reduce:transition-none",
+					"flex size-9 items-center justify-center rounded-full transition-transform duration-300 ease-brand group-hover:translate-x-0.5 group-hover:scale-105 motion-reduce:transition-none",
 					variant === "primary" ? "bg-primary-foreground/15" : "bg-primary/10",
 				)}
 			>

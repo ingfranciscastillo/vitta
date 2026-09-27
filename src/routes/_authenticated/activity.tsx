@@ -1,4 +1,4 @@
-import { DumbbellIcon, TrashBinTrashIcon } from "@solar-icons/react/outline";
+import { DumbbellIcon, TrashBinTrashIcon } from "@solar-icons/react/linear";
 import {
 	useMutation,
 	useQueryClient,
@@ -193,7 +193,9 @@ function ActivityPage() {
 						onValueChange={(v) => setIntensity(v as ActivityIntensity)}
 					>
 						<SelectTrigger className="h-11! w-full">
-							<SelectValue />
+							<SelectValue>
+								{INTENSITY.find((i) => i.id === intensity)?.label}
+							</SelectValue>
 						</SelectTrigger>
 						<SelectContent>
 							{INTENSITY.map((i) => (
@@ -204,10 +206,10 @@ function ActivityPage() {
 						</SelectContent>
 					</Select>
 				</div>
-				<Button
+				<Button size="cta"
 					type="button"
 					onClick={handleAdd}
-					className="w-full h-11 font-display"
+					className="w-full"
 					disabled={createMut.isPending}
 				>
 					Añadir actividad

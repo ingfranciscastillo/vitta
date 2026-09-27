@@ -129,9 +129,9 @@ function SupportPage() {
 						}}
 					</form.Field>
 
-					<Button
+					<Button size="cta"
 						type="submit"
-						className="w-full h-11 font-display"
+						className="w-full"
 						disabled={!form.state.canSubmit || mutation.isPending}
 					>
 						{mutation.isPending && <Bars className="w-3 h-3 mr-1.5" />}

@@ -1,5 +1,3 @@
-import { AddIcon } from "@solar-icons/react/linear/add";
-import { MinusIcon } from "@solar-icons/react/linear/minus";
 import {
   BellIcon,
   CalendarIcon,
@@ -13,7 +11,9 @@ import {
   PulseIcon,
   TargetIcon,
   WalkingIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
+import { AddIcon } from "@solar-icons/react/linear/add";
+import { MinusIcon } from "@solar-icons/react/linear/minus";
 import {
   useMutation,
   useQueryClient,

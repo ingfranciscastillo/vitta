@@ -5,7 +5,7 @@ import {
   QuestionCircleIcon,
   RestartIcon,
   ShieldIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import {
   useMutation,
   useQueryClient,
@@ -58,6 +58,13 @@ export const Route = createFileRoute("/_authenticated/profile")({
 
 type Sex = "male" | "female" | "other";
 
+// Radix no pinta el valor elegido tras el render en servidor; se pasa explícito.
+const SEX_LABELS: Record<Sex, string> = {
+  male: "Masculino",
+  female: "Femenino",
+  other: "Otro",
+};
+
 function ProfilePage() {
   const me = useSuspenseQuery(currentUserQuery()).data!;
 
@@ -102,11 +109,12 @@ function ProfilePage() {
 
       <Button
         type="button"
-        variant="outline"
+        variant="destructive-outline"
+        size="cta"
         onClick={handleLogout}
-        className="w-full h-11 mt-2 font-display text-base uppercase border-2 border-destructive/40 text-destructive bg-destructive/5 pointer-fine-hover:bg-destructive pointer-fine-hover:text-destructive-foreground pointer-fine-hover:border-destructive active:scale-[0.98] motion-reduce:active:scale-100 transition-[background-color,color,border-color] duration-100 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="w-full"
       >
-        <Logout2Icon className="w-5 h-5 mr-2" />
+        <Logout2Icon className="size-5" />
         Cerrar sesión
       </Button>
     </div>
@@ -183,7 +191,9 @@ function PersonalSection({ initial }: { initial: PersonalInitial }) {
             <Label>Sexo</Label>
             <Select value={sex || undefined} onValueChange={(v) => setSex(v as Sex)}>
               <SelectTrigger className="h-11!">
-                <SelectValue placeholder="Seleccionar" />
+                <SelectValue placeholder="Seleccionar">
+                  {sex ? SEX_LABELS[sex] : undefined}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="male" className="h-11">
@@ -219,12 +229,12 @@ function PersonalSection({ initial }: { initial: PersonalInitial }) {
             captionLayout="dropdown"
           />
         </Field>
-        <Button
+        <Button size="cta"
           type="button"
           onClick={save}
           disabled={saveMutation.isPending}
           aria-busy={saveMutation.isPending}
-          className="w-full h-11 font-display"
+          className="w-full"
         >
           {saveMutation.isPending && <Bars className="w-3 h-3 mr-1.5" />}
           Guardar datos
@@ -290,11 +300,12 @@ function DataSection({ isPremium }: { isPremium: boolean }) {
         />
         <Button
           type="button"
-          variant="outline"
+          variant="destructive-outline"
+          size="cta"
           onClick={() => setConfirmDeleteAll(true)}
           disabled={deleteAllMutation.isPending}
           aria-busy={deleteAllMutation.isPending}
-          className="w-full h-10 text-destructive font-display text-xs"
+          className="w-full"
         >
           {deleteAllMutation.isPending && <Bars className="w-3 h-3 mr-1.5" />}
           Eliminar todos mis datos

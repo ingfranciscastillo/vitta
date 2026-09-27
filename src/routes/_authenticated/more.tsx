@@ -12,7 +12,7 @@ import {
   RulerIcon,
   StopwatchIcon,
   TargetIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated/more")({

@@ -98,7 +98,7 @@ function PricingSuccessPage() {
 			</div>
 			<Button
 				onClick={() => navigate({ to: "/dashboard" })}
-				className="h-11 font-display"
+				size="cta"
 			>
 				Empezar a usar
 			</Button>

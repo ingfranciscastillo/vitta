@@ -1,5 +1,5 @@
+import { AltArrowLeftIcon } from "@solar-icons/react/linear";
 import { CheckIcon } from "@solar-icons/react/linear/check";
-import { AltArrowLeftIcon } from "@solar-icons/react/outline";
 import {
 	useMutation,
 	useQueryClient,
@@ -186,23 +186,23 @@ function StepActions({
 }) {
 	return (
 		<div className="mt-auto space-y-2 pt-8">
-			<Button
+			<Button size="cta"
 				type="button"
 				onClick={onContinue}
 				disabled={pending}
 				aria-busy={pending}
-				className="h-12 w-full font-display"
+				className="w-full"
 			>
 				{pending && <Bars className="mr-1.5 h-3 w-3" />}
 				{label}
 			</Button>
 			{onSkip && (
-				<Button
+				<Button size="cta"
 					type="button"
 					variant="ghost"
 					onClick={onSkip}
 					disabled={pending}
-					className="h-11 w-full text-muted-foreground"
+					className="w-full text-muted-foreground"
 				>
 					Ahora no
 				</Button>

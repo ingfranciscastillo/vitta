@@ -1,4 +1,4 @@
-import { PenIcon } from "@solar-icons/react/outline";
+import { PenIcon } from "@solar-icons/react/linear";
 import { Progress } from "#/components/ui/progress";
 import {
   computeGoalProgress,

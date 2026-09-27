@@ -1,4 +1,4 @@
-import { CrownMinimalisticIcon } from "@solar-icons/react/outline";
+import { CrownMinimalisticIcon } from "@solar-icons/react/linear";
 import { useState } from "react";
 import { PaywallDialog } from "#/components/paywall-dialog";
 import { Button } from "#/components/ui/button";
@@ -22,7 +22,7 @@ export function PremiumGate({
       <p className="text-muted-foreground text-sm mt-1 mb-4 max-w-xs mx-auto text-pretty">
         {description}
       </p>
-      <Button onClick={() => setOpen(true)} className="h-11 font-display">
+      <Button size="cta" onClick={() => setOpen(true)}>
         Desbloquear Premium · $12.99
       </Button>
       <PaywallDialog open={open} onOpenChange={setOpen} />

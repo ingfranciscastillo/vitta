@@ -1,6 +1,6 @@
 "use client";
 
-import { EyeClosedIcon, EyeIcon } from "@solar-icons/react/outline";
+import { EyeClosedIcon, EyeIcon } from "@solar-icons/react/linear";
 import * as React from "react";
 import {
 	InputGroup,

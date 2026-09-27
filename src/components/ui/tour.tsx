@@ -12,8 +12,8 @@ import {
 	shift,
 	useFloating,
 } from "@floating-ui/react-dom";
+import { AltArrowLeftIcon, AltArrowRightIcon } from "@solar-icons/react/linear";
 import { CloseIcon } from "@solar-icons/react/linear/close";
-import { AltArrowLeftIcon, AltArrowRightIcon } from "@solar-icons/react/outline";
 import {
 	Direction as DirectionPrimitive,
 	Slot as SlotPrimitive,

@@ -24,6 +24,9 @@
 	--font-body: var(--font-body);
 	--font-display: var(--font-display);
 	--font-brand: var(--font-brand);
+
+	/* Movimiento de marca: rápido para feedback, curva suave para transiciones. */
+	--ease-brand: cubic-bezier(0.32, 0.72, 0, 1);
 	--font-mono: var(--font-mono);
 
 	--color-background: hsl(var(--background));

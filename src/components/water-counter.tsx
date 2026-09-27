@@ -1,6 +1,6 @@
+import { WaterdropIcon } from "@solar-icons/react/linear";
 import { AddIcon } from "@solar-icons/react/linear/add";
 import { MinusIcon } from "@solar-icons/react/linear/minus";
-import { WaterdropIcon } from "@solar-icons/react/outline";
 import {
 	useMutation,
 	useQueryClient,

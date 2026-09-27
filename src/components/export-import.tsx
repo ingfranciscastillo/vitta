@@ -1,6 +1,6 @@
-import { CrownMinimalisticIcon } from "@solar-icons/react/outline";
-import { ExportIcon } from "@solar-icons/react/outline/export";
-import { ImportIcon } from "@solar-icons/react/outline/import";
+import { CrownMinimalisticIcon } from "@solar-icons/react/linear";
+import { ExportIcon } from "@solar-icons/react/linear/export";
+import { ImportIcon } from "@solar-icons/react/linear/import";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { PaywallDialog } from "#/components/paywall-dialog";

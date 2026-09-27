@@ -2,7 +2,7 @@ import {
   AltArrowDownIcon,
   AltArrowLeftIcon,
   AltArrowRightIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import * as React from "react";
 import {
   type DayButton,

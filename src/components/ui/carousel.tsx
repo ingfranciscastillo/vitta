@@ -1,4 +1,4 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@solar-icons/react/outline";
+import { ArrowLeftIcon, ArrowRightIcon } from "@solar-icons/react/linear";
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react";

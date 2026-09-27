@@ -121,10 +121,10 @@ export function HabitLogDialog({
 				</div>
 
 				<DrawerFooter className="px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3">
-					<Button
+					<Button size="cta"
 						type="button"
 						onClick={handleSave}
-						className="w-full h-12 rounded-xl font-display text-sm"
+						className="w-full rounded-xl text-sm"
 					>
 						Guardar
 					</Button>

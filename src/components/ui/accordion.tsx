@@ -1,4 +1,4 @@
-import { AltArrowDownIcon } from "@solar-icons/react/outline";
+import { AltArrowDownIcon } from "@solar-icons/react/linear";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import type * as React from "react";
 

@@ -1,4 +1,4 @@
-import { CopyIcon } from "@solar-icons/react/outline/copy";
+import { CopyIcon } from "@solar-icons/react/linear/copy";
 import { useForm } from "@tanstack/react-form";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -160,11 +160,11 @@ function ChangePasswordForm() {
 					selector={(state) => [state.canSubmit, state.isSubmitting] as const}
 				>
 					{([canSubmit, isSubmitting]) => (
-						<Button
+						<Button size="cta"
 							type="submit"
 							disabled={!canSubmit || isSubmitting}
 							aria-busy={isSubmitting}
-							className="w-full h-11 font-display"
+							className="w-full"
 						>
 							{isSubmitting && <Bars className="w-3 h-3 mr-1.5" />}
 							Actualizar contraseña
@@ -340,15 +340,17 @@ function TwoFactorSection() {
 						type="button"
 						variant="outline"
 						onClick={() => setDialog({ kind: "regen-password" })}
-						className="w-full h-11 font-display"
+						size="cta"
+						className="w-full"
 					>
 						Regenerar códigos de respaldo
 					</Button>
 					<Button
 						type="button"
-						variant="outline"
 						onClick={() => setDialog({ kind: "password", intent: "disable" })}
-						className="w-full h-11 font-display border-destructive/40 text-destructive bg-destructive/5 pointer-fine-hover:bg-destructive/10"
+						size="cta"
+						variant="destructive-outline"
+						className="w-full"
 					>
 						Desactivar 2FA
 					</Button>
@@ -357,7 +359,8 @@ function TwoFactorSection() {
 				<Button
 					type="button"
 					onClick={() => setDialog({ kind: "password", intent: "enable" })}
-					className="w-full h-11 font-display"
+					size="cta"
+						className="w-full"
 				>
 					Activar 2FA
 				</Button>
@@ -531,19 +534,19 @@ function PasswordStep({
 				</div>
 			</div>
 			<DialogFooter>
-				<Button
+				<Button size="cta"
 					variant="outline"
 					onClick={onCancel}
 					disabled={submitting}
-					className="h-11"
+					
 				>
 					Cancelar
 				</Button>
-				<Button
+				<Button size="cta"
 					onClick={handleSubmit}
 					disabled={!password || submitting}
 					aria-busy={submitting}
-					className="h-11"
+					
 				>
 					{submitting && <Bars className="w-3 h-3 mr-1.5" />}
 					{cta}
@@ -605,11 +608,11 @@ function SetupStep({
 								readOnly
 								className="h-11 font-mono text-xs"
 							/>
-							<Button
+							<Button size="cta"
 								type="button"
 								variant="outline"
 								onClick={onCopySecret}
-								className="h-11 shrink-0"
+								className="shrink-0"
 							>
 								<CopyIcon />
 							</Button>
@@ -646,11 +649,11 @@ function SetupStep({
 				</InputOTP>
 			</div>
 			<DialogFooter>
-				<Button
+				<Button size="cta"
 					onClick={handleSubmit}
 					disabled={otpCode.length !== 6 || submitting}
 					aria-busy={submitting}
-					className="w-full h-11 font-display"
+					className="w-full"
 				>
 					{submitting && <Bars className="w-3 h-3 mr-1.5" />}
 					Verificar y continuar
@@ -706,11 +709,11 @@ function BackupCodesStep({
 					))}
 				</ol>
 			</div>
-			<Button
+			<Button size="cta"
 				type="button"
 				variant="outline"
 				onClick={onDownload}
-				className="w-full h-11 font-display"
+				className="w-full"
 			>
 				Descargar códigos
 			</Button>
@@ -729,10 +732,10 @@ function BackupCodesStep({
 				</span>
 			</label>
 			<DialogFooter>
-				<Button
+				<Button size="cta"
 					onClick={onFinish}
 					disabled={!confirmed}
-					className="w-full h-11 font-display"
+					className="w-full"
 				>
 					Listo
 				</Button>

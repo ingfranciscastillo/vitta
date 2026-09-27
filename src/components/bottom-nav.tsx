@@ -4,7 +4,7 @@ import {
 	StarIcon,
 	UserIcon,
 	WidgetIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { Link } from "@tanstack/react-router";
 import type { ComponentType, SVGProps } from "react";
 

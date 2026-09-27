@@ -1,4 +1,4 @@
-import { LightbulbIcon } from "@solar-icons/react/outline";
+import { LightbulbIcon } from "@solar-icons/react/linear";
 import { Link } from "@tanstack/react-router";
 import * as React from "react";
 import {

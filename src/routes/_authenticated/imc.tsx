@@ -1,4 +1,4 @@
-import { InfoCircleIcon, RulerIcon } from "@solar-icons/react/outline";
+import { InfoCircleIcon, RulerIcon } from "@solar-icons/react/linear";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";

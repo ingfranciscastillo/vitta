@@ -5,7 +5,7 @@ import {
 	StopwatchIcon,
 	WalkingIcon,
 	WaterdropIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import {
 	useMutation,
 	useQueryClient,

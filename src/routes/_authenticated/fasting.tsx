@@ -5,7 +5,7 @@ import {
 	PlayIcon,
 	StopIcon,
 	StopwatchIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import {
 	useMutation,
 	useQueryClient,
@@ -237,11 +237,11 @@ function FastingPage() {
 							{formatClock(elapsed)}
 						</div>
 						<div className="text-xs opacity-70 mt-2">Ayuno en curso</div>
-						<Button
+						<Button size="cta"
 							type="button"
 							onClick={handleStop}
 							variant="secondary"
-							className="mt-4 h-11 font-display"
+							className="mt-4"
 							disabled={stopMut.isPending}
 						>
 							<StopIcon className="w-4 h-4 mr-2" /> Finalizar ayuno
@@ -252,11 +252,11 @@ function FastingPage() {
 						<div className="font-display text-lg opacity-80">
 							Sin ayuno activo
 						</div>
-						<Button
+						<Button size="cta"
 							ref={startButtonRef}
 							type="button"
 							onClick={handleStart}
-							className="mt-4 h-11 font-display"
+							className="mt-4"
 							disabled={startMut.isPending}
 						>
 							<PlayIcon className="w-4 h-4 mr-2" /> Iniciar ayuno
@@ -331,7 +331,7 @@ function FastingPage() {
 					</div>
 				)}
 
-				<Button
+				<Button size="cta"
 					type="button"
 					onClick={handleSaveManual}
 					disabled={
@@ -341,7 +341,7 @@ function FastingPage() {
 						!mEndTime ||
 						manualMut.isPending
 					}
-					className="w-full h-11 font-display"
+					className="w-full"
 				>
 					{manualMut.isPending && <Bars className="w-3 h-3 mr-1.5" />} Guardar
 					ayuno

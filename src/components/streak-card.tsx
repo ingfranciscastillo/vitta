@@ -1,4 +1,4 @@
-import { FireIcon, MedalRibbonIcon } from "@solar-icons/react/outline";
+import { FireIcon, MedalRibbonIcon } from "@solar-icons/react/linear";
 
 type StreakCardProps = {
 	current: number;

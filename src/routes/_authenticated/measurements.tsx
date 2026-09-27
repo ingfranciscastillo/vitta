@@ -1,4 +1,4 @@
-import { RulerIcon, TrashBinTrashIcon } from "@solar-icons/react/outline";
+import { RulerIcon, TrashBinTrashIcon } from "@solar-icons/react/linear";
 import {
 	useMutation,
 	useQueryClient,
@@ -203,9 +203,9 @@ function MeasurementsPage() {
 						/>
 					</div>
 				</div>
-				<Button
+				<Button size="cta"
 					onClick={save}
-					className="w-full h-11 font-display"
+					className="w-full"
 					disabled={createMut.isPending}
 					aria-busy={createMut.isPending}
 				>

@@ -2,7 +2,7 @@ import {
 	AltArrowDownIcon,
 	AltArrowUpIcon,
 	UnreadIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { Select as SelectPrimitive } from "radix-ui";
 import type * as React from "react";
 

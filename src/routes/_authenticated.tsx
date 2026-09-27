@@ -1,10 +1,10 @@
-import { AddIcon } from "@solar-icons/react/linear/add";
 import {
   MoonIcon,
   ScaleIcon,
   WalkingIcon,
   WaterdropIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
+import { AddIcon } from "@solar-icons/react/linear/add";
 import {
   useMutation,
   useQueryClient,

@@ -4,7 +4,7 @@ import {
 	ScaleIcon,
 	SortIcon,
 	TrashBinTrashIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { useMemo, useState } from "react";
 import { EmptyState } from "#/components/empty-state";
 import { Button } from "#/components/ui/button";

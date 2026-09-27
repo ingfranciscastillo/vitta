@@ -1,4 +1,4 @@
-import { FireIcon, TrashBinTrashIcon } from "@solar-icons/react/outline";
+import { FireIcon, TrashBinTrashIcon } from "@solar-icons/react/linear";
 import {
 	useMutation,
 	useQueryClient,
@@ -288,7 +288,7 @@ function NutritionPage() {
 							onChange={(e) => setGoalCal(e.target.value)}
 							className="h-11"
 						/>
-						<Button onClick={saveGoal} className="h-11 font-display">
+						<Button size="cta" onClick={saveGoal} >
 							Guardar
 						</Button>
 					</div>
@@ -330,7 +330,9 @@ function NutritionPage() {
 							onValueChange={(v) => setMealType(v as MealTypeId)}
 						>
 							<SelectTrigger className="h-11! w-full">
-								<SelectValue />
+								<SelectValue>
+									{MEAL_TYPES.find((m) => m.id === mealType)?.label}
+								</SelectValue>
 							</SelectTrigger>
 							<SelectContent>
 								{MEAL_TYPES.map((m) => (
@@ -380,9 +382,9 @@ function NutritionPage() {
 						/>
 					</div>
 				</div>
-				<Button
+				<Button size="cta"
 					onClick={addMeal}
-					className="w-full h-11 font-display"
+					className="w-full"
 					disabled={createMut.isPending}
 					aria-busy={createMut.isPending}
 				>

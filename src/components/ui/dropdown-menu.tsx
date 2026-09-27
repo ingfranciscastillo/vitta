@@ -1,6 +1,6 @@
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
 import { CheckIcon } from "@solar-icons/react/linear/check";
-import { AltArrowRightIcon } from "@solar-icons/react/outline/alt-arrow-right";
-import { RecordCircleIcon } from "@solar-icons/react/outline/record-circle";
+import { RecordCircleIcon } from "@solar-icons/react/linear/record-circle";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import type * as React from "react";
 

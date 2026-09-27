@@ -99,15 +99,15 @@ export function WeightEntryForm({
 				/>
 			</div>
 			<div className="flex gap-2 pt-1">
-				<Button
+				<Button size="cta"
 					type="button"
 					variant="outline"
 					onClick={onCancel}
-					className="flex-1 h-11"
+					className="flex-1"
 				>
 					Cancelar
 				</Button>
-				<Button type="submit" className="flex-1 h-11 font-display">
+				<Button size="cta" type="submit" className="flex-1">
 					{submitLabel}
 				</Button>
 			</div>

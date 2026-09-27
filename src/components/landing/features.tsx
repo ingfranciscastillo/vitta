@@ -1,7 +1,7 @@
+import { CrownMinimalisticIcon } from "@solar-icons/react/linear";
 import { AddIcon } from "@solar-icons/react/linear/add";
 import { CheckIcon } from "@solar-icons/react/linear/check";
 import { MinusIcon } from "@solar-icons/react/linear/minus";
-import { CrownMinimalisticIcon } from "@solar-icons/react/outline";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { Bars } from "#/components/bars";
 import { ImcScale } from "#/components/imc-scale";

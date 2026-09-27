@@ -1,4 +1,4 @@
-import { StarsMinimalisticIcon } from "@solar-icons/react/outline/stars-minimalistic";
+import { StarsMinimalisticIcon } from "@solar-icons/react/linear/stars-minimalistic";
 import {
 	useMutation,
 	useQueryClient,

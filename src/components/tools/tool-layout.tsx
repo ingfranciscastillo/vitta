@@ -43,7 +43,7 @@ export function ToolLayout({
 									{f.q}
 									<span
 										aria-hidden="true"
-										className="text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-open:rotate-45"
+										className="text-muted-foreground transition-transform duration-300 ease-brand group-open:rotate-45"
 									>
 										+
 									</span>

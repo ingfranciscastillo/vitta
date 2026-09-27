@@ -1,4 +1,4 @@
-import { ShieldKeyholeIcon } from "@solar-icons/react/outline";
+import { ShieldKeyholeIcon } from "@solar-icons/react/linear";
 
 function UserNotRegisteredError() {
 	return (

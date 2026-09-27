@@ -1,9 +1,9 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
+import { AltArrowDownIcon } from "@solar-icons/react/linear";
 import { CheckIcon } from "@solar-icons/react/linear/check";
 import { CloseIcon } from "@solar-icons/react/linear/close";
-import { AltArrowDownIcon } from "@solar-icons/react/outline";
 import * as React from "react";
 import { Button } from "#/components/ui/button.tsx";
 import {

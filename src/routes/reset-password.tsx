@@ -1,7 +1,7 @@
 import {
 	DangerTriangleIcon,
 	LockKeyholeIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import { useForm } from "@tanstack/react-form";
 import {
 	createFileRoute,
@@ -167,9 +167,9 @@ function ResetPasswordForm({ token }: { token: string }) {
 					selector={(state) => [state.canSubmit, state.isSubmitting] as const}
 				>
 					{([canSubmit, isSubmitting]) => (
-						<Button
+						<Button size="cta"
 							type="submit"
-							className="w-full h-12 font-medium"
+							className="w-full"
 							disabled={!canSubmit || isSubmitting}
 							aria-busy={isSubmitting}
 						>

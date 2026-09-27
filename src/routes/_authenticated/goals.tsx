@@ -220,12 +220,12 @@ function GoalsPage() {
             decimals={1}
           />
         </div>
-        <Button
+        <Button size="cta"
           type="button"
           onClick={saveHabits}
           disabled={saveHabitsMut.isPending}
           aria-busy={saveHabitsMut.isPending}
-          className="w-full h-11 font-display"
+          className="w-full"
         >
           {saveHabitsMut.isPending && <Bars className="w-3 h-3 mr-1.5" />}
           Guardar hábitos
@@ -269,12 +269,12 @@ function GoalsPage() {
                 decimals={1}
               />
             </div>
-            <Button
+            <Button size="cta"
               type="button"
               onClick={saveNutrition}
               disabled={saveNutritionMut.isPending}
               aria-busy={saveNutritionMut.isPending}
-              className="w-full h-11 font-display"
+              className="w-full"
             >
               {saveNutritionMut.isPending && (
                 <Bars className="w-3 h-3 mr-1.5" />
@@ -324,7 +324,7 @@ function GoalsPage() {
               <Label>Ritmo deseado</Label>
               <Select value={pace} onValueChange={(v) => setPace(v as Pace)}>
                 <SelectTrigger className="h-11! w-full">
-                  <SelectValue />
+                  <SelectValue>{paceLabel(pace, unit)}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {PACES.map((p) => (
@@ -337,21 +337,21 @@ function GoalsPage() {
             </div>
             <div className="flex gap-2">
               {goal && (
-                <Button
+                <Button size="cta"
                   type="button"
                   variant="outline"
                   onClick={handleCancel}
-                  className="flex-1 h-11 font-display"
+                  className="flex-1"
                 >
                   Cancelar
                 </Button>
               )}
-              <Button
+              <Button size="cta"
                 type="button"
                 onClick={saveWeight}
                 disabled={saveWeightMut.isPending}
                 aria-busy={saveWeightMut.isPending}
-                className="flex-1 h-11 font-display"
+                className="flex-1"
               >
                 {saveWeightMut.isPending && <Bars className="w-3 h-3 mr-1.5" />}
                 Guardar

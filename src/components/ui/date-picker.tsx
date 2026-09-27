@@ -1,4 +1,4 @@
-import { CalendarMinimalisticIcon } from "@solar-icons/react/outline/calendar-minimalistic";
+import { CalendarMinimalisticIcon } from "@solar-icons/react/linear/calendar-minimalistic";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useState } from "react";

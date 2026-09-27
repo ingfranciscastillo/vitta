@@ -1,6 +1,6 @@
+import { NotebookIcon } from "@solar-icons/react/linear";
 import { AddIcon } from "@solar-icons/react/linear/add";
 import { MinusIcon } from "@solar-icons/react/linear/minus";
-import { NotebookIcon } from "@solar-icons/react/outline";
 import { useState } from "react";
 import { Button } from "#/components/ui/button";
 import { DatePicker } from "#/components/ui/date-picker";
@@ -180,19 +180,19 @@ export function QuickLogDialog({
         </div>
 
         <DrawerFooter className="px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3">
-          <Button
+          <Button size="cta"
             type="button"
             onClick={handleSave}
-            className="w-full h-12 rounded-xl font-display text-sm"
+            className="w-full rounded-xl text-sm"
           >
             Guardar
           </Button>
           {lastWeightKg != null && (
-            <Button
+            <Button size="cta"
               type="button"
               onClick={handleRepeat}
               variant="secondary"
-              className="w-full h-11 rounded-xl text-sm font-display"
+              className="w-full rounded-xl text-sm"
             >
               Repetir último: {lastDisp} {unit}
             </Button>

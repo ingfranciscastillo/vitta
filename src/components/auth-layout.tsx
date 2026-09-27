@@ -2,7 +2,7 @@ import {
   BoltIcon,
   CrownMinimalisticIcon,
   GraphNewIcon,
-} from "@solar-icons/react/outline";
+} from "@solar-icons/react/linear";
 import type { ReactNode } from "react";
 
 // Beneficios reales del producto; sustituyen a testimonios que no existen.

@@ -1,6 +1,6 @@
 "use client";
 
-import { ClockCircleIcon } from "@solar-icons/react/outline";
+import { ClockCircleIcon } from "@solar-icons/react/linear";
 import { Slot as SlotPrimitive } from "radix-ui";
 import * as React from "react";
 import {
