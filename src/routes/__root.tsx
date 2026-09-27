@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "react-hot-toast";
+import { PwaRegister } from "#/components/pwa-register";
 import { ThemeProvider } from "#/components/theme-provider";
 import {
   UMAMI_DOMAINS,
@@ -46,6 +47,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "#1c1c20",
         media: "(prefers-color-scheme: dark)",
       },
+      { name: "apple-mobile-web-app-title", content: "Vitta" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Vitta" },
@@ -72,11 +74,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
       { rel: "icon", href: "/logo.png", type: "image/png" },
       {
         rel: "apple-touch-icon",
-        href: "/logo.png",
+        href: "/apple-touch-icon-180x180.png",
       },
+      // App instalable: public/manifest.webmanifest y public/sw.js.
+      { rel: "manifest", href: "/manifest.webmanifest" },
     ],
     scripts: [
       // Analítica sin cookies; solo se carga si hay un sitio configurado.
@@ -156,6 +161,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             }}
           />
           {children}
+          <PwaRegister />
           <TanStackDevtools
             config={{
               position: "bottom-right",
