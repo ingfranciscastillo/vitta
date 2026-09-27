@@ -6,6 +6,9 @@ import {
 } from "#/lib/weight-utils";
 
 export type HeightUnit = "cm" | "ft";
+
+// Rango de altura aceptado en onboarding y calculadoras (en cm).
+export const HEIGHT_RANGE_CM = { min: 100, max: 250 } as const;
 export type UnitSystem = "metric" | "imperial";
 
 export const UNIT_SYSTEMS: Record<
@@ -53,7 +56,11 @@ export const lengthFromDisplay = (
 	heightUnit: HeightUnit,
 ): number => (heightUnit === "ft" ? inchesToCm(value) : value);
 
-const PACE_KG_PER_WEEK = { slow: 0.25, moderate: 0.5, fast: 0.75 } as const;
+export const PACE_KG_PER_WEEK = {
+	slow: 0.25,
+	moderate: 0.5,
+	fast: 0.75,
+} as const;
 
 const PACE_LABELS = {
 	slow: "Lento",

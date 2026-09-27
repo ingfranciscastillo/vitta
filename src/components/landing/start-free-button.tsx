@@ -1,18 +1,23 @@
 import { ArrowRightIcon } from "@solar-icons/react/linear/arrow-right";
 import { Link } from "@tanstack/react-router";
+import type { SignupPrefill } from "#/lib/signup-prefill";
 import { cn } from "#/lib/utils";
 
 // CTA principal de la portada. Una sola etiqueta para la intención "registrarse".
 export function StartFreeButton({
 	variant = "primary",
+	prefill,
 	className,
 }: {
 	variant?: "primary" | "inverse";
+	// Datos de una calculadora que se precargan en el onboarding.
+	prefill?: SignupPrefill;
 	className?: string;
 }) {
 	return (
 		<Link
-			to={"/register" as string}
+			to="/register"
+			search={prefill ?? {}}
 			className={cn(
 				"group inline-flex h-12 items-center gap-3 rounded-full pl-6 pr-1.5 font-display text-base transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 				variant === "primary"

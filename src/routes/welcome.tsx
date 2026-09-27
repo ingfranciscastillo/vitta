@@ -1,6 +1,4 @@
-import { AddIcon } from "@solar-icons/react/linear/add";
 import { CheckIcon } from "@solar-icons/react/linear/check";
-import { MinusIcon } from "@solar-icons/react/linear/minus";
 import { AltArrowLeftIcon } from "@solar-icons/react/outline";
 import {
 	useMutation,
@@ -11,8 +9,8 @@ import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Bars } from "#/components/bars";
+import { NumberStepper } from "#/components/number-stepper";
 import { Button } from "#/components/ui/button";
-import { Input } from "#/components/ui/input";
 import { Progress } from "#/components/ui/progress";
 import { getSession } from "#/lib/auth.functions";
 import { currentGoalQuery } from "#/lib/goals";
@@ -24,8 +22,11 @@ import {
 } from "#/lib/onboarding";
 import { currentUserQuery } from "#/lib/profile";
 import { updateProfile } from "#/lib/profile.functions";
+import { parseSignupPrefill, type SignupPrefill } from "#/lib/signup-prefill";
 import {
+	HEIGHT_RANGE_CM,
 	lengthFromDisplay,
+	lengthToDisplay,
 	lengthUnitLabel,
 	lengthUnitOf,
 	type Pace,
@@ -54,6 +55,9 @@ import {
 } from "#/lib/weight-utils";
 
 export const Route = createFileRoute("/welcome")({
+	// Datos que llegan desde las calculadoras públicas, ya validados.
+	validateSearch: (search: Record<string, unknown>): SignupPrefill =>
+		parseSignupPrefill(search),
 	beforeLoad: async ({ location }) => {
 		const session = await getSession();
 		if (!session) {
@@ -77,10 +81,9 @@ const QUESTION_COUNT: Record<number, string> = {
 	4: "Cuatro preguntas rápidas",
 };
 
-const HEIGHT_RANGE_CM = { min: 100, max: 250 } as const;
-
 function WelcomePage() {
 	const navigate = useNavigate();
+	const prefill = Route.useSearch();
 	const me = useSuspenseQuery(currentUserQuery()).data!;
 	const entries = useSuspenseQuery(weightEntriesQuery()).data!;
 	const { goal } = useSuspenseQuery(currentGoalQuery()).data!;
@@ -145,9 +148,15 @@ function WelcomePage() {
 
 				<main key={step} className="page-enter flex flex-1 flex-col pt-8">
 					{step === "units" && <UnitsStep questions={total} onDone={next} />}
-					{step === "weight" && <WeightStep onDone={next} onSkip={next} />}
-					{step === "height" && <HeightStep onDone={next} onSkip={next} />}
-					{step === "goal" && <GoalStep onDone={next} onSkip={next} />}
+					{step === "weight" && (
+						<WeightStep prefill={prefill} onDone={next} onSkip={next} />
+					)}
+					{step === "height" && (
+						<HeightStep prefill={prefill} onDone={next} onSkip={next} />
+					)}
+					{step === "goal" && (
+						<GoalStep prefill={prefill} onDone={next} onSkip={next} />
+					)}
 					{step === "done" && <DoneStep onFinish={finish} />}
 				</main>
 			</div>
@@ -198,71 +207,6 @@ function StepActions({
 					Ahora no
 				</Button>
 			)}
-		</div>
-	);
-}
-
-function NumberStepper({
-	value,
-	onChange,
-	step,
-	unit,
-	label,
-	decimals = 1,
-	base,
-}: {
-	value: string;
-	onChange: (v: string) => void;
-	step: number;
-	unit: string;
-	label: string;
-	decimals?: number;
-	// Valor desde el que empiezan los botones si el campo está vacío.
-	base: number;
-}) {
-	const bump = (delta: number) => {
-		const n = parseFloat(value) || base;
-		onChange(Math.max(0, n + delta).toFixed(decimals));
-	};
-	return (
-		<div className="flex items-center justify-center gap-4">
-			<Button
-				type="button"
-				variant="outline"
-				size="icon"
-				aria-label={`Restar ${step}`}
-				className="size-12 shrink-0 rounded-full"
-				onClick={() => bump(-step)}
-			>
-				<MinusIcon size={20} />
-			</Button>
-			<div className="flex items-baseline gap-1.5">
-				<Input
-					type="text"
-					inputMode="decimal"
-					aria-label={label}
-					placeholder={base.toFixed(decimals)}
-					autoFocus
-					value={value}
-					onChange={(e) =>
-						onChange(e.target.value.replace(/[^0-9.,]/g, "").replace(",", "."))
-					}
-					className="h-16 w-32 border-0 bg-transparent px-0 text-center font-display text-5xl tabular-nums shadow-none focus-visible:ring-0 md:text-5xl dark:bg-transparent"
-				/>
-				<span className="font-display text-lg text-muted-foreground">
-					{unit}
-				</span>
-			</div>
-			<Button
-				type="button"
-				variant="outline"
-				size="icon"
-				aria-label={`Sumar ${step}`}
-				className="size-12 shrink-0 rounded-full"
-				onClick={() => bump(step)}
-			>
-				<AddIcon size={20} />
-			</Button>
 		</div>
 	);
 }
@@ -342,16 +286,20 @@ function UnitsStep({
 }
 
 function WeightStep({
+	prefill,
 	onDone,
 	onSkip,
 }: {
+	prefill: SignupPrefill;
 	onDone: () => void;
 	onSkip: () => void;
 }) {
 	const qc = useQueryClient();
 	const me = useSuspenseQuery(currentUserQuery()).data!;
 	const unit: WeightUnit = me.weightUnit;
-	const [value, setValue] = useState("");
+	const [value, setValue] = useState(
+		prefill.peso != null ? toDisplay(prefill.peso, unit).toFixed(1) : "",
+	);
 
 	const mut = useMutation({
 		mutationFn: (kg: number) =>
@@ -390,6 +338,7 @@ function WeightStep({
 			/>
 			<NumberStepper
 				label="Peso actual"
+				autoFocus
 				base={Math.round(toDisplay(70, unit))}
 				value={value}
 				onChange={setValue}
@@ -402,9 +351,11 @@ function WeightStep({
 }
 
 function HeightStep({
+	prefill,
 	onDone,
 	onSkip,
 }: {
+	prefill: SignupPrefill;
 	onDone: () => void;
 	onSkip: () => void;
 }) {
@@ -413,7 +364,11 @@ function HeightStep({
 	const entries = useSuspenseQuery(weightEntriesQuery()).data!;
 	const heightUnit = lengthUnitOf(me.weightUnit);
 	const unitLabel = lengthUnitLabel(heightUnit);
-	const [value, setValue] = useState("");
+	const [value, setValue] = useState(
+		prefill.altura != null
+			? String(Math.round(lengthToDisplay(prefill.altura, heightUnit)))
+			: "",
+	);
 
 	const current = computeStats(entries).current;
 	const cm = lengthFromDisplay(parseFloat(value) || 0, heightUnit);
@@ -447,6 +402,7 @@ function HeightStep({
 			/>
 			<NumberStepper
 				label="Altura"
+				autoFocus
 				base={heightUnit === "ft" ? 67 : 170}
 				value={value}
 				onChange={setValue}
@@ -490,9 +446,11 @@ const PACES: ReadonlyArray<Pace> = ["slow", "moderate", "fast"];
 const SUGGESTED_CHANGE_KG = 5;
 
 function GoalStep({
+	prefill,
 	onDone,
 	onSkip,
 }: {
+	prefill: SignupPrefill;
 	onDone: () => void;
 	onSkip: () => void;
 }) {
@@ -502,9 +460,17 @@ function GoalStep({
 	const unit: WeightUnit = me.weightUnit;
 	const current = computeStats(entries).current;
 
-	const [direction, setDirection] = useState<Direction | null>(null);
-	const [target, setTarget] = useState("");
-	const [pace, setPace] = useState<Pace>("moderate");
+	// Si viene de la calculadora de peso meta, la dirección se deduce sola.
+	const reference = current ?? prefill.peso ?? null;
+	const [direction, setDirection] = useState<Direction | null>(() => {
+		if (prefill.meta == null || reference == null) return null;
+		const diff = prefill.meta - reference;
+		return Math.abs(diff) < 0.1 ? "maintain" : diff < 0 ? "lose" : "gain";
+	});
+	const [target, setTarget] = useState(
+		prefill.meta != null ? toDisplay(prefill.meta, unit).toFixed(1) : "",
+	);
+	const [pace, setPace] = useState<Pace>(prefill.ritmo ?? "moderate");
 
 	const choose = (d: Direction) => {
 		setDirection(d);
@@ -585,6 +551,7 @@ function GoalStep({
 						</div>
 						<NumberStepper
 							label="Peso objetivo"
+							autoFocus
 							base={Math.round(toDisplay(current ?? 70, unit))}
 							value={target}
 							onChange={setTarget}

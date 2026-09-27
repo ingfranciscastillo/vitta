@@ -4,6 +4,7 @@ import { MinusIcon } from "@solar-icons/react/linear/minus";
 import { CrownMinimalisticIcon } from "@solar-icons/react/outline";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { Bars } from "#/components/bars";
+import { ImcScale } from "#/components/imc-scale";
 import { Button } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
 
@@ -358,15 +359,7 @@ function StreakPreview() {
 	);
 }
 
-// Rangos de IMC de la OMS sobre una escala de 15 a 35.
-const IMC_RANGES = [
-	{ label: "Bajo", from: 15, to: 18.5, className: "bg-primary/40" },
-	{ label: "Normal", from: 18.5, to: 25, className: "bg-positive" },
-	{ label: "Sobrepeso", from: 25, to: 30, className: "bg-warning" },
-	{ label: "Obesidad", from: 30, to: 35, className: "bg-negative" },
-] as const;
 const IMC_SAMPLE = 25.5;
-const imcPct = (v: number) => ((v - 15) / (35 - 15)) * 100;
 
 function ImcPreview() {
 	return (
@@ -377,31 +370,8 @@ function ImcPreview() {
 				</span>
 				<span className="text-sm text-warning">Sobrepeso</span>
 			</div>
-			<div className="relative mt-5">
-				<div className="flex h-2 overflow-hidden rounded-full">
-					{IMC_RANGES.map((r) => (
-						<span
-							key={r.label}
-							className={r.className}
-							style={{ width: `${imcPct(r.to) - imcPct(r.from)}%` }}
-						/>
-					))}
-				</div>
-				<span
-					className="absolute -top-1.5 h-5 w-1 -translate-x-1/2 rounded-full bg-foreground ring-2 ring-card"
-					style={{ left: `${imcPct(IMC_SAMPLE)}%` }}
-				/>
-			</div>
-			<div className="mt-2 flex text-[11px] text-muted-foreground">
-				{IMC_RANGES.map((r) => (
-					<span
-						key={r.label}
-						className="truncate pr-1"
-						style={{ width: `${imcPct(r.to) - imcPct(r.from)}%` }}
-					>
-						{r.label}
-					</span>
-				))}
+			<div className="mt-5">
+				<ImcScale imc={IMC_SAMPLE} />
 			</div>
 		</div>
 	);

@@ -15,8 +15,16 @@ import { getSession } from "#/lib/auth.functions";
 import { authClient } from "#/lib/auth-client";
 import { mapAuthError } from "#/lib/auth-errors";
 import { registerSchema } from "#/lib/schemas/auth";
+import {
+	parseSignupPrefill,
+	type SignupPrefill,
+	signupPrefillQuery,
+} from "#/lib/signup-prefill";
 
 export const Route = createFileRoute("/register")({
+	// Datos de las calculadoras públicas que se pasan al onboarding.
+	validateSearch: (search: Record<string, unknown>): SignupPrefill =>
+		parseSignupPrefill(search),
 	beforeLoad: async () => {
 		const session = await getSession();
 		if (session) throw redirect({ to: "/dashboard" });
@@ -25,6 +33,7 @@ export const Route = createFileRoute("/register")({
 });
 
 function RegisterPage() {
+	const welcomeUrl = `/welcome${signupPrefillQuery(Route.useSearch())}`;
 	const [submitError, setSubmitError] = useState<string | null>(null);
 
 	const form = useForm({
@@ -48,7 +57,7 @@ function RegisterPage() {
 				return;
 			}
 			toast.success("Cuenta creada. Revisa tu email para verificarla.");
-			window.location.assign("/welcome");
+			window.location.assign(welcomeUrl);
 		},
 	});
 
@@ -56,7 +65,7 @@ function RegisterPage() {
 		void authClient.signIn.social({
 			provider: "google",
 			callbackURL: "/dashboard",
-			newUserCallbackURL: "/welcome",
+			newUserCallbackURL: welcomeUrl,
 		});
 	};
 

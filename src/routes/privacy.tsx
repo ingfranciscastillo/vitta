@@ -30,6 +30,10 @@ const sections: Array<{ title: string; body: string }> = [
 ];
 
 export const Route = createFileRoute("/privacy")({
+	head: () => ({
+		meta: [{ title: "Privacidad · Vitta" }],
+		links: [{ rel: "canonical", href: "https://vitta.app/privacy" }],
+	}),
 	component: PrivacyPage,
 });
 

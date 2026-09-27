@@ -72,9 +72,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: "apple-touch-icon",
         href: "/logo.png",
       },
-      { rel: "canonical", href: "https://vitta.app/" },
-      { rel: "alternate", hrefLang: "es", href: "https://vitta.app/" },
-      { rel: "alternate", hrefLang: "x-default", href: "https://vitta.app/" },
     ],
     scripts: [
       {

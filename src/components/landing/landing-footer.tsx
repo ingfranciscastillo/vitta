@@ -33,6 +33,30 @@ export function LandingFooter() {
             </a>
           </div>
         </div>
+
+        <nav
+          aria-label="Herramientas y legal"
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground sm:justify-start"
+        >
+          <Link
+            to="/calculadora-peso-meta"
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Calculadora de peso meta
+          </Link>
+          <Link
+            to="/calculadora-imc"
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Calculadora de IMC
+          </Link>
+          <Link
+            to="/privacy"
+            className="pointer-fine-hover:text-foreground transition-colors duration-100 ease-out"
+          >
+            Privacidad
+          </Link>
+        </nav>
       </div>
     </footer>
   );

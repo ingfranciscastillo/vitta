@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as CalculadoraImcRouteImport } from './routes/calculadora-imc'
+import { Route as CalculadoraPesoMetaRouteImport } from './routes/calculadora-peso-meta'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -48,6 +50,16 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculadoraImcRoute = CalculadoraImcRouteImport.update({
+  id: '/calculadora-imc',
+  path: '/calculadora-imc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculadoraPesoMetaRoute = CalculadoraPesoMetaRouteImport.update({
+  id: '/calculadora-peso-meta',
+  path: '/calculadora-peso-meta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
@@ -205,6 +217,8 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calculadora-imc': typeof CalculadoraImcRoute
+  '/calculadora-peso-meta': typeof CalculadoraPesoMetaRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
@@ -237,6 +251,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calculadora-imc': typeof CalculadoraImcRoute
+  '/calculadora-peso-meta': typeof CalculadoraPesoMetaRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
@@ -271,6 +287,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/calculadora-imc': typeof CalculadoraImcRoute
+  '/calculadora-peso-meta': typeof CalculadoraPesoMetaRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
@@ -305,6 +323,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/calculadora-imc'
+    | '/calculadora-peso-meta'
     | '/forgot-password'
     | '/login'
     | '/privacy'
@@ -337,6 +357,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/calculadora-imc'
+    | '/calculadora-peso-meta'
     | '/forgot-password'
     | '/login'
     | '/privacy'
@@ -370,6 +392,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/calculadora-imc'
+    | '/calculadora-peso-meta'
     | '/forgot-password'
     | '/login'
     | '/privacy'
@@ -404,6 +428,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  CalculadoraImcRoute: typeof CalculadoraImcRoute
+  CalculadoraPesoMetaRoute: typeof CalculadoraPesoMetaRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -427,6 +453,20 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculadora-imc': {
+      id: '/calculadora-imc'
+      path: '/calculadora-imc'
+      fullPath: '/calculadora-imc'
+      preLoaderRoute: typeof CalculadoraImcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculadora-peso-meta': {
+      id: '/calculadora-peso-meta'
+      path: '/calculadora-peso-meta'
+      fullPath: '/calculadora-peso-meta'
+      preLoaderRoute: typeof CalculadoraPesoMetaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot-password': {
@@ -692,6 +732,8 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  CalculadoraImcRoute: CalculadoraImcRoute,
+  CalculadoraPesoMetaRoute: CalculadoraPesoMetaRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
