@@ -45,7 +45,7 @@ export function AuthLayout({
     <div className="min-h-dvh grid lg:grid-cols-2 bg-background">
       {/* Columna izquierda */}
       <div className="hidden lg:flex flex-col items-center border-r border-border bg-muted/30 p-10 xl:p-14">
-        <span className="text-center text-lg font-semibold text-foreground font-display">
+        <span className="text-center text-lg text-foreground font-brand">
           {brandName}
         </span>
 
@@ -78,7 +78,7 @@ export function AuthLayout({
       {/* Columna derecha */}
       <div className="flex flex-col items-center justify-center px-6 py-12">
         <div className="w-full max-w-sm">
-          <span className="lg:hidden block text-lg font-semibold text-foreground mb-8 font-display">
+          <span className="lg:hidden block text-lg text-foreground mb-8 font-brand">
             {brandName}
           </span>
 

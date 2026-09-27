@@ -11,7 +11,7 @@ export function LandingNavbar() {
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <span className="size-2.5 rounded-full bg-primary" />
-          <span className="font-display text-lg">Vitta</span>
+          <span className="font-brand text-lg">Vitta</span>
         </Link>
         <div className="flex items-center gap-2">
           {signedIn ? (

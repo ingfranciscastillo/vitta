@@ -120,7 +120,7 @@ function WelcomePage() {
 					>
 						<AltArrowLeftIcon className="size-5" />
 					</button>
-					<span className="flex items-center gap-2 font-display text-sm">
+					<span className="flex items-center gap-2 font-brand text-sm">
 						<span className="size-2 rounded-full bg-primary" />
 						Vitta
 					</span>

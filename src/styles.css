@@ -23,6 +23,7 @@
 	--font-heading: var(--font-heading);
 	--font-body: var(--font-body);
 	--font-display: var(--font-display);
+	--font-brand: var(--font-brand);
 	--font-mono: var(--font-mono);
 
 	--color-background: hsl(var(--background));
@@ -102,10 +103,14 @@
 	--chart-4: 338 38% 79%;
 	--chart-5: 343 58% 78%;
 	--radius: 1rem;
-	--font-heading: "Silkscreen", ui-sans-serif, system-ui, sans-serif;
+	--font-heading: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
+		"Segoe UI", sans-serif;
 	--font-body: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
 		"Segoe UI", sans-serif;
-	--font-display: "Silkscreen", ui-sans-serif, system-ui, sans-serif;
+	--font-display: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
+		"Segoe UI", sans-serif;
+	/* Silkscreen solo para momentos de marca: logo, rachas y logros. */
+	--font-brand: "Silkscreen", ui-sans-serif, system-ui, sans-serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 	--sidebar-background: 0 0% 100%;
 	--sidebar-foreground: 228 9% 11%;
@@ -159,6 +164,13 @@
 }
 
 @layer base {
+	/* Sin la fuente pixelada, títulos, cifras y botones necesitan peso propio.
+	   Un font-* explícito en el elemento (utilidades) sigue teniendo prioridad. */
+	.font-display,
+	.font-heading {
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
 	* {
 		@apply border-border outline-ring/50;
 	}

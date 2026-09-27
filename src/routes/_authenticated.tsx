@@ -150,7 +150,7 @@ function AuthenticatedLayout() {
           <div className="flex items-center justify-between px-4 h-14">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-primary" />
-              <span className="font-display text-base">Vitta</span>
+              <span className="font-brand text-base">Vitta</span>
               {saveMut.isPending && (
                 <span className="text-[10px] text-muted-foreground">
                   Guardando...

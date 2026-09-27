@@ -8,7 +8,7 @@ export function LandingFooter() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-2">
             <span className="size-2.5 rounded-full bg-primary" />
-            <span className="font-display text-base">Vitta</span>
+            <span className="font-brand text-base">Vitta</span>
           </Link>
 
           <div className="flex items-center gap-4">
