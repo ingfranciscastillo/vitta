@@ -32,8 +32,11 @@ type ImportableEntry = Pick<WeightEntry, "date" | "time" | "weight" | "note">;
 
 type ExportImportProps = {
 	entries: WeightEntry[];
-	// Recibe los registros ya convertidos a kg.
-	onImport: (entries: ImportableEntry[]) => void;
+	// Recibe los registros ya convertidos a kg y el origen del archivo.
+	onImport: (
+		entries: ImportableEntry[],
+		source: ParsedImport["source"],
+	) => void;
 	// Exportar es Premium; importar está disponible para todos.
 	canExport: boolean;
 	// Unidad del usuario, usada si el archivo no indica la suya.
@@ -153,6 +156,7 @@ export function ExportImport({
 				weight: Math.round(r.weight * 100) / 100,
 				note: r.note,
 			})),
+			preview?.source ?? "csv",
 		);
 		setPreview(null);
 	};

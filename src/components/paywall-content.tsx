@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Button } from "#/components/ui/button";
+import { track } from "#/lib/analytics";
 import { authClient } from "#/lib/auth-client";
 import { Bars } from "./bars";
 
@@ -37,6 +38,7 @@ export function PaywallContent({ isPro = false }: PaywallContentProps = {}) {
 			return;
 		}
 		setLoading(true);
+		track("checkout_started", {});
 		try {
 			const { data, error } = await authClient.dodopayments.checkoutSession({
 				slug: "pro-lifetime",

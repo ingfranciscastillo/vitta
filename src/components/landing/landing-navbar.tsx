@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/ui/button";
+import { ctaAttributes } from "#/lib/analytics";
 import { authClient } from "#/lib/auth-client";
 
 export function LandingNavbar() {
@@ -24,7 +25,9 @@ export function LandingNavbar() {
                 <Link to={"/login" as string}>Iniciar sesión</Link>
               </Button>
               <Button asChild className="h-9 rounded-full px-4">
-                <Link to={"/register" as string}>Empezar gratis</Link>
+                <Link to="/register" search={{}} {...ctaAttributes("nav")}>
+                  Empezar gratis
+                </Link>
               </Button>
             </>
           )}

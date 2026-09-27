@@ -94,7 +94,7 @@ export function PremiumCTA() {
 			</div>
 
 			<div className="mt-10 flex justify-center">
-				<StartFreeButton />
+				<StartFreeButton location="cta_final" />
 			</div>
 		</section>
 	);

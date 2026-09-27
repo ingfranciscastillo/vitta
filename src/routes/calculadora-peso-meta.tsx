@@ -8,6 +8,7 @@ import {
 	ToolLayout,
 	toolJsonLd,
 } from "#/components/tools/tool-layout";
+import { useTrackOnFirstChange } from "#/lib/analytics";
 import { parseSignupPrefill, type SignupPrefill } from "#/lib/signup-prefill";
 import { PACE_KG_PER_WEEK, type Pace, paceLabel } from "#/lib/units";
 import {
@@ -83,12 +84,19 @@ const round1 = (n: number) => Math.round(n * 10) / 10;
 
 const PACES: ReadonlyArray<Pace> = ["slow", "moderate", "fast"];
 
+const CALC_EVENT = { tool: "peso_meta" } as const;
+
 function GoalDateCalculator() {
 	const prefill = Route.useSearch();
 	const [unit, setUnit] = useState<WeightUnit>("kg");
 	const [current, setCurrent] = useState((prefill.peso ?? 80).toFixed(1));
 	const [goal, setGoal] = useState((prefill.meta ?? 72).toFixed(1));
 	const [pace, setPace] = useState<Pace>(prefill.ritmo ?? "moderate");
+	useTrackOnFirstChange(
+		"calculator_used",
+		CALC_EVENT,
+		[current, goal, pace, unit].join("|"),
+	);
 
 	// Al cambiar de unidad se convierten los valores ya escritos.
 	const changeUnit = (next: WeightUnit) => {
@@ -237,6 +245,7 @@ function GoalDateCalculator() {
 							de esta fecha.
 						</p>
 						<StartFreeButton
+							location="calc_peso_meta"
 							variant="inverse"
 							prefill={
 								valid

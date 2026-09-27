@@ -45,7 +45,7 @@ export function GuideLayout({ guide }: { guide: Guide }) {
 							días, para que un pico suelto no te desanime.
 						</p>
 						<div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
-							<StartFreeButton variant="inverse" />
+							<StartFreeButton variant="inverse" location="guide" />
 							{guide.tool && (
 								<Link
 									to={guide.tool.to}

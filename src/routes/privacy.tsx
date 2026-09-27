@@ -27,7 +27,10 @@ function PrivacyPage() {
 						Guardamos lo que tú registras (peso, hábitos, medidas) para
 						mostrártelo. Nada más.
 					</li>
-					<li>No vendemos tus datos ni usamos publicidad ni rastreadores.</li>
+					<li>
+						No vendemos tus datos ni usamos publicidad. Medimos el uso de forma
+						anónima y sin cookies.
+					</li>
 					<li>
 						Solo los compartimos con los proveedores imprescindibles para que la
 						app funcione.
@@ -94,7 +97,14 @@ function PrivacyPage() {
 			</p>
 			<p>
 				<strong>No recogemos</strong> tu ubicación, tus contactos ni datos de
-				otras apps, y no usamos herramientas de analítica ni de publicidad.
+				otras apps, y no usamos publicidad.
+			</p>
+			<h3>Estadísticas de uso anónimas</h3>
+			<p>
+				Contamos visitas y algunas acciones, como "se completó un registro" o
+				"se usó la calculadora", con Umami. Son datos agregados y anónimos:
+				no usan cookies, no te identifican y no incluyen el contenido de tus
+				registros (ni tu peso ni tus hábitos).
 			</p>
 
 			<h2>3. Para qué los usamos</h2>
@@ -109,6 +119,10 @@ function PrivacyPage() {
 				</li>
 				<li>Atender tus consultas de soporte.</li>
 				<li>Proteger tu cuenta y el servicio frente a abusos.</li>
+				<li>
+					Entender qué partes de Vitta se usan, con estadísticas anónimas, para
+					mejorarla.
+				</li>
 				<li>Gestionar tu compra de Premium y cumplir obligaciones legales.</li>
 			</ul>
 
@@ -125,8 +139,8 @@ function PrivacyPage() {
 					desde tu perfil.
 				</li>
 				<li>
-					<strong>Interés legítimo:</strong> la seguridad del servicio y la
-					prevención de abusos.
+					<strong>Interés legítimo:</strong> la seguridad del servicio, la
+					prevención de abusos y las estadísticas anónimas de uso.
 				</li>
 				<li>
 					<strong>Obligación legal:</strong> los registros de compras que la ley
@@ -161,6 +175,9 @@ function PrivacyPage() {
 					<strong>Vercel</strong>: alojamiento de la aplicación, en Estados
 					Unidos. Procesa las peticiones de tu navegador, incluida tu dirección
 					IP.
+				</li>
+				<li>
+					<strong>Umami</strong>: estadísticas de uso anónimas, sin cookies.
 				</li>
 			</ul>
 			<p>
@@ -228,8 +245,8 @@ function PrivacyPage() {
 			<p>
 				Usamos solo lo imprescindible: una cookie de sesión para mantenerte
 				conectado, y el almacenamiento de tu navegador para recordar
-				preferencias como el tema. No usamos cookies de publicidad ni de
-				analítica, por eso no te pedimos aceptarlas.
+				preferencias como el tema. Las estadísticas de uso no usan cookies, y
+				no usamos cookies de publicidad, por eso no te pedimos aceptarlas.
 			</p>
 
 			<h2>10. Seguridad</h2>

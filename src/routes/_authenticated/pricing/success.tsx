@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { Bars } from "#/components/bars";
 import { Button } from "#/components/ui/button";
+import { track } from "#/lib/analytics";
 import { currentUserQuery } from "#/lib/profile";
 
 const POLL_INTERVAL_MS = 2000;
@@ -16,6 +17,17 @@ const POLL_MAX_MS = 10000;
 export const Route = createFileRoute("/_authenticated/pricing/success")({
 	component: PricingSuccessPage,
 });
+
+// Evita contar dos veces la compra si se recarga la página de éxito.
+const trackPurchaseOnce = () => {
+	try {
+		if (sessionStorage.getItem("vitta:purchase-tracked")) return;
+		sessionStorage.setItem("vitta:purchase-tracked", "1");
+	} catch {
+		// Sin almacenamiento se registra igual.
+	}
+	track("purchase_completed", { revenue: 12.99, currency: "USD" });
+};
 
 type Status = "verifying" | "success" | "error";
 
@@ -43,6 +55,7 @@ function PricingSuccessPage() {
 				if (cancelled) return;
 				if (ok) {
 					setStatus("success");
+					trackPurchaseOnce();
 					return;
 				}
 			} catch {

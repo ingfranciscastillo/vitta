@@ -9,6 +9,7 @@ import {
 	ToolLayout,
 	toolJsonLd,
 } from "#/components/tools/tool-layout";
+import { useTrackOnFirstChange } from "#/lib/analytics";
 import { healthyWeightRange } from "#/lib/health-utils";
 import { parseSignupPrefill, type SignupPrefill } from "#/lib/signup-prefill";
 import {
@@ -86,6 +87,8 @@ const SYSTEMS: ReadonlyArray<{ id: UnitSystem; label: string }> = [
 	{ id: "imperial", label: "lb e in" },
 ];
 
+const CALC_EVENT = { tool: "imc" } as const;
+
 const round1 = (n: number) => Math.round(n * 10) / 10;
 
 function ImcCalculator() {
@@ -94,6 +97,11 @@ function ImcCalculator() {
 	const { weightUnit, heightUnit } = UNIT_SYSTEMS[system];
 	const [weight, setWeight] = useState((prefill.peso ?? 75).toFixed(1));
 	const [height, setHeight] = useState(String(prefill.altura ?? 170));
+	useTrackOnFirstChange(
+		"calculator_used",
+		CALC_EVENT,
+		[weight, height, system].join("|"),
+	);
 
 	// Al cambiar de sistema se convierten los valores ya escritos.
 	const changeSystem = (next: UnitSystem) => {
@@ -231,6 +239,7 @@ function ImcCalculator() {
 							cómo cambia.
 						</p>
 						<StartFreeButton
+							location="calc_imc"
 							prefill={
 								valid ? { peso: round1(kg), altura: round1(cm) } : undefined
 							}

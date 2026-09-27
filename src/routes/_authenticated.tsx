@@ -31,6 +31,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
+import { track } from "#/lib/analytics";
 import { getSession } from "#/lib/auth.functions";
 import { habitLogsQuery } from "#/lib/habits";
 import { addHabitLog } from "#/lib/habits.functions";
@@ -101,6 +102,7 @@ function AuthenticatedLayout() {
       }),
     onSuccess: async () => {
       toast.success("Peso registrado");
+      track("weight_logged", { first: entries.length === 0 });
       setQuickOpen(false);
       await qc.invalidateQueries({ queryKey: ["weight-entries"] });
       await qc.invalidateQueries({ queryKey: ["weight-stats"] });

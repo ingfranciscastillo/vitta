@@ -32,6 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "#/components/ui/select";
+import { track } from "#/lib/analytics";
 import { authClient } from "#/lib/auth-client";
 import { currentUserQuery } from "#/lib/profile";
 import {
@@ -264,15 +265,17 @@ function DataSection({
     ]);
 
   const importMutation = useMutation({
-    mutationFn: (
+    mutationFn: (vars: {
       data: Array<{
         date: string;
         weight: number;
         time?: string | null;
         note?: string | null;
-      }>,
-    ) => importEntries({ data }),
-    onSuccess: async (res) => {
+      }>;
+      source: string;
+    }) => importEntries({ data: vars.data }),
+    onSuccess: async (res, vars) => {
+      track("import_completed", { source: vars.source, rows: res.inserted });
       toast.success(
         res.skipped > 0
           ? `${res.inserted} registros importados (${res.skipped} ya los tenías)`
@@ -308,7 +311,7 @@ function DataSection({
         </p>
         <ExportImport
           entries={entries}
-          onImport={(data) => importMutation.mutate(data)}
+          onImport={(data, source) => importMutation.mutate({ data, source })}
           canExport={isPremium}
           defaultUnit={unit}
         />

@@ -12,6 +12,7 @@ import { Bars } from "#/components/bars";
 import { NumberStepper } from "#/components/number-stepper";
 import { Button } from "#/components/ui/button";
 import { Progress } from "#/components/ui/progress";
+import { track } from "#/lib/analytics";
 import { getSession } from "#/lib/auth.functions";
 import { currentGoalQuery } from "#/lib/goals";
 import { upsertGoal } from "#/lib/goals.functions";
@@ -102,7 +103,15 @@ function WelcomePage() {
 	const step = steps[index];
 	const next = () => setIndex((i) => Math.min(i + 1, steps.length - 1));
 	const back = () => setIndex((i) => Math.max(i - 1, 0));
-	const finish = () => navigate({ to: "/dashboard" });
+	// Avanzar tras completar un paso (no al saltarlo) cuenta para el embudo.
+	const complete = () => {
+		track("onboarding_step_completed", { step });
+		next();
+	};
+	const finish = () => {
+		track("onboarding_finished", { skipped: step !== "done" });
+		navigate({ to: "/dashboard" });
+	};
 
 	// "Listo" no cuenta como paso para la barra de progreso.
 	const total = steps.length - 1;
@@ -147,15 +156,15 @@ function WelcomePage() {
 				/>
 
 				<main key={step} className="page-enter flex flex-1 flex-col pt-8">
-					{step === "units" && <UnitsStep questions={total} onDone={next} />}
+					{step === "units" && <UnitsStep questions={total} onDone={complete} />}
 					{step === "weight" && (
-						<WeightStep prefill={prefill} onDone={next} onSkip={next} />
+						<WeightStep prefill={prefill} onDone={complete} onSkip={next} />
 					)}
 					{step === "height" && (
-						<HeightStep prefill={prefill} onDone={next} onSkip={next} />
+						<HeightStep prefill={prefill} onDone={complete} onSkip={next} />
 					)}
 					{step === "goal" && (
-						<GoalStep prefill={prefill} onDone={next} onSkip={next} />
+						<GoalStep prefill={prefill} onDone={complete} onSkip={next} />
 					)}
 					{step === "done" && <DoneStep onFinish={finish} />}
 				</main>

@@ -8,6 +8,11 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "#/components/theme-provider";
+import {
+  UMAMI_DOMAINS,
+  UMAMI_SCRIPT_URL,
+  UMAMI_WEBSITE_ID,
+} from "#/lib/analytics";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -74,6 +79,17 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
     scripts: [
+      // Analítica sin cookies; solo se carga si hay un sitio configurado.
+      ...(UMAMI_WEBSITE_ID
+        ? [
+            {
+              src: UMAMI_SCRIPT_URL,
+              defer: true,
+              "data-website-id": UMAMI_WEBSITE_ID,
+              "data-domains": UMAMI_DOMAINS,
+            },
+          ]
+        : []),
       {
         type: "application/ld+json",
         children: JSON.stringify({

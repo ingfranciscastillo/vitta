@@ -13,7 +13,7 @@ export function Hero() {
 					para empezar, Premium en un solo pago.
 				</p>
 				<div className="mt-8 flex flex-wrap items-center gap-3">
-					<StartFreeButton />
+					<StartFreeButton location="hero" />
 					<Link
 						to={"/login" as string}
 						className="inline-flex h-12 items-center rounded-full px-6 font-display text-base text-foreground ring-1 ring-border transition-colors duration-300 ease-brand pointer-fine-hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

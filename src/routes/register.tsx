@@ -11,11 +11,13 @@ import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
 import { PasswordInput } from "#/components/ui/password-input.tsx";
 import { Google } from "#/components/ui/svgs/google";
+import { track } from "#/lib/analytics";
 import { getSession } from "#/lib/auth.functions";
 import { authClient } from "#/lib/auth-client";
 import { mapAuthError } from "#/lib/auth-errors";
 import { registerSchema } from "#/lib/schemas/auth";
 import {
+	hasSignupPrefill,
 	parseSignupPrefill,
 	type SignupPrefill,
 	signupPrefillQuery,
@@ -33,7 +35,8 @@ export const Route = createFileRoute("/register")({
 });
 
 function RegisterPage() {
-	const welcomeUrl = `/welcome${signupPrefillQuery(Route.useSearch())}`;
+	const prefill = Route.useSearch();
+	const welcomeUrl = `/welcome${signupPrefillQuery(prefill)}`;
 	const [submitError, setSubmitError] = useState<string | null>(null);
 
 	const form = useForm({
@@ -57,6 +60,10 @@ function RegisterPage() {
 				return;
 			}
 			toast.success("Cuenta creada. Revisa tu email para verificarla.");
+			track("signup_completed", {
+				method: "email",
+				prefilled: hasSignupPrefill(prefill),
+			});
 			window.location.assign(welcomeUrl);
 		},
 	});
