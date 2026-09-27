@@ -15,16 +15,16 @@ export function LandingNavbar() {
         </Link>
         <div className="flex items-center gap-2">
           {signedIn ? (
-            <Button asChild className="h-9">
+            <Button asChild className="h-9 rounded-full px-4">
               <Link to={"/dashboard" as string}>Mi inicio</Link>
             </Button>
           ) : (
             <>
-              <Button asChild variant="ghost" className="h-9">
+              <Button asChild variant="ghost" className="h-9 rounded-full px-4">
                 <Link to={"/login" as string}>Iniciar sesión</Link>
               </Button>
-              <Button asChild className="h-9">
-                <Link to={"/register" as string}>Registrarse</Link>
+              <Button asChild className="h-9 rounded-full px-4">
+                <Link to={"/register" as string}>Empezar gratis</Link>
               </Button>
             </>
           )}
