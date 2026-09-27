@@ -18,6 +18,7 @@ import { Bars } from "#/components/bars";
 import { ConfirmDeleteDialog } from "#/components/confirm-delete-dialog";
 import { ExportImport } from "#/components/export-import";
 import { PreferencesSection } from "#/components/profile/preferences-section";
+import { RemindersSection } from "#/components/profile/reminders-section";
 import { SecuritySection } from "#/components/profile/security-section";
 import { Badge } from "#/components/ui/badge";
 import { Button } from "#/components/ui/button";
@@ -35,6 +36,7 @@ import {
 import { track } from "#/lib/analytics";
 import { authClient } from "#/lib/auth-client";
 import { currentUserQuery } from "#/lib/profile";
+import { reminderSettingsQuery } from "#/lib/reminders";
 import {
   deleteAllMyData,
   importEntries,
@@ -54,6 +56,8 @@ export const Route = createFileRoute("/_authenticated/profile")({
   loader: ({ context }) => {
     context.queryClient.ensureQueryData(currentUserQuery());
     context.queryClient.ensureQueryData(weightEntriesQuery());
+    // Sin await ni ensure: si falla, la sección se oculta y el perfil sigue.
+    context.queryClient.prefetchQuery(reminderSettingsQuery());
   },
   component: ProfilePage,
 });
@@ -105,6 +109,7 @@ function ProfilePage() {
         }}
       />
       <PreferencesSection />
+      <RemindersSection />
       <SecuritySection />
       <DataSection isPremium={!!me.isPro} unit={me.weightUnit} />
       <HelpSection />

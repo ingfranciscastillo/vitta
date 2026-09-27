@@ -48,6 +48,7 @@ export const activityIntensity = pgEnum("activity_intensity", [
 	"high",
 ]);
 export const fastStatus = pgEnum("fast_status", ["active", "completed"]);
+export const reminderType = pgEnum("reminder_type", ["weight"]);
 
 export const user = pgTable("user", {
 	id: text("id").primaryKey(),
@@ -394,6 +395,54 @@ export const fast = pgTable(
 	],
 );
 
+// Suscripción Web Push de un navegador o app instalada. Una persona puede
+// tener varias (móvil, ordenador). Se borra cuando el servicio de push la
+// da por caducada (404/410).
+export const pushSubscription = pgTable(
+	"push_subscription",
+	{
+		id: uuid("id").defaultRandom().primaryKey(),
+		userId: text("user_id")
+			.notNull()
+			.references(() => user.id, { onDelete: "cascade" }),
+		endpoint: text("endpoint").notNull().unique(),
+		p256dh: text("p256dh").notNull(),
+		auth: text("auth").notNull(),
+		userAgent: text("user_agent"),
+		createdAt: timestamp("created_at").defaultNow().notNull(),
+		lastSuccessAt: timestamp("last_success_at"),
+	},
+	(table) => [index("push_subscription_user_id_idx").on(table.userId)],
+);
+
+// Recordatorio diario. `time` es la hora local en la zona horaria del
+// usuario; `days` es una máscara de bits con el domingo en el bit 0 (como
+// Date.getDay). `lastSentOn` es la fecha local del último aviso, para no
+// repetirlo el mismo día.
+export const reminder = pgTable(
+	"reminder",
+	{
+		id: uuid("id").defaultRandom().primaryKey(),
+		userId: text("user_id")
+			.notNull()
+			.references(() => user.id, { onDelete: "cascade" }),
+		type: reminderType("type").notNull(),
+		enabled: boolean("enabled").default(true).notNull(),
+		time: time("time").default("08:00").notNull(),
+		days: integer("days").default(127).notNull(),
+		lastSentOn: date("last_sent_on"),
+		createdAt: timestamp("created_at").defaultNow().notNull(),
+		updatedAt: timestamp("updated_at")
+			.defaultNow()
+			.$onUpdate(() => /* @__PURE__ */ new Date())
+			.notNull(),
+	},
+	(table) => [
+		uniqueIndex("reminder_user_type_idx").on(table.userId, table.type),
+		index("reminder_enabled_idx").on(table.enabled),
+	],
+);
+
 export const userRelations = relations(user, ({ many }) => ({
 	sessions: many(session),
 	accounts: many(account),
@@ -405,6 +454,8 @@ export const userRelations = relations(user, ({ many }) => ({
 	meals: many(meal),
 	activities: many(activity),
 	fasts: many(fast),
+	pushSubscriptions: many(pushSubscription),
+	reminders: many(reminder),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -476,6 +527,23 @@ export const activityRelations = relations(activity, ({ one }) => ({
 export const fastRelations = relations(fast, ({ one }) => ({
 	user: one(user, {
 		fields: [fast.createdById],
+		references: [user.id],
+	}),
+}));
+
+export const pushSubscriptionRelations = relations(
+	pushSubscription,
+	({ one }) => ({
+		user: one(user, {
+			fields: [pushSubscription.userId],
+			references: [user.id],
+		}),
+	}),
+);
+
+export const reminderRelations = relations(reminder, ({ one }) => ({
+	user: one(user, {
+		fields: [reminder.userId],
 		references: [user.id],
 	}),
 }));

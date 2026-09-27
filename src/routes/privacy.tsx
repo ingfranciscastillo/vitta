@@ -99,6 +99,13 @@ function PrivacyPage() {
 				<strong>No recogemos</strong> tu ubicación, tus contactos ni datos de
 				otras apps, y no usamos publicidad.
 			</p>
+			<h3>Notificaciones</h3>
+			<p>
+				Si activas los recordatorios, guardamos la dirección de notificaciones
+				que genera tu navegador para ese dispositivo, la hora y los días que
+				eliges. El aviso no incluye tu peso ni ningún otro dato de salud. Puedes
+				desactivarlos en tu perfil cuando quieras.
+			</p>
 			<h3>Estadísticas de uso anónimas</h3>
 			<p>
 				Contamos visitas y algunas acciones, como "se completó un registro" o
@@ -117,6 +124,7 @@ function PrivacyPage() {
 					Enviarte emails necesarios: verificar tu cuenta y recuperar tu
 					contraseña. No enviamos publicidad.
 				</li>
+				<li>Enviarte los recordatorios que actives.</li>
 				<li>Atender tus consultas de soporte.</li>
 				<li>Proteger tu cuenta y el servicio frente a abusos.</li>
 				<li>
@@ -178,6 +186,11 @@ function PrivacyPage() {
 				</li>
 				<li>
 					<strong>Umami</strong>: estadísticas de uso anónimas, sin cookies.
+				</li>
+				<li>
+					<strong>Servicios de notificaciones</strong> de Apple, Google o
+					Mozilla, según tu navegador: solo si activas los recordatorios, para
+					entregarte el aviso.
 				</li>
 			</ul>
 			<p>

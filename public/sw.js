@@ -6,7 +6,7 @@
 // - Todo lo demás (API, funciones del servidor, login) pasa sin tocar.
 // Al cambiar este archivo, sube VERSION para limpiar las cachés viejas.
 
-const VERSION = "v2";
+const VERSION = "v3";
 const STATIC_CACHE = `vitta-static-${VERSION}`;
 const OFFLINE_URL = "/offline.html";
 const PRECACHE = [OFFLINE_URL, "/pwa-192x192.png"];
@@ -82,6 +82,51 @@ async function cacheFirst(request) {
 	}
 	return response;
 }
+
+// Recordatorios (Web Push). El servidor manda { title, body, url, tag }.
+self.addEventListener("push", (event) => {
+	let data = {};
+	try {
+		data = event.data ? event.data.json() : {};
+	} catch {
+		data = { body: event.data ? event.data.text() : "" };
+	}
+	event.waitUntil(
+		self.registration.showNotification(data.title || "Vitta", {
+			body: data.body || "",
+			icon: "/pwa-192x192.png",
+			tag: data.tag || "vitta",
+			lang: "es",
+			data: { url: data.url || "/dashboard" },
+		}),
+	);
+});
+
+// Al tocar el aviso: reutiliza una ventana abierta de Vitta o abre una nueva.
+self.addEventListener("notificationclick", (event) => {
+	event.notification.close();
+	const target = new URL(
+		event.notification.data?.url || "/dashboard",
+		self.location.origin,
+	).href;
+	event.waitUntil(
+		(async () => {
+			const windows = await self.clients.matchAll({
+				type: "window",
+				includeUncontrolled: true,
+			});
+			for (const client of windows) {
+				if (new URL(client.url).origin === self.location.origin) {
+					await client.focus();
+					// navigate() falla si esa ventana no la controla este service worker.
+					const navigated = await client.navigate(target).catch(() => null);
+					if (navigated) return navigated;
+				}
+			}
+			return self.clients.openWindow(target);
+		})(),
+	);
+});
 
 // Los archivos con hash se acumulan con cada despliegue: se borran los más antiguos.
 async function trimCache(cache) {

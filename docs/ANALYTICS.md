@@ -24,6 +24,7 @@
 | `onboarding_finished` | ¿Cuántos terminan y cuántos omiten? | `skipped` | Al salir de `/welcome` |
 | `weight_logged` | Activación: ¿registran su primer peso? | `first` | Registro rápido de peso |
 | `import_completed` | ¿Llegan usuarios de otras apps? | `source`: vitta, libra, csv, `rows` | Importación guardada |
+| `reminder_enabled` | ¿Cuántos activan el recordatorio de peso y a qué hora? | `time` (HH:MM) | Recordatorio activado en el perfil |
 | `checkout_started` | ¿Cuántos intentan comprar? | (ninguna) | Clic en comprar Premium |
 | `purchase_completed` | ¿Cuántos compran? | `revenue`, `currency` | Página de pago completado (una vez por sesión) |
 

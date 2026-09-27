@@ -14,9 +14,10 @@ import {
   createFileRoute,
   Outlet,
   redirect,
+  useRouter,
   useRouterState,
 } from "@tanstack/react-router";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BottomNav } from "#/components/bottom-nav";
 import { DashboardSkeleton } from "#/components/dashboard-skeleton";
@@ -86,6 +87,23 @@ function AuthenticatedLayout() {
   const pathname = useRouterState({
     select: (s) => s.resolvedLocation?.pathname ?? s.location.pathname,
   });
+  const router = useRouter();
+  const logParam = useRouterState({
+    select: (s): string | undefined => {
+      const log = (s.location.search as Record<string, unknown>).log;
+      return typeof log === "string" ? log : undefined;
+    },
+  });
+
+  // ?log=weight abre el registro rápido (lo usa el recordatorio de peso) y se
+  // quita de la URL para que recargar no lo vuelva a abrir.
+  useEffect(() => {
+    if (logParam !== "weight") return;
+    setQuickOpen(true);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("log");
+    router.history.replace(url.pathname + url.search + url.hash);
+  }, [logParam, router]);
 
   const today = todayStr();
   const currentToday = habitToday(habits, habitType);

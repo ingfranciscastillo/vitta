@@ -23,6 +23,8 @@ type EventMap = {
 	// Activación: el primer peso es el momento clave.
 	weight_logged: { first: boolean };
 	import_completed: { source: string; rows: number };
+	// ¿Cuántos activan el recordatorio y a qué hora lo quieren?
+	reminder_enabled: { time: string };
 	checkout_started: Record<string, never>;
 	purchase_completed: { revenue: number; currency: "USD" };
 };

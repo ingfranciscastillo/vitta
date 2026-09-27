@@ -46,6 +46,7 @@ import { Route as GuiasSlugRouteImport } from './routes/guias/$slug'
 import { Route as AuthenticatedPricingIndexRouteImport } from './routes/_authenticated/pricing/index'
 import { Route as AuthenticatedPricingSuccessRouteImport } from './routes/_authenticated/pricing/success'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiCronRemindersRouteImport } from './routes/api/cron/reminders'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -238,6 +239,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCronRemindersRoute = ApiCronRemindersRouteImport.update({
+  id: '/api/cron/reminders',
+  path: '/api/cron/reminders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -275,6 +281,7 @@ export interface FileRoutesByFullPath {
   '/guias/': typeof GuiasIndexRoute
   '/pricing/success': typeof AuthenticatedPricingSuccessRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/cron/reminders': typeof ApiCronRemindersRoute
   '/pricing/': typeof AuthenticatedPricingIndexRoute
 }
 export interface FileRoutesByTo {
@@ -313,6 +320,7 @@ export interface FileRoutesByTo {
   '/guias': typeof GuiasIndexRoute
   '/pricing/success': typeof AuthenticatedPricingSuccessRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/cron/reminders': typeof ApiCronRemindersRoute
   '/pricing': typeof AuthenticatedPricingIndexRoute
 }
 export interface FileRoutesById {
@@ -353,6 +361,7 @@ export interface FileRoutesById {
   '/guias/': typeof GuiasIndexRoute
   '/_authenticated/pricing/success': typeof AuthenticatedPricingSuccessRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/cron/reminders': typeof ApiCronRemindersRoute
   '/_authenticated/pricing/': typeof AuthenticatedPricingIndexRoute
 }
 export interface FileRouteTypes {
@@ -393,6 +402,7 @@ export interface FileRouteTypes {
     | '/guias/'
     | '/pricing/success'
     | '/api/auth/$'
+    | '/api/cron/reminders'
     | '/pricing/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -431,6 +441,7 @@ export interface FileRouteTypes {
     | '/guias'
     | '/pricing/success'
     | '/api/auth/$'
+    | '/api/cron/reminders'
     | '/pricing'
   id:
     | '__root__'
@@ -470,6 +481,7 @@ export interface FileRouteTypes {
     | '/guias/'
     | '/_authenticated/pricing/success'
     | '/api/auth/$'
+    | '/api/cron/reminders'
     | '/_authenticated/pricing/'
   fileRoutesById: FileRoutesById
 }
@@ -489,6 +501,7 @@ export interface RootRouteChildren {
   GuiasSlugRoute: typeof GuiasSlugRoute
   GuiasIndexRoute: typeof GuiasIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiCronRemindersRoute: typeof ApiCronRemindersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -752,6 +765,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/cron/reminders': {
+      id: '/api/cron/reminders'
+      path: '/api/cron/reminders'
+      fullPath: '/api/cron/reminders'
+      preLoaderRoute: typeof ApiCronRemindersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -825,6 +845,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuiasSlugRoute: GuiasSlugRoute,
   GuiasIndexRoute: GuiasIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiCronRemindersRoute: ApiCronRemindersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
