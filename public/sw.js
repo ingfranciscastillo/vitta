@@ -6,7 +6,7 @@
 // - Todo lo demás (API, funciones del servidor, login) pasa sin tocar.
 // Al cambiar este archivo, sube VERSION para limpiar las cachés viejas.
 
-const VERSION = "v1";
+const VERSION = "v2";
 const STATIC_CACHE = `vitta-static-${VERSION}`;
 const OFFLINE_URL = "/offline.html";
 const PRECACHE = [OFFLINE_URL, "/pwa-192x192.png"];

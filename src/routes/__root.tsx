@@ -8,7 +8,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "react-hot-toast";
 import { PwaRegister } from "#/components/pwa-register";
-import { ThemeProvider } from "#/components/theme-provider";
+import { ThemeProvider, ThemeScript } from "#/components/theme-provider";
 import {
   UMAMI_DOMAINS,
   UMAMI_SCRIPT_URL,
@@ -36,16 +36,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: "description",
         content:
           "Registra tu peso en 5 segundos y sigue agua, pasos, sueño y medidas en un solo lugar. Gratis para empezar; Premium es un pago único, sin suscripción.",
-      },
-      {
-        name: "theme-color",
-        content: "#f7f0f3",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        name: "theme-color",
-        content: "#1c1c20",
-        media: "(prefers-color-scheme: dark)",
       },
       { name: "apple-mobile-web-app-title", content: "Vitta" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
@@ -125,6 +115,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="es-ES" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <ThemeScript />
       </head>
       <body>
         <ThemeProvider>
