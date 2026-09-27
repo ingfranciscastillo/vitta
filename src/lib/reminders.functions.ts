@@ -103,7 +103,8 @@ export const sendTestPush = createServerFn({ method: "POST" }).handler(
 	async () => {
 		const userId = await requireUserId();
 		const delivered = await sendPushToUser(userId, {
-			title: "Vitta",
+			// No "Vitta": iOS ya añade "from Vitta" debajo del título.
+			title: "Aviso de prueba",
 			body: "Así se verán tus recordatorios.",
 			url: "/profile#recordatorios",
 			tag: "test",
