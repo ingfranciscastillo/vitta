@@ -287,3 +287,26 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+/* Línea de tendencia de la portada: se dibuja una vez al entrar en pantalla. */
+@keyframes draw-line {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+.draw-line {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
+}
+
+.draw-line[data-visible] {
+	animation: draw-line 1200ms cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.draw-line,
+	.draw-line[data-visible] {
+		stroke-dashoffset: 0;
+		animation: none;
+	}
+}

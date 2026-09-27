@@ -23,7 +23,7 @@ function Bars({
 					}}
 				/>
 			))}
-			<span className="sr-only">Loading</span>
+			<span className="sr-only">Cargando</span>
 		</span>
 	);
 }
