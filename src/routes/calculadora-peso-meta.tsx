@@ -21,8 +21,9 @@ import {
 	toDisplay,
 	type WeightUnit,
 } from "#/lib/weight-utils";
+import { SITE_URL } from "#/lib/site";
 
-const PAGE_URL = "https://vitta.app/calculadora-peso-meta";
+const PAGE_URL = `${SITE_URL}/calculadora-peso-meta`;
 const TITLE = "Calculadora de peso meta: ¿cuándo llegarás?";
 const DESCRIPTION =
 	"Calcula en qué fecha llegarás a tu peso meta según tu ritmo semanal. Gratis, en kg o lb y sin registrarte.";

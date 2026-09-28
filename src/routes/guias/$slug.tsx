@@ -1,8 +1,9 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { GuideLayout } from "#/components/guides/guide-layout";
 import { getGuide } from "#/content/guias";
+import { SITE_URL } from "#/lib/site";
 
-const SITE = "https://vitta.app";
+const SITE = SITE_URL;
 
 export const Route = createFileRoute("/guias/$slug")({
 	// Solo datos serializables: el cuerpo de la guía se resuelve al renderizar.

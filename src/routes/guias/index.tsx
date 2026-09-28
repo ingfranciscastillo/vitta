@@ -2,8 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import LandingFooter from "#/components/landing/landing-footer";
 import LandingNavbar from "#/components/landing/landing-navbar";
 import { GUIDES } from "#/content/guias";
+import { SITE_URL } from "#/lib/site";
 
-const URL_GUIDES = "https://vitta.app/guias";
+const URL_GUIDES = `${SITE_URL}/guias`;
 const DESCRIPTION =
 	"Guías claras sobre cómo pesarte, leer tu progreso y fijar objetivos realistas, con fuentes.";
 

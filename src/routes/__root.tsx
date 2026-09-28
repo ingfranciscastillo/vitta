@@ -14,6 +14,7 @@ import {
   UMAMI_SCRIPT_URL,
   UMAMI_WEBSITE_ID,
 } from "#/lib/analytics";
+import { OG_IMAGE, SITE_URL } from "#/lib/site";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -51,7 +52,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
           "Registra tu peso en 5 segundos y mira tu progreso cada día. Gratis para empezar.",
       },
       { property: "og:locale", content: "es_ES" },
+      { property: "og:image", content: OG_IMAGE.url },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: OG_IMAGE.width },
+      { property: "og:image:height", content: OG_IMAGE.height },
+      { property: "og:image:alt", content: OG_IMAGE.alt },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE.url },
+      { name: "twitter:image:alt", content: OG_IMAGE.alt },
       {
         name: "twitter:title",
         content: "Vitta — Registro de peso, hábitos y bienestar",
@@ -91,7 +99,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: "Vitta",
-          url: "https://vitta.app",
+          url: SITE_URL,
           applicationCategory: "HealthApplication",
           operatingSystem: "Web",
           inLanguage: "es",

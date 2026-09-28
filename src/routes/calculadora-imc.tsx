@@ -28,8 +28,9 @@ import {
 	imcCategory,
 	toDisplay,
 } from "#/lib/weight-utils";
+import { SITE_URL } from "#/lib/site";
 
-const PAGE_URL = "https://vitta.app/calculadora-imc";
+const PAGE_URL = `${SITE_URL}/calculadora-imc`;
 const TITLE = "Calculadora de IMC y peso saludable";
 const DESCRIPTION =
 	"Calcula tu índice de masa corporal y el rango de peso saludable para tu altura. Gratis, en kg y cm o lb e in.";

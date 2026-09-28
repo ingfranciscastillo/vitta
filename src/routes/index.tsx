@@ -9,13 +9,14 @@ import LandingFooter from "#/components/landing/landing-footer";
 import LandingNavbar from "#/components/landing/landing-navbar";
 import PremiumCTA from "#/components/premium-cta";
 import { getSession } from "#/lib/auth.functions";
+import { SITE_URL } from "#/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://vitta.app/" },
-      { rel: "alternate", hrefLang: "es", href: "https://vitta.app/" },
-      { rel: "alternate", hrefLang: "x-default", href: "https://vitta.app/" },
+      { rel: "canonical", href: `${SITE_URL}/` },
+      { rel: "alternate", hrefLang: "es", href: `${SITE_URL}/` },
+      { rel: "alternate", hrefLang: "x-default", href: `${SITE_URL}/` },
     ],
   }),
   beforeLoad: async () => {
