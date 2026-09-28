@@ -4,7 +4,7 @@ import { z } from "zod";
 import { db } from "#/db";
 import { pushSubscription, reminder } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
-import { isPushConfigured, sendPushToUser } from "#/lib/push.server";
+import { isPushConfigured } from "#/lib/push.server";
 
 const requireUserId = async (): Promise<string> => {
 	const session = await getSession();
@@ -98,17 +98,3 @@ export const deletePushSubscription = createServerFn({ method: "POST" })
 			);
 		return { ok: true };
 	});
-
-export const sendTestPush = createServerFn({ method: "POST" }).handler(
-	async () => {
-		const userId = await requireUserId();
-		const delivered = await sendPushToUser(userId, {
-			// No "Vitta": iOS ya añade "from Vitta" debajo del título.
-			title: "Aviso de prueba",
-			body: "Así se verán tus recordatorios.",
-			url: "/profile#recordatorios",
-			tag: "test",
-		});
-		return { delivered };
-	},
-);

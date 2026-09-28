@@ -6,7 +6,6 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Button } from "#/components/ui/button";
 import { Field } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
@@ -35,7 +34,6 @@ import {
 	deletePushSubscription,
 	savePushSubscription,
 	saveWeightReminder,
-	sendTestPush,
 } from "#/lib/reminders.functions";
 import { cn } from "#/lib/utils";
 
@@ -112,7 +110,7 @@ export function RemindersSection() {
 		onError: (error) => {
 			if (error instanceof PushPermissionError) {
 				setDevice((d) => d && { ...d, permission: notificationPermission() });
-				toast.error("Necesitamos tu permiso para enviarte avisos");
+				toast.error("Permite las notificaciones para activar el recordatorio");
 				return;
 			}
 			toast.error("No se pudo activar el recordatorio");
@@ -131,15 +129,6 @@ export function RemindersSection() {
 			await invalidate();
 		},
 		onError: () => toast.error("No se pudo desactivar el recordatorio"),
-	});
-
-	const testMut = useMutation({
-		mutationFn: () => sendTestPush(),
-		onSuccess: ({ delivered }) => {
-			if (delivered > 0) toast.success("Aviso de prueba enviado");
-			else toast.error("No encontramos ningún dispositivo activo");
-		},
-		onError: () => toast.error("No se pudo enviar el aviso de prueba"),
 	});
 
 	if (!settings.data?.pushAvailable) return null;
@@ -171,10 +160,10 @@ export function RemindersSection() {
 			<div className="rounded-2xl bg-card border border-border p-4 space-y-4">
 				<div className="flex items-start justify-between gap-4">
 					<div className="min-w-0">
-						<Label htmlFor="reminder-weight">Recordarme pesarme</Label>
+						<Label htmlFor="reminder-weight">Recordatorio de peso</Label>
 						<p className="mt-1 text-xs text-muted-foreground text-pretty">
-							Un aviso al día a la hora que elijas. Si ya te pesaste, no te
-							molestamos.
+							Notificación diaria para registrar tu peso. No se envía si ya lo
+							registraste ese día.
 						</p>
 					</div>
 					<Switch
@@ -193,7 +182,7 @@ export function RemindersSection() {
 				{enabledHere && (
 					<>
 						<Field>
-							<Label htmlFor="reminder-time">Hora</Label>
+							<Label htmlFor="reminder-time">Hora del aviso</Label>
 							<Input
 								id="reminder-time"
 								type="time"
@@ -204,9 +193,8 @@ export function RemindersSection() {
 								}}
 								className="w-full min-w-0 appearance-none [-webkit-appearance:none] text-base tabular-nums"
 							/>
-							<p className="text-xs text-muted-foreground">
-								Hora de {cityOf(me.timezone)}. Cámbiala en Preferencias si
-								viajas.
+							<p className="text-xs text-muted-foreground text-pretty">
+								Según la zona horaria de tu perfil ({cityOf(me.timezone)}).
 							</p>
 						</Field>
 						<fieldset className="space-y-2">
@@ -240,15 +228,6 @@ export function RemindersSection() {
 								})}
 							</div>
 						</fieldset>
-						<Button
-							type="button"
-							variant="outline"
-							className="w-full"
-							disabled={testMut.isPending}
-							onClick={() => testMut.mutate()}
-						>
-							Enviar aviso de prueba
-						</Button>
 					</>
 				)}
 			</div>
@@ -266,13 +245,13 @@ function DeviceNotice({
 	if (!device) return null;
 	const message =
 		device.support === "ios-needs-install"
-			? "En iPhone, primero agrega Vitta a tu pantalla de inicio (Compartir → Agregar a inicio) y ábrela desde allí."
+			? "En iPhone y iPad, las notificaciones requieren instalar Vitta: toca Compartir, luego Agregar a inicio, y abre la app desde allí."
 			: device.support === "unsupported"
-				? "Este navegador no permite notificaciones. Prueba con Chrome, Edge, Firefox o Safari."
+				? "Este navegador no admite notificaciones. Usa Chrome, Edge, Firefox o Safari."
 				: device.permission === "denied"
-					? "Bloqueaste las notificaciones de Vitta. Actívalas en los ajustes del navegador o del teléfono y vuelve aquí."
+					? "Las notificaciones de Vitta están bloqueadas. Permítelas en los ajustes del navegador o del dispositivo."
 					: enabledElsewhere
-						? "Está activo en otro dispositivo. Actívalo también aquí para recibirlo en este."
+						? "Activo en otro dispositivo. Actívalo aquí para recibirlo también en este."
 						: null;
 	if (!message) return null;
 	return (

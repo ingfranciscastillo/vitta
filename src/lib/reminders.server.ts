@@ -53,8 +53,8 @@ export async function runDueReminders(now = new Date()) {
 			skipped++;
 		} else {
 			const delivered = await sendPushToUser(r.userId, {
-				title: "¿Te pesas hoy?",
-				body: "Son 5 segundos. Con registros seguidos tu tendencia es más fiable.",
+				title: "Hora de pesarte",
+				body: "Registra tu peso de hoy para mantener tu tendencia al día.",
 				url: "/dashboard?log=weight",
 				tag: "weight-reminder",
 			});
