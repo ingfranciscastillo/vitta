@@ -360,7 +360,7 @@ function DashboardPage() {
         <div className="space-y-2">
           {rems.map((r) => (
             <div
-              key={crypto.randomUUID()}
+              key={r}
               className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3"
             >
               <BellIcon className="w-4 mt-0.5 text-primary shrink-0" />

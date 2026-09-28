@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "#/db";
 import { habitLog } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { assertHealthConsent } from "#/lib/consent.server";
 import type { HabitLog, HabitType } from "#/lib/health-types";
 
 export const listHabitLogs = createServerFn({ method: "GET" }).handler(
@@ -38,6 +39,7 @@ export const addHabitLog = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		if (data.step === 0) {
 			throw new Error("El paso no puede ser cero");
@@ -91,6 +93,7 @@ export const setHabitLog = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		const [existing] = await db
 			.select()

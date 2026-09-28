@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "#/db";
 import { goal, weightEntry } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { assertHealthConsent } from "#/lib/consent.server";
 import type { WeightEntry } from "#/lib/weight-utils";
 
 export const listWeightEntries = createServerFn({ method: "GET" }).handler(
@@ -45,6 +46,7 @@ export const createWeightEntry = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		// Necesitamos saber si este es el primer registro de peso del usuario
 		// ANTES de insertar, para no confundir "primer registro" con
@@ -101,6 +103,7 @@ export const updateWeightEntry = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 		const [existing] = await db
 			.select({ owner: weightEntry.createdById })
 			.from(weightEntry)

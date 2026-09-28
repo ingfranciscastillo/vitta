@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "#/db";
 import { goal, user } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { assertHealthConsent } from "#/lib/consent.server";
 import { listWeightEntries } from "#/lib/weight.functions";
 import {
 	computeStats,
@@ -61,6 +62,7 @@ export const upsertGoal = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		const [existing] = await db
 			.select()

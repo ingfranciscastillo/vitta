@@ -16,6 +16,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Bars } from "#/components/bars";
 import { ConfirmDeleteDialog } from "#/components/confirm-delete-dialog";
+import { DeleteAccount } from "#/components/profile/delete-account";
 import { ExportImport } from "#/components/export-import";
 import { PreferencesSection } from "#/components/profile/preferences-section";
 import { RemindersSection } from "#/components/profile/reminders-section";
@@ -339,6 +340,7 @@ function DataSection({
           title="Eliminar todos mis datos"
           description="Se eliminarán tus registros de peso, objetivo, hábitos, comidas, actividad, ayunos y medidas. Tu cuenta se mantiene. Esta acción no se puede deshacer."
         />
+        <DeleteAccount />
       </div>
     </section>
   );

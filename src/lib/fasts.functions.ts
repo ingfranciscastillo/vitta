@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "#/db";
 import { fast } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { assertHealthConsent } from "#/lib/consent.server";
 import type { Fast, FastStatus } from "#/lib/health-types";
 
 export const listFasts = createServerFn({ method: "GET" }).handler(
@@ -52,6 +53,7 @@ export const createFast = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		if (data.status === "active") {
 			const existing = await db
@@ -116,6 +118,7 @@ export const updateFast = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 		const [existing] = await db
 			.select({ owner: fast.createdById })
 			.from(fast)

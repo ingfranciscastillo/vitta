@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "#/db";
 import { meal } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { assertHealthConsent } from "#/lib/consent.server";
 import type { Meal, MealType } from "#/lib/health-types";
 
 export const listMeals = createServerFn({ method: "GET" }).handler(
@@ -49,6 +50,7 @@ export const createMeal = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		const [row] = await db
 			.insert(meal)

@@ -141,8 +141,9 @@ function PrivacyPage() {
 					para darte el servicio que pides.
 				</li>
 				<li>
-					<strong>Consentimiento explícito:</strong> tus datos de salud solo se
-					tratan porque tú decides registrarlos, y únicamente para mostrártelos.
+					<strong>Consentimiento explícito:</strong> antes de registrar nada te
+					pedimos consentimiento expreso para tratar tus datos de salud, y
+					guardamos la fecha en que lo diste. Solo los usamos para mostrártelos.
 					Puedes retirar ese consentimiento en cualquier momento borrándolos
 					desde tu perfil.
 				</li>
@@ -215,8 +216,9 @@ function PrivacyPage() {
 					proveedor durante un tiempo limitado hasta que se sobrescriben.
 				</li>
 				<li>
-					Si pides cerrar tu cuenta, eliminamos todos tus datos en un plazo
-					máximo de 30 días.
+					Si eliminas tu cuenta desde el perfil, borramos al instante todos tus
+					datos de la base de datos. Si nos lo pides por email, lo hacemos en un
+					plazo máximo de 30 días.
 				</li>
 				<li>
 					Los registros de compra los conserva Dodo Payments durante el tiempo
@@ -235,9 +237,8 @@ function PrivacyPage() {
 					gratis escribiéndonos.
 				</li>
 				<li>
-					<strong>Borrar</strong> tus datos de salud desde{" "}
-					<Link to="/profile">tu perfil</Link>, o pedirnos el cierre completo de
-					tu cuenta.
+					<strong>Borrar</strong> tus datos de salud o tu cuenta completa desde{" "}
+					<Link to="/profile">tu perfil</Link>.
 				</li>
 				<li>
 					<strong>Oponerte o limitar</strong> ciertos usos, y{" "}

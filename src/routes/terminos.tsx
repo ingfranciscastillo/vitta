@@ -113,8 +113,7 @@ function TermsPage() {
 					<a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>.
 				</li>
 				<li>
-					Puedes borrar tus datos de salud desde tu perfil y pedirnos el cierre
-					completo de tu cuenta por email.
+					Puedes borrar tus datos de salud o tu cuenta completa desde tu perfil.
 				</li>
 			</ul>
 
@@ -179,8 +178,8 @@ function TermsPage() {
 
 			<h2>12. Suspensión y cierre</h2>
 			<p>
-				Puedes dejar de usar {LEGAL.product} y pedirnos cerrar tu cuenta cuando
-				quieras. Podemos suspender una cuenta que incumpla estos términos; salvo
+				Puedes dejar de usar {LEGAL.product} y eliminar tu cuenta desde tu
+				perfil cuando quieras. Podemos suspender una cuenta que incumpla estos términos; salvo
 				casos graves, te avisaremos antes y podrás explicarte.
 			</p>
 

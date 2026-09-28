@@ -126,9 +126,9 @@ function InsightsPage() {
 			{rems.length > 0 && (
 				<div className="space-y-2">
 					<div className="font-display text-sm">Recordatorios</div>
-					{rems.map((r, i) => (
+					{rems.map((r) => (
 						<div
-							key={crypto.randomUUID()}
+							key={r}
 							className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3"
 						>
 							<BellIcon className="w-4 h-4 mt-0.5 text-primary shrink-0" />
@@ -159,9 +159,9 @@ function InsightsPage() {
 			{isPremium ? (
 				<div className="space-y-2">
 					<div className="font-display text-sm">Análisis avanzado</div>
-					{advancedTips.map((t, i) => (
+					{advancedTips.map((t) => (
 						<div
-							key={crypto.randomUUID()}
+							key={t}
 							className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3"
 						>
 							<GraphDownIcon className="w-4 h-4 mt-0.5 text-primary shrink-0" />

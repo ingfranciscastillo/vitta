@@ -57,6 +57,8 @@ export const auth = betterAuth({
 			"/api/auth/forget-password": { window: 60 * 60, max: 3 },
 			"/api/auth/reset-password": { window: 60 * 60, max: 5 },
 			"/api/auth/send-verification-email": { window: 60 * 60, max: 3 },
+			// Pide la contraseña: limita los intentos de adivinarla.
+			"/api/auth/delete-user": { window: 60 * 60, max: 5 },
 		},
 	},
 	session: {
@@ -125,6 +127,13 @@ export const auth = betterAuth({
 		},
 	},
 	user: {
+		// Borrado definitivo desde el perfil. Con contraseña se verifica la
+		// contraseña; en cuentas de Google, Better Auth exige una sesión
+		// reciente (freshAge, 1 día por defecto). El resto de tablas del
+		// usuario se borran en cascada.
+		deleteUser: {
+			enabled: true,
+		},
 		additionalFields: {
 			role: {
 				type: "string",

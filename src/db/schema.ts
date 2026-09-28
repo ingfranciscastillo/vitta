@@ -72,6 +72,9 @@ export const user = pgTable("user", {
 	dodoCustomerId: text("dodo_customer_id"),
 	isPro: boolean("is_pro").default(false).notNull(),
 	twoFactorEnabled: boolean("two_factor_enabled").default(false).notNull(),
+	// Consentimiento explícito para tratar datos de salud (RGPD art. 9).
+	// Sin él, la app pide aceptarlo antes de dejar registrar nada.
+	healthConsentAt: timestamp("health_consent_at"),
 	waterGoal: numeric("water_goal", { precision: 7, scale: 2 })
 		.default("2000")
 		.notNull(),

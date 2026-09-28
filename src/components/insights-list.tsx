@@ -29,7 +29,7 @@ export function InsightsList({ insights }: InsightsListProps) {
 				const Icon = pickIcon(t);
 				return (
 					<div
-						key={crypto.randomUUID()}
+						key={t}
 						className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3"
 					>
 						<Icon className="w-4 h-4 mt-0.5 text-primary shrink-0" />

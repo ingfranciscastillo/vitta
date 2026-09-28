@@ -22,6 +22,7 @@ import toast from "react-hot-toast";
 import { BottomNav } from "#/components/bottom-nav";
 import { DashboardSkeleton } from "#/components/dashboard-skeleton";
 import { HabitLogDialog } from "#/components/habit-log-dialog";
+import { HealthConsent } from "#/components/health-consent";
 import { QuickLogContext } from "#/components/quick-log-context";
 import { QuickLogDialog } from "#/components/quick-log-dialog";
 import { TourRunner } from "#/components/tour-runner";
@@ -159,6 +160,9 @@ function AuthenticatedLayout() {
     setHabitType(type);
     setHabitOpen(true);
   };
+
+  // Quien omitió el onboarding o ya tenía cuenta lo acepta aquí.
+  if (me && !me.healthConsentAt) return <HealthConsent />;
 
   return (
     <QuickLogContext.Provider value={{ open: () => setQuickOpen(true) }}>

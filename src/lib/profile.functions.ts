@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "#/db";
 import {
@@ -13,6 +13,7 @@ import {
 	weightEntry,
 } from "#/db/schema";
 import { getSession } from "#/lib/auth.functions";
+import { assertHealthConsent } from "#/lib/consent.server";
 import { MAX_IMPORT_ROWS } from "#/lib/weight-import";
 import { GOAL_WEIGHT_MAX_KG, GOAL_WEIGHT_MIN_KG } from "#/lib/weight-utils";
 
@@ -78,6 +79,19 @@ export const updateProfile = createServerFn({ method: "POST" })
 		return { ok: true };
 	});
 
+// Guarda cuándo se dio el consentimiento; se conserva la primera fecha.
+export const giveHealthConsent = createServerFn({ method: "POST" }).handler(
+	async () => {
+		const session = await getSession();
+		if (!session) throw new Error("Unauthorized");
+		await db
+			.update(user)
+			.set({ healthConsentAt: new Date() })
+			.where(and(eq(user.id, session.user.id), isNull(user.healthConsentAt)));
+		return { ok: true };
+	},
+);
+
 export const deleteAllMyData = createServerFn({ method: "POST" }).handler(
 	async () => {
 		const session = await getSession();
@@ -118,6 +132,7 @@ export const importEntries = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		const session = await getSession();
 		if (!session) throw new Error("Unauthorized");
+		await assertHealthConsent(session.user.id);
 
 		// Importar dos veces el mismo archivo no debe duplicar registros:
 		// se omiten los que ya existen con la misma fecha, hora y peso.

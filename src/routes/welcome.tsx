@@ -9,6 +9,7 @@ import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Bars } from "#/components/bars";
+import { HealthConsent } from "#/components/health-consent";
 import { NumberStepper } from "#/components/number-stepper";
 import { Button } from "#/components/ui/button";
 import { Progress } from "#/components/ui/progress";
@@ -116,6 +117,9 @@ function WelcomePage() {
 	// "Listo" no cuenta como paso para la barra de progreso.
 	const total = steps.length - 1;
 	const pct = step === "done" ? 100 : (index / total) * 100;
+
+	// Antes de pedir el primer peso hace falta el consentimiento de salud.
+	if (!me.healthConsentAt) return <HealthConsent />;
 
 	return (
 		<div className="min-h-dvh bg-background">
